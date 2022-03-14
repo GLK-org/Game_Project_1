@@ -1,13 +1,30 @@
-#include <Windows.h>
-	#define MAX_NAME_STRING 256
-//definicja handlerów dla ³atwiejszego przekazywania w funkcji WinMain
-	#define HInstance() GetModuleHandle(NULL)
+#include "pch.h"
 
 WCHAR		WindowClass[MAX_NAME_STRING];
 WCHAR		WindowTitle[MAX_NAME_STRING];
 
 INT			WindowHeight;
 INT			WindowWidth;
+
+//Funkcja u¿yta do niszczenia procesu programu po zamkniêciu okna
+LRESULT CALLBACK WindowProcess(HWND hWnd, UINT message, WPARAM wparam, LPARAM lparam) {
+
+	switch (message) {
+	case WM_DESTROY: {
+		PostQuitMessage(0);
+		break;
+	}
+
+
+	}
+
+
+
+	return DefWindowProc(hWnd, message, wparam, lparam);
+}
+
+
+
 
 int CALLBACK WinMain(HINSTANCE, HINSTANCE, LPSTR, INT) {
 
@@ -38,7 +55,7 @@ int CALLBACK WinMain(HINSTANCE, HINSTANCE, LPSTR, INT) {
 
 	wcex.hInstance = HInstance();
 
-	wcex.lpfnWndProc = DefWindowProc;
+	wcex.lpfnWndProc = WindowProcess;
 
 	//Rejestracja klasy?
 	RegisterClassEx(&wcex);
