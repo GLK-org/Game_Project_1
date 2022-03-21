@@ -5,8 +5,8 @@ WCHAR		WindowTitle[MAX_NAME_STRING];
 
 INT			WindowHeight;
 INT			WindowWidth;
+
 Graphics* graphics;
-//Funkcja u¿yta do niszczenia procesu programu po zamkniêciu okna
 LRESULT CALLBACK WindowProcess(HWND hWnd, UINT message, WPARAM wparam, LPARAM lparam) {
 
 	switch (message) {
@@ -14,16 +14,15 @@ LRESULT CALLBACK WindowProcess(HWND hWnd, UINT message, WPARAM wparam, LPARAM lp
 		PostQuitMessage(0);
 		break;
 	}
-	case WM_PAINT: {
+	/*case WM_PAINT: {
 		graphics->BeginDraw();
 		graphics->ClearScreen(0.0f, 0.0f, 0.5f);
-		for (int i = 1; i < 100; i++) {
-			graphics->DrawCircle(10*i, 10*i, 50, 1.0f, 0.0, 0.0, 1.0);
-		}
+		graphics->DrawCircle(104, 150, 50, 1.0f, 0.0f, 0.0f, 1.0f);
+	
 		
 		graphics->EndDraw();
 	}
-
+	*/
 	}
 
 
@@ -92,12 +91,49 @@ int CALLBACK WinMain(HINSTANCE, HINSTANCE, LPSTR, INT) {
 	
 	//Nas³uchuj zdarzenie wy³¹czenia tak, ¿eby okno siê nie wy³¹cza³o do tego momentu
 
+	float y = 0.0f;
+	float x = 0.0f;
+	float ySpeed = 0.0f;
+	float xSpeed = 0.0f;
 	MSG msg = { 0 };
+
+	//Odœwie¿anie ekranu i pseudofizyka
 	while (msg.message != WM_QUIT) {
 
-		if (PeekMessage(&msg, 0, 0, 0, PM_REMOVE)) {
+		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) {
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
+		}
+		else {
+			
+			//'Update':
+			ySpeed += 1.0f;
+			y += ySpeed;
+			x += xSpeed;
+			if (GetKeyState('A')) {
+				xSpeed += 1.0f;
+			}
+			if (GetKeyState('D')) {
+				xSpeed -= 1.0f;
+			}
+
+			if (y > WindowHeight) {
+				y = WindowHeight;
+				ySpeed = -30.0f;
+			}
+			if (x < 0) {
+				x = 0;
+				xSpeed = 5.0f;
+			}
+			else if (x > WindowWidth) {
+				x = WindowWidth;
+				xSpeed = -5.0f;
+			}
+			//Render:
+			graphics->BeginDraw();
+			graphics->ClearScreen(0.0f,0.0f,0.5f);
+			graphics->DrawCircle(x, y, 50, 1.0f, 0.0f, 0.0f, 1.0f);
+			graphics->EndDraw();
 		}
 	}
 	delete graphics;
