@@ -43,11 +43,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Content\Caffle.png">
-      <Filter>Resources</Filter>
-    </Image>
-  </ItemGroup>
-  <ItemGroup>
     <ResourceCompile Include="Game_engine_1.rc">
       <Filter>Pliki zasobów</Filter>
     </ResourceCompile>

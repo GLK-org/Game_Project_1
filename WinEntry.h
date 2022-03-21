@@ -1,7 +1,7 @@
 #include "Engine.h"
 #include "IApplication.h"
 extern IApplication* EntryApplication();
-
+/*
 INT CALLBACK  WinMain(HINSTANCE, HINSTANCE, LPSTR, INT) {
 
 	
@@ -23,4 +23,4 @@ INT CALLBACK  WinMain(HINSTANCE, HINSTANCE, LPSTR, INT) {
 	}
 
 	return 0;
-}
+}*/

@@ -1,11 +1,11 @@
 #include "pch/pch.h"
-
+#include "Core/CoreMinimal.h"
 WCHAR		WindowClass[MAX_NAME_STRING];
 WCHAR		WindowTitle[MAX_NAME_STRING];
 
 INT			WindowHeight;
 INT			WindowWidth;
-
+Graphics* graphics;
 //Funkcja u¿yta do niszczenia procesu programu po zamkniêciu okna
 LRESULT CALLBACK WindowProcess(HWND hWnd, UINT message, WPARAM wparam, LPARAM lparam) {
 
@@ -14,7 +14,12 @@ LRESULT CALLBACK WindowProcess(HWND hWnd, UINT message, WPARAM wparam, LPARAM lp
 		PostQuitMessage(0);
 		break;
 	}
-
+	case WM_PAINT: {
+		graphics->BeginDraw();
+		graphics->ClearScreen(0.0f, 0.0f, 0.5f);
+		graphics->DrawCircle(100, 100, 50, 1.0f, 0.0, 0.0, 1.0);
+		graphics->EndDraw();
+	}
 
 	}
 
@@ -24,10 +29,10 @@ LRESULT CALLBACK WindowProcess(HWND hWnd, UINT message, WPARAM wparam, LPARAM lp
 }
 
 
-/*
+
 
 int CALLBACK WinMain(HINSTANCE, HINSTANCE, LPSTR, INT) {
-
+	
 	//Inicjalizacja parametrów startowych
 
 	wcscpy_s(WindowClass, TEXT("TutorialOneClass"));
@@ -38,6 +43,7 @@ int CALLBACK WinMain(HINSTANCE, HINSTANCE, LPSTR, INT) {
 	//Tworzenie i definiowanie w³aœciwoœci klasy okna
 
 	WNDCLASSEX wcex;
+	
 
 	wcex.cbSize = sizeof(WNDCLASSEX);
 	wcex.style = CS_HREDRAW | CS_VREDRAW;
@@ -62,14 +68,25 @@ int CALLBACK WinMain(HINSTANCE, HINSTANCE, LPSTR, INT) {
 
 	//Wyœwietlanie okna
 	//Handler - "reprezentacja okna"
-	HWND hWnd = CreateWindow(WindowClass, WindowTitle, WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, 0, WindowWidth, WindowHeight, nullptr, nullptr, HInstance(), nullptr);
+	RECT rect = {0,0, WindowWidth, WindowHeight};
+	AdjustWindowRectEx(&rect, WS_OVERLAPPEDWINDOW,false,WS_EX_OVERLAPPEDWINDOW);
+
+	HWND hWnd = CreateWindowEx(WS_EX_OVERLAPPEDWINDOW, WindowClass, WindowTitle, WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, 0, rect.right-rect.left, rect.bottom-rect.top, nullptr, nullptr, HInstance(), nullptr);
 
 	if (!hWnd) {
 		MessageBox(0, L"Failed to Create Window", 0, 0);
 		return 0;
 	}
 
+	graphics = new Graphics();
+
+	if (!graphics->Init(hWnd)) {
+		delete graphics;
+		return -1;
+	}
+	
 	ShowWindow(hWnd, SW_SHOW);
+	
 	//Nas³uchuj zdarzenie wy³¹czenia tak, ¿eby okno siê nie wy³¹cza³o do tego momentu
 
 	MSG msg = { 0 };
@@ -80,7 +97,6 @@ int CALLBACK WinMain(HINSTANCE, HINSTANCE, LPSTR, INT) {
 			DispatchMessage(&msg);
 		}
 	}
-
+	delete graphics;
 	return 0;
 }
-*/
