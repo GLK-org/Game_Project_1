@@ -1,5 +1,10 @@
 #pragma once
-class Application {
+
+#include "IApplication.h"
+//makro creating an entry point
+#define ENTRYAPP(x) IApplication* EntryApplication() { return new x;}
+
+class Application : public IApplication {
 
 
 public:

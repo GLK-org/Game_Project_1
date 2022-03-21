@@ -1,4 +1,4 @@
-#include "pch.h"
+#include "pch/pch.h"
 
 WCHAR		WindowClass[MAX_NAME_STRING];
 WCHAR		WindowTitle[MAX_NAME_STRING];
@@ -24,7 +24,7 @@ LRESULT CALLBACK WindowProcess(HWND hWnd, UINT message, WPARAM wparam, LPARAM lp
 }
 
 
-
+/*
 
 int CALLBACK WinMain(HINSTANCE, HINSTANCE, LPSTR, INT) {
 
@@ -35,7 +35,7 @@ int CALLBACK WinMain(HINSTANCE, HINSTANCE, LPSTR, INT) {
 
 	WindowWidth = 1366;
 	WindowHeight = 768;
-	//Tworzenie Klasy Okna
+	//Tworzenie i definiowanie w³aœciwoœci klasy okna
 
 	WNDCLASSEX wcex;
 
@@ -83,3 +83,4 @@ int CALLBACK WinMain(HINSTANCE, HINSTANCE, LPSTR, INT) {
 
 	return 0;
 }
+*/
