@@ -33,6 +33,7 @@ bool Graphics::Init(HWND windowHandle)
 
 void Graphics::ClearScreen(float r, float g, float b)
 {
+
     rendertarget->Clear(D2D1::ColorF(r, g, b));
 }
 

@@ -4,6 +4,7 @@
 #include "WinEntry.h"
 
 ENTRYAPP(Application)
+
 Application::Application()
 {
 

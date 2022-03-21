@@ -1,5 +1,7 @@
 #include "pch/pch.h"
 #include "Core/CoreMinimal.h"
+#include "Level_1.h"
+#include "GameController.h"
 WCHAR		WindowClass[MAX_NAME_STRING];
 WCHAR		WindowTitle[MAX_NAME_STRING];
 
@@ -88,13 +90,11 @@ int CALLBACK WinMain(HINSTANCE, HINSTANCE, LPSTR, INT) {
 	}
 	
 	ShowWindow(hWnd, SW_SHOW);
-	
+//	GameController::LoadInitialLevel(new Level1());
+
 	//Nas³uchuj zdarzenie wy³¹czenia tak, ¿eby okno siê nie wy³¹cza³o do tego momentu
 
-	float y = 0.0f;
-	float x = 0.0f;
-	float ySpeed = 0.0f;
-	float xSpeed = 0.0f;
+	
 	MSG msg = { 0 };
 
 	//Odœwie¿anie ekranu i pseudofizyka
@@ -106,36 +106,16 @@ int CALLBACK WinMain(HINSTANCE, HINSTANCE, LPSTR, INT) {
 		}
 		else {
 			
-			//'Update':
-			ySpeed += 1.0f;
-			y += ySpeed;
-			x += xSpeed;
-			if (GetKeyState('A')) {
-				xSpeed += 1.0f;
-			}
-			if (GetKeyState('D')) {
-				xSpeed -= 1.0f;
-			}
-
-			if (y > WindowHeight) {
-				y = WindowHeight;
-				ySpeed = -30.0f;
-			}
-			if (x < 0) {
-				x = 0;
-				xSpeed = 5.0f;
-			}
-			else if (x > WindowWidth) {
-				x = WindowWidth;
-				xSpeed = -5.0f;
-			}
+			GameController::Update();
+			
 			//Render:
 			graphics->BeginDraw();
-			graphics->ClearScreen(0.0f,0.0f,0.5f);
-			graphics->DrawCircle(x, y, 50, 1.0f, 0.0f, 0.0f, 1.0f);
+		//	GameController::Render(graphics);
 			graphics->EndDraw();
+			
 		}
 	}
+
 	delete graphics;
 	return 0;
 }
