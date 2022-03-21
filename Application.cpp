@@ -20,4 +20,5 @@ void Application::Initialize()
 
 void Application::Update()
 {
+	MessageBox(0, L"Loop", 0, 0);
 }
