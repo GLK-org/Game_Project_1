@@ -38,10 +38,11 @@ void Graphics::ClearScreen(float r, float g, float b)
 
 void Graphics::DrawCircle(float x, float y, float rad, float r, float g, float b, float a)
 {
+    //tworzenie pêdzla i generowanie elipsy
     ID2D1SolidColorBrush* brush;
     rendertarget->CreateSolidColorBrush(D2D1::ColorF(r, g, b, a), &brush);
 
     rendertarget->DrawEllipse(D2D1::Ellipse(D2D1::Point2F(x, y), rad, rad), brush, 3.0f);
-    
+    //
     brush->Release();
 }

@@ -17,7 +17,10 @@ LRESULT CALLBACK WindowProcess(HWND hWnd, UINT message, WPARAM wparam, LPARAM lp
 	case WM_PAINT: {
 		graphics->BeginDraw();
 		graphics->ClearScreen(0.0f, 0.0f, 0.5f);
-		graphics->DrawCircle(100, 100, 50, 1.0f, 0.0, 0.0, 1.0);
+		for (int i = 1; i < 100; i++) {
+			graphics->DrawCircle(10*i, 10*i, 50, 1.0f, 0.0, 0.0, 1.0);
+		}
+		
 		graphics->EndDraw();
 	}
 
