@@ -2,20 +2,20 @@
 #include "pch\pch.h"
 #include "Core\CoreMinimal.h"
 #include "Level_1.h"
-
+#include <vector>
 
 void Level1::Load() {
 	x = xSpeed = 0.0f;
 	y = ySpeed = 0.0f;
+	
 }
 
 void Level1::Unload() {}
 
-void Level1::Render(Graphics* gfx) {
-
+void Level1::Render(Graphics* gfx)
+{
 	gfx->ClearScreen(0.0f, 0.0f, 0.5f);
 	gfx->DrawCircle(x, y, 50, 1.0f, 0.0f, 0.0f, 1.0f);
-	int t = 2;
 }
 
 void Level1::Update() {

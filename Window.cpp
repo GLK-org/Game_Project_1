@@ -1,6 +1,7 @@
 #include "pch/pch.h"
 #include "Core/CoreMinimal.h"
 #include "Level_1.h"
+#include "Level_2.h"
 #include "GameController.h"
 WCHAR		WindowClass[MAX_NAME_STRING];
 WCHAR		WindowTitle[MAX_NAME_STRING];
@@ -90,7 +91,7 @@ int CALLBACK WinMain(HINSTANCE, HINSTANCE, LPSTR, INT) {
 	}
 	
 	ShowWindow(hWnd, SW_SHOW);
-//	GameController::LoadInitialLevel(new Level1());
+	GameController::LoadInitialLevel(new Level1());
 
 	//Nas³uchuj zdarzenie wy³¹czenia tak, ¿eby okno siê nie wy³¹cza³o do tego momentu
 
@@ -107,10 +108,15 @@ int CALLBACK WinMain(HINSTANCE, HINSTANCE, LPSTR, INT) {
 		else {
 			
 			GameController::Update();
-			
+			if (GetKeyState('S')) {
+				GameController::SwitchLevel(new Level2());
+			}
+			else if (GetKeyState('W')) {
+				GameController::SwitchLevel(new Level1());
+			}
 			//Render:
 			graphics->BeginDraw();
-		//	GameController::Render(graphics);
+			GameController::Render(graphics);
 			graphics->EndDraw();
 			
 		}

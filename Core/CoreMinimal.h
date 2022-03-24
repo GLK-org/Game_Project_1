@@ -4,7 +4,6 @@
 #include "d2d1.h"
 #include "d2d1_1.h"
 #include "wincodec.h"
-#include "OEng.h"
 
 
 class ENGINE_API Graphics {

@@ -25,15 +25,9 @@
     <Filter Include="Pliki zasobów\Structs">
       <UniqueIdentifier>{46d8805a-5800-4bb4-a8ed-11edeb268642}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Pliki zasobów\Structs\Npc%27s">
-      <UniqueIdentifier>{0012afc9-518a-4262-842e-1c89605d2eb7}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Window.cpp">
-      <Filter>Pliki źródłowe</Filter>
-    </ClCompile>
-    <ClCompile Include="Application_to_filter.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
     <ClCompile Include="pch\pch.cpp">
@@ -42,12 +36,12 @@
     <ClCompile Include="Level_1.cpp">
       <Filter>Pliki zasobów\Levels</Filter>
     </ClCompile>
+    <ClCompile Include="Level_2.cpp">
+      <Filter>Pliki zasobów\Levels</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="Application.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
     <ClInclude Include="pch\pch.h">
@@ -55,6 +49,12 @@
     </ClInclude>
     <ClInclude Include="Level_1.h">
       <Filter>Pliki zasobów\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="Level_2.h">
+      <Filter>Pliki zasobów\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="Obj.h">
+      <Filter>Pliki zasobów\Structs</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

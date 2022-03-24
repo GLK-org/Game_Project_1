@@ -6,7 +6,7 @@ class Level1: public GameLevel {
 	float x;
 	float ySpeed;
 	float xSpeed;
-
+	Graphics* gtx;
 public:
 
 	 void Load() override;

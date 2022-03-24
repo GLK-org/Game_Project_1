@@ -1,6 +1,6 @@
 #pragma once
 
-#include "IApplication.h"
+#include "../Engine/IApplication.h"
 //makro creating an entry point
 #define ENTRYAPP(x) IApplication* EntryApplication() { return new x;}
 
