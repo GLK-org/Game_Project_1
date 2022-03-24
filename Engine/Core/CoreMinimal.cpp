@@ -1,7 +1,5 @@
-//cpp z minimalnymi opcjami
-
 #include "CoreMinimal.h"
-#include "../Engine/Engine.h"
+#include "Engine.h"
 
 Graphics::Graphics()
 {

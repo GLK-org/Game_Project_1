@@ -1,8 +1,7 @@
-#include "pch/pch.h"
-#include "Core/CoreMinimal.h"
+#include "pch.h"
 #include "Level_1.h"
 #include "Level_2.h"
-#include "GameController.h"
+
 WCHAR		WindowClass[MAX_NAME_STRING];
 WCHAR		WindowTitle[MAX_NAME_STRING];
 

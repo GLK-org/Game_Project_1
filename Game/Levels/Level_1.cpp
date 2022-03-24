@@ -1,6 +1,6 @@
-#include "GameController.h"
-#include "pch\pch.h"
-#include "Core\CoreMinimal.h"
+#include "Level_control\GameController.h"
+#include "pch.h"
+#include "../Engine/Core/CoreMinimal.h"
 #include "Level_1.h"
 #include <vector>
 

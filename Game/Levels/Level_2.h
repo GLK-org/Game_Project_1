@@ -1,12 +1,13 @@
 #pragma once
-#include "GameLevel.h"
+#include "Level_control/GameLevel.h"
+#include "Core/CoreMinimal.h"
 
 class Level2 : public GameLevel {
 	float y;
 	float x;
 	float ySpeed;
 	float xSpeed;
-	Graphics* gtx;
+	Graphics* gfx;
 public:
 
 	void Load() override;

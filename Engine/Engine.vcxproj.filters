@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Pliki źródłowe">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Pliki zasobów">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Pliki źródłowe\pch">
+      <UniqueIdentifier>{f3ef8480-c2bb-4636-b864-df746958df93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki źródłowe\Core">
+      <UniqueIdentifier>{266d80a2-a3dc-49c4-8963-68c54511c392}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki źródłowe\Core\Public">
+      <UniqueIdentifier>{431f4b24-2aef-4361-8170-bd975d1cada8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki źródłowe\Core\Private">
+      <UniqueIdentifier>{4d78d538-6c41-481a-bd2d-0fd7e6c355f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki źródłowe\Level_Control">
+      <UniqueIdentifier>{3bd693c1-72f0-4c96-9b6d-114767c69eb0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Core\CoreMinimal.cpp">
+      <Filter>Pliki źródłowe\Core\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Level_control\GameController.cpp">
+      <Filter>Pliki źródłowe\Level_Control</Filter>
+    </ClCompile>
+    <ClCompile Include="pch\Engine.cpp">
+      <Filter>Pliki źródłowe\pch</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\CoreDefinitions.cpp">
+      <Filter>Pliki źródłowe\Core\Private</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="resource.h">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\CoreMinimal.h">
+      <Filter>Pliki źródłowe\Core\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Level_control\GameController.h">
+      <Filter>Pliki źródłowe\Level_Control</Filter>
+    </ClInclude>
+    <ClInclude Include="..\resources\resource.h">
+      <Filter>Pliki zasobów</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\CoreDefinitions.h">
+      <Filter>Pliki źródłowe\Core\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="pch\Engine.h">
+      <Filter>Pliki źródłowe\pch</Filter>
+    </ClInclude>
+    <ClInclude Include="Level_control\GameLevel.h">
+      <Filter>Pliki źródłowe\Level_Control</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\Game_engine_1\Content\Caffle.png">
+      <Filter>Pliki zasobów</Filter>
+    </Image>
+  </ItemGroup>
+</Project>

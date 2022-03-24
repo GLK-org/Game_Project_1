@@ -4,8 +4,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.31624.102
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Game", "Game_engine_1.vcxproj", "{D28B79FE-B1E5-494C-8ED0-2799065EB37C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9A45175A-B6AF-4CD5-96F1-AE7A3D35D831} = {9A45175A-B6AF-4CD5-96F1-AE7A3D35D831}
+	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Engine", "..\Engine\Engine.vcxproj", "{9A45175A-B6AF-4CD5-96F1-AE7A3D35D831}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Engine", "Engine\Engine.vcxproj", "{9A45175A-B6AF-4CD5-96F1-AE7A3D35D831}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,9 +27,11 @@ Global
 		{9A45175A-B6AF-4CD5-96F1-AE7A3D35D831}.Debug|x64.ActiveCfg = Debug|x64
 		{9A45175A-B6AF-4CD5-96F1-AE7A3D35D831}.Debug|x64.Build.0 = Debug|x64
 		{9A45175A-B6AF-4CD5-96F1-AE7A3D35D831}.Debug|x86.ActiveCfg = Debug|Win32
+		{9A45175A-B6AF-4CD5-96F1-AE7A3D35D831}.Debug|x86.Build.0 = Debug|Win32
 		{9A45175A-B6AF-4CD5-96F1-AE7A3D35D831}.Release|x64.ActiveCfg = Release|x64
 		{9A45175A-B6AF-4CD5-96F1-AE7A3D35D831}.Release|x64.Build.0 = Release|x64
 		{9A45175A-B6AF-4CD5-96F1-AE7A3D35D831}.Release|x86.ActiveCfg = Release|Win32
+		{9A45175A-B6AF-4CD5-96F1-AE7A3D35D831}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
