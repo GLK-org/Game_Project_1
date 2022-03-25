@@ -82,23 +82,23 @@ int CALLBACK WinMain(HINSTANCE, HINSTANCE, LPSTR, INT) {
 		MessageBox(0, L"Failed to Create Window", 0, 0);
 		return 0;
 	}
-
+	//Inicjalizacja obiektu do rysowania
 	graphics = new Graphics();
 
 	if (!graphics->Init(hWnd)) {
 		delete graphics;
 		return -1;
 	}
-	
+	//Wyœwietlanie okna i ³adowanie wstêpnego poziomu
 	ShowWindow(hWnd, SW_SHOW);
 	GameController::LoadInitialLevel(new Level1());
 
 	//Nas³uchuj zdarzenie wy³¹czenia tak, ¿eby okno siê nie wy³¹cza³o do tego momentu
 
-	
+	//Definiowanie pustej zmiennej msg (Tak, ten format zdaje siê konieczny, do research'u)
 	MSG msg = { 0 };
 
-	//Odœwie¿anie ekranu i pseudofizyka
+	//Nas³uchiwanie 
 	while (msg.message != WM_QUIT) {
 
 		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) {

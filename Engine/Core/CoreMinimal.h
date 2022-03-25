@@ -17,4 +17,5 @@ public:
 	void EndDraw() { rendertarget->EndDraw(); }
 	void ClearScreen(float r, float g, float b);
 	void DrawCircle(float x, float y, float rad, float r, float g, float b, float a);
+	void CreateEllipseGeometry(float centerx, float centery, float w, float h, ID2D1EllipseGeometry ** ElipseGeo);
 };

@@ -26,13 +26,17 @@ public:
 
 
 class Eli : public Obj {
+	ID2D1EllipseGeometry* m_pEllipseGeometry;
 	float r;
 	float r, g, b, a;
 
 public:
-	Eli(int x, int y, int r) : Obj(x, y) { if (r == NULL) Eli::Obj::~Obj(); };
+	Eli(int x, int y, int r) : Obj(x, y) { if (r == NULL) Eli::Obj::~Obj(); m_pEllipseGeometry = NULL; };
 	void Render(Graphics* gfx) {
-		gfx->DrawCircle(Eli::GetX(), Eli::GetY(), r, 1.0f, 0.0f, 0.0f, 1.0f);
+		if (!m_pEllipseGeometry) {
+
+		}
+	//	gfx->DrawCircle(Eli::GetX(), Eli::GetY(), r, 1.0f, 0.0f, 0.0f, 1.0f);
 	};
 	void Update();
 

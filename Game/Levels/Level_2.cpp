@@ -1,19 +1,13 @@
 #include "pch.h"
 #include "Level_2.h"
+#include <ctime>
 
 
-
-Level2::Level2() {
-	x = xSpeed = 0.0f;
-	y = ySpeed = 0.0f;
-}
-
-Level2::~Level2()
-{
-}
 
 
 void Level2::Load() {
+	srand(time(NULL));
+	r = g = b = 0.0f;
 	x = xSpeed = 0.0f;
 	y = ySpeed = 0.0f;
 
@@ -35,7 +29,7 @@ void Level2::Update() {
 	if (GetKeyState('A')) {
 		xSpeed += 0.1f;
 	}
-	if (GetKeyState('D')) {
+	else if (GetKeyState('D')) {
 		xSpeed -= 0.1f;
 	}
 

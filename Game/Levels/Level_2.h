@@ -2,13 +2,10 @@
 #include "Level_control\GameLevel.h"
 
 class Level2 : public GameLevel {
-	float y;
-	float x;
-	float ySpeed;
-	float xSpeed;
+	float r, g, b;
+	float y, x;
+	float ySpeed, xSpeed;
 public:
-	Level2();
-	virtual ~Level2();
 	void Load() override;
 	void Unload() override;
 	void Render(Graphics* gfx) override;
