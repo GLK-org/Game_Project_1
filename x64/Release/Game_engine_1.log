@@ -1,0 +1,10 @@
+﻿  pch.cpp
+  Level_1.cpp
+  Level_2.cpp
+D:\Projekty\Game_Project_1\Game\Levels\Level_2.cpp(9,12): warning C4244: "argument": konwersja z "time_t" do "unsigned int", możliwa utrata danych
+  Window.cpp
+  Trwa generowanie kodu
+  Previous IPDB not found, fall back to full compilation.
+  All 17 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Zakończono generowanie kodu
+  Game_engine_1.vcxproj -> D:\Projekty\Game_Project_1\x64\Release\Game.exe

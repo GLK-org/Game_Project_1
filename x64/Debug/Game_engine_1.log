@@ -1,0 +1,7 @@
+﻿  Level_1.cpp
+D:\Projekty\Game_Project_1\Game\Levels\Level_1.cpp(1,10): fatal error C1083: Nie można otworzyć pliku prekompilowany nagłówek: 'x64\Debug\Game.pch': No such file or directory
+  Level_2.cpp
+D:\Projekty\Game_Project_1\Game\Levels\Level_2.cpp(1,10): fatal error C1083: Nie można otworzyć pliku prekompilowany nagłówek: 'x64\Debug\Game.pch': No such file or directory
+  pch.cpp
+D:\Projekty\Game_Project_1\Game\pch\pch.cpp(1,10): fatal error C1083: Nie można otworzyć pliku prekompilowany nagłówek: 'x64\Debug\Game.pch': No such file or directory
+  Generowanie kodu...
