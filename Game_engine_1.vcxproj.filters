@@ -13,20 +13,17 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Pliki zasobów\pch">
-      <UniqueIdentifier>{464455d5-2b0e-4255-a04a-0bcb23aad56f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Pliki zasobów\Levels">
       <UniqueIdentifier>{0dec2ac4-54c3-4c5f-9d6c-a3112c90c81b}</UniqueIdentifier>
     </Filter>
     <Filter Include="Pliki zasobów\Structs">
       <UniqueIdentifier>{46d8805a-5800-4bb4-a8ed-11edeb268642}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Pliki nagłówkowe\pch">
+      <UniqueIdentifier>{464455d5-2b0e-4255-a04a-0bcb23aad56f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="pch\pch.cpp">
-      <Filter>Pliki zasobów\pch</Filter>
-    </ClCompile>
     <ClCompile Include="Game\Levels\Level_1.cpp">
       <Filter>Pliki zasobów\Levels</Filter>
     </ClCompile>
@@ -36,13 +33,13 @@
     <ClCompile Include="Game\Main\Window.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
+    <ClCompile Include="Game\pch\pch.cpp">
+      <Filter>Pliki nagłówkowe\pch</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch\pch.h">
-      <Filter>Pliki zasobów\pch</Filter>
-    </ClInclude>
-    <ClInclude Include="resources\resource.h">
-      <Filter>Pliki nagłówkowe</Filter>
+      <Filter>Pliki nagłówkowe\pch</Filter>
     </ClInclude>
     <ClInclude Include="Game\Levels\Level_1.h">
       <Filter>Pliki zasobów\Levels</Filter>
@@ -53,9 +50,12 @@
     <ClInclude Include="Game\Structs\Obj.h">
       <Filter>Pliki zasobów\Structs</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Pliki zasobów</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="resources\Game_engine_1.rc">
+    <ResourceCompile Include="Game_engine_1.rc">
       <Filter>Pliki zasobów</Filter>
     </ResourceCompile>
   </ItemGroup>

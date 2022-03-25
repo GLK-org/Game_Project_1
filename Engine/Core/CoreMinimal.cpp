@@ -1,6 +1,5 @@
-#include "CoreMinimal.h"
 #include "Engine.h"
-
+#include "CoreMinimal.h"
 Graphics::Graphics()
 {
     factory = NULL;

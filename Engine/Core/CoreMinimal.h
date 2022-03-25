@@ -1,6 +1,5 @@
 #pragma once
-//tu wrzuciæ póŸniej loggery i podobne
-#include "CoreDefinitions.h"
+#include "../Engine_pch/Engine.h"
 #include "d2d1.h"
 #include "d2d1_1.h"
 

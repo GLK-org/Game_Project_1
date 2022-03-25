@@ -1,5 +1,5 @@
-#include "GameController.h"
 #include "Engine.h"
+#include "GameController.h"
 
 GameLevel* GameController::currentLevel;
 bool GameController::loading;

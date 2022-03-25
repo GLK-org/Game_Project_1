@@ -1,5 +1,5 @@
 #pragma once
-#include "CoreMinimal.h"
+#include "../Core/CoreMinimal.h"
 
 class ENGINE_API GameLevel {
 

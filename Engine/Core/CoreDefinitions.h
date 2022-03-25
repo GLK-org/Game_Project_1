@@ -6,5 +6,3 @@
 #define ENGINE_API _declspec(dllimport)
 #endif
 
-#define MAX_NAME_STRING 256
-#define HInstance() GetModuleHandle(NULL)

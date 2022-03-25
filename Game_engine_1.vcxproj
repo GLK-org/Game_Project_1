@@ -140,7 +140,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
-      <AdditionalIncludeDirectories>C:\Users\tymek\source\repos\Game_engine_1\pch;C:\Users\tymek\source\repos\Game_engine_1\Engine;C:\Users\tymek\source\repos\Game_engine_1\Game\Levels;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\tymek\source\repos\Game_engine_1\Game\pch;C:\Users\tymek\source\repos\Game_engine_1\Game\Levels;C:\Users\tymek\source\repos\Game_engine_1\Game\Structs;C:\Users\tymek\source\repos\Game_engine_1\Engine;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -157,8 +157,10 @@
     <ClCompile Include="Game\Levels\Level_2.cpp">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">pch.h</PrecompiledHeaderFile>
     </ClCompile>
-    <ClCompile Include="Game\Main\Window.cpp" />
-    <ClCompile Include="pch\pch.cpp">
+    <ClCompile Include="Game\Main\Window.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">../Game/pch/pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="Game\pch\pch.cpp">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">pch.h</PrecompiledHeaderFile>
     </ClCompile>
@@ -168,10 +170,10 @@
     <ClInclude Include="Game\Levels\Level_2.h" />
     <ClInclude Include="Game\Structs\Obj.h" />
     <ClInclude Include="pch\pch.h" />
-    <ClInclude Include="resources\resource.h" />
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="resources\Game_engine_1.rc" />
+    <ResourceCompile Include="Game_engine_1.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
