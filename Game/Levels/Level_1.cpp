@@ -1,8 +1,15 @@
 #include "pch.h"
-#include "Level_control\GameController.h"
-#include "../Engine/Core/CoreMinimal.h"
 #include "Level_1.h"
 #include <vector>
+
+Level1::Level1() {
+	x = xSpeed = 0.0f;
+	y = ySpeed = 0.0f;
+}
+
+Level1::~Level1()
+{
+}
 
 void Level1::Load() {
 	x = xSpeed = 0.0f;

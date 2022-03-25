@@ -4,6 +4,10 @@
 GameLevel* GameController::currentLevel;
 bool GameController::loading;
 
+GameController::~GameController()
+{
+}
+
 void GameController::Init()
 {
 	loading = true;

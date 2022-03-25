@@ -8,6 +8,8 @@
 
 #endif
 
+
+// Makro u¿ywane do eksportowania/importowania klas/funkcji/parametrów poprzez dodanie przy definicji s³owa kluczowego ENGINE_API
 #ifdef BUILD_DLL
 #define ENGINE_API _declspec(dllexport)
 #else

@@ -36,6 +36,9 @@
     <ClCompile Include="Level_control\GameController.cpp">
       <Filter>Pliki źródłowe\Level_Control</Filter>
     </ClCompile>
+    <ClCompile Include="pch\Engine.cpp">
+      <Filter>Pliki źródłowe\Engine_pch</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h">
@@ -53,7 +56,7 @@
     <ClInclude Include="Level_control\GameLevel.h">
       <Filter>Pliki źródłowe\Level_Control</Filter>
     </ClInclude>
-    <ClInclude Include="Engine_pch\Engine.h">
+    <ClInclude Include="pch\Engine.h">
       <Filter>Pliki źródłowe\Engine_pch</Filter>
     </ClInclude>
   </ItemGroup>

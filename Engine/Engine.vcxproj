@@ -138,9 +138,9 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
-      <PrecompiledHeader>Create</PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>Engine.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>C:\Users\tymek\source\repos\Game_engine_1\Engine\Core;C:\Users\tymek\source\repos\Game_engine_1\Engine\Engine_pch;C:\Users\tymek\source\repos\Game_engine_1\Engine\Level_control;C:\Users\tymek\source\repos\Game_engine_1\Engine\resources;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(LocalDebuggerWorkingDirectory)Level_control;$(LocalDebuggerWorkingDirectory)pch;$(LocalDebuggerWorkingDirectory)Core;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -153,16 +153,19 @@
   <ItemGroup>
     <ClCompile Include="Core\CoreMinimal.cpp">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Engine.h</PrecompiledHeaderFile>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Level_control\GameController.cpp" />
+    <ClCompile Include="pch\Engine.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\resources\resource.h" />
     <ClInclude Include="Core\CoreMinimal.h" />
-    <ClInclude Include="Engine_pch\Engine.h" />
     <ClInclude Include="Level_control\GameController.h" />
     <ClInclude Include="Level_control\GameLevel.h" />
+    <ClInclude Include="pch\Engine.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>

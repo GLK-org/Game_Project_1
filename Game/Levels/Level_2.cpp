@@ -1,6 +1,18 @@
 #include "pch.h"
 #include "Level_2.h"
 
+
+
+Level2::Level2() {
+	x = xSpeed = 0.0f;
+	y = ySpeed = 0.0f;
+}
+
+Level2::~Level2()
+{
+}
+
+
 void Level2::Load() {
 	x = xSpeed = 0.0f;
 	y = ySpeed = 0.0f;

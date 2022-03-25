@@ -38,9 +38,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="pch\pch.h">
-      <Filter>Pliki nagłówkowe\pch</Filter>
-    </ClInclude>
     <ClInclude Include="Game\Levels\Level_1.h">
       <Filter>Pliki zasobów\Levels</Filter>
     </ClInclude>
@@ -52,6 +49,9 @@
     </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>Pliki zasobów</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\pch\pch.h">
+      <Filter>Pliki nagłówkowe\pch</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
