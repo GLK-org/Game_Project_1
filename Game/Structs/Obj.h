@@ -8,8 +8,8 @@ class Obj {
 
 public:
 	Obj(int x, int y) : posx(x), posy(y) { if (posx == NULL || posy == NULL) Obj::~Obj(); };
-	float GetX() { return posx };
-	float GetY() { return posy };
+	float GetX() { return posx; };
+	float GetY() { return posy; };
 	virtual ~Obj();
 	virtual void Render() = 0;
 	virtual void Update() = 0;
