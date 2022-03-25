@@ -30,11 +30,11 @@
     <ClCompile Include="Game\Levels\Level_2.cpp">
       <Filter>Pliki zasobów\Levels</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Main\Window.cpp">
-      <Filter>Pliki źródłowe</Filter>
-    </ClCompile>
     <ClCompile Include="Game\pch\pch.cpp">
       <Filter>Pliki nagłówkowe\pch</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Main\Window.cpp">
+      <Filter>Pliki źródłowe</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

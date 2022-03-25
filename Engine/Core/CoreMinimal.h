@@ -12,7 +12,6 @@ public:
 	Graphics();
 	~Graphics();
 
-public:
 	bool Init(HWND windowHandle);
 	void BeginDraw() { rendertarget->BeginDraw(); }
 	void EndDraw() { rendertarget->EndDraw(); }

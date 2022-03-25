@@ -1,5 +1,5 @@
 #pragma once
-#include "Level_control/GameLevel.h"
+#include "Level_control\GameLevel.h"
 class Level1: public GameLevel {
 	float y;
 	float x;

@@ -23,6 +23,7 @@ void Level1::Render(Graphics* gfx)
 {
 	gfx->ClearScreen(0.0f, 0.0f, 0.5f);
 	gfx->DrawCircle(x, y, 50, 1.0f, 0.0f, 0.0f, 1.0f);
+
 }
 
 void Level1::Update() {
