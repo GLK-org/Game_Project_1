@@ -1,8 +1,5 @@
-//cpp z minimalnymi opcjami
-
-#include "CoreMinimal.h"
 #include "Engine.h"
-
+#include "CoreMinimal.h"
 Graphics::Graphics()
 {
     factory = NULL;
@@ -33,6 +30,7 @@ bool Graphics::Init(HWND windowHandle)
 
 void Graphics::ClearScreen(float r, float g, float b)
 {
+
     rendertarget->Clear(D2D1::ColorF(r, g, b));
 }
 
@@ -45,4 +43,11 @@ void Graphics::DrawCircle(float x, float y, float rad, float r, float g, float b
     rendertarget->DrawEllipse(D2D1::Ellipse(D2D1::Point2F(x, y), rad, rad), brush, 3.0f);
     //
     brush->Release();
+}
+
+void Graphics::CreateEllipseGeometry(float centerx, float centery, float w, float h,ID2D1EllipseGeometry ** ElipseGeo) {
+ //   factory->CreateEllipseGeometry(D2D1::Ellipse(D2D1::Point2F(centerx, centery), w, h), &ElipseGeo);
+   // if (factory == S_OK) {
+        //TUTAJ DO WRZUCENIA BÊDZIE B£¥D Z BRAKIEM MO¯LIWOŒCI STWORZENIA ELIPSY
+  //  }
 }

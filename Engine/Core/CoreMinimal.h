@@ -1,10 +1,7 @@
 #pragma once
-//tu wrzuciæ póŸniej loggery i podobne
-#include "CoreDefinitions.h"
+#include "../pch/Engine.h"
 #include "d2d1.h"
 #include "d2d1_1.h"
-#include "wincodec.h"
-#include "OEng.h"
 
 
 class ENGINE_API Graphics {
@@ -15,10 +12,10 @@ public:
 	Graphics();
 	~Graphics();
 
-public:
 	bool Init(HWND windowHandle);
 	void BeginDraw() { rendertarget->BeginDraw(); }
 	void EndDraw() { rendertarget->EndDraw(); }
 	void ClearScreen(float r, float g, float b);
 	void DrawCircle(float x, float y, float rad, float r, float g, float b, float a);
+	void CreateEllipseGeometry(float centerx, float centery, float w, float h, ID2D1EllipseGeometry ** ElipseGeo);
 };

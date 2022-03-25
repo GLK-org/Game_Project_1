@@ -13,20 +13,8 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Pliki źródłowe\pch">
-      <UniqueIdentifier>{f3ef8480-c2bb-4636-b864-df746958df93}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Pliki źródłowe\Platform">
-      <UniqueIdentifier>{81e6ffa6-1b8f-4db1-8677-e0d2536aef3b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Pliki źródłowe\Platform\WIN32">
-      <UniqueIdentifier>{a69744f0-0295-44c0-971e-3a68808ffd9a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Pliki źródłowe\Core">
       <UniqueIdentifier>{266d80a2-a3dc-49c4-8963-68c54511c392}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Pliki źródłowe\Core\Classes">
-      <UniqueIdentifier>{ed8b7681-0897-49e4-b095-99ecce0e6ca8}</UniqueIdentifier>
     </Filter>
     <Filter Include="Pliki źródłowe\Core\Public">
       <UniqueIdentifier>{431f4b24-2aef-4361-8170-bd975d1cada8}</UniqueIdentifier>
@@ -34,81 +22,43 @@
     <Filter Include="Pliki źródłowe\Core\Private">
       <UniqueIdentifier>{4d78d538-6c41-481a-bd2d-0fd7e6c355f3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Pliki źródłowe\Eng - out of use for now">
-      <UniqueIdentifier>{646ee909-5788-450e-9d4d-5d45a6a4ba08}</UniqueIdentifier>
+    <Filter Include="Pliki źródłowe\Level_Control">
+      <UniqueIdentifier>{3bd693c1-72f0-4c96-9b6d-114767c69eb0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Pliki źródłowe\Eng - out of use for now\Public">
-      <UniqueIdentifier>{b80778a5-cd76-4a20-bbe7-ce4334a3292d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Pliki źródłowe\Eng - out of use for now\Private">
-      <UniqueIdentifier>{760f140d-e4f4-44a2-b96e-b5e4678c5dce}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Pliki źródłowe\Eng - out of use for now\Classes">
-      <UniqueIdentifier>{03b4fa78-c984-4e48-bf2e-0299a83b91e8}</UniqueIdentifier>
+    <Filter Include="Pliki źródłowe\Engine_pch">
+      <UniqueIdentifier>{f3ef8480-c2bb-4636-b864-df746958df93}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="IApplication.cpp">
-      <Filter>Pliki źródłowe\Platform\WIN32</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine.cpp">
-      <Filter>Pliki źródłowe\pch</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Game_engine_1\Core\Core.cpp">
+    <ClCompile Include="Core\CoreMinimal.cpp">
       <Filter>Pliki źródłowe\Core\Private</Filter>
     </ClCompile>
-    <ClCompile Include="..\Game_engine_1\Core\CoreMinimal.cpp">
-      <Filter>Pliki źródłowe\Core\Private</Filter>
+    <ClCompile Include="Level_control\GameController.cpp">
+      <Filter>Pliki źródłowe\Level_Control</Filter>
     </ClCompile>
-    <ClCompile Include="CoreDefinitions.cpp">
-      <Filter>Pliki źródłowe\Core\Private</Filter>
-    </ClCompile>
-    <ClCompile Include="OEng.cpp">
-      <Filter>Pliki źródłowe\Eng - out of use for now\Private</Filter>
-    </ClCompile>
-    <ClCompile Include="Simulation.cpp">
-      <Filter>Pliki źródłowe\Eng - out of use for now\Private</Filter>
-    </ClCompile>
-    <ClCompile Include="Dx2bmp.cpp">
-      <Filter>Pliki źródłowe\Core\Private</Filter>
+    <ClCompile Include="pch\Engine.cpp">
+      <Filter>Pliki źródłowe\Engine_pch</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Game_engine_1\WinEntry.h">
-      <Filter>Pliki źródłowe\Platform\WIN32</Filter>
-    </ClInclude>
-    <ClInclude Include="IApplication.h">
-      <Filter>Pliki źródłowe\Platform\WIN32</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine.h">
-      <Filter>Pliki źródłowe\pch</Filter>
-    </ClInclude>
-    <ClInclude Include="OEng.h">
-      <Filter>Pliki źródłowe\Eng - out of use for now\Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="Simulation.h">
-      <Filter>Pliki źródłowe\Eng - out of use for now\Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="CoreDefinitions.h">
-      <Filter>Pliki źródłowe\Core\Public</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Game_engine_1\Core\Core.h">
-      <Filter>Pliki źródłowe\Core\Public</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Game_engine_1\Core\CoreMinimal.h">
-      <Filter>Pliki źródłowe\Core\Public</Filter>
-    </ClInclude>
-    <ClInclude Include="Dx2bmp.h">
-      <Filter>Pliki źródłowe\Core\Classes</Filter>
-    </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="Resource.rc">
+    <ClInclude Include="Core\CoreMinimal.h">
+      <Filter>Pliki źródłowe\Core\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Level_control\GameController.h">
+      <Filter>Pliki źródłowe\Level_Control</Filter>
+    </ClInclude>
+    <ClInclude Include="..\resources\resource.h">
       <Filter>Pliki zasobów</Filter>
-    </ResourceCompile>
+    </ClInclude>
+    <ClInclude Include="Level_control\GameLevel.h">
+      <Filter>Pliki źródłowe\Level_Control</Filter>
+    </ClInclude>
+    <ClInclude Include="pch\Engine.h">
+      <Filter>Pliki źródłowe\Engine_pch</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\Game_engine_1\Content\Caffle.png">

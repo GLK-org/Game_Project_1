@@ -1,5 +1,8 @@
-#include "pch/pch.h"
-#include "Core/CoreMinimal.h"
+#include "..\Game\pch\pch.h"
+#include "Level_control\GameController.h"
+#include "Level_1.h"
+#include "Level_2.h"
+
 WCHAR		WindowClass[MAX_NAME_STRING];
 WCHAR		WindowTitle[MAX_NAME_STRING];
 
@@ -79,25 +82,23 @@ int CALLBACK WinMain(HINSTANCE, HINSTANCE, LPSTR, INT) {
 		MessageBox(0, L"Failed to Create Window", 0, 0);
 		return 0;
 	}
-
+	//Inicjalizacja obiektu do rysowania
 	graphics = new Graphics();
 
 	if (!graphics->Init(hWnd)) {
 		delete graphics;
 		return -1;
 	}
-	
+	//Wyœwietlanie okna i ³adowanie wstêpnego poziomu
 	ShowWindow(hWnd, SW_SHOW);
-	
+	GameController::LoadInitialLevel(new Level1());
+
 	//Nas³uchuj zdarzenie wy³¹czenia tak, ¿eby okno siê nie wy³¹cza³o do tego momentu
 
-	float y = 0.0f;
-	float x = 0.0f;
-	float ySpeed = 0.0f;
-	float xSpeed = 0.0f;
+	//Definiowanie pustej zmiennej msg (Tak, ten format zdaje siê konieczny, do research'u)
 	MSG msg = { 0 };
 
-	//Odœwie¿anie ekranu i pseudofizyka
+	//Nas³uchiwanie 
 	while (msg.message != WM_QUIT) {
 
 		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) {
@@ -106,36 +107,21 @@ int CALLBACK WinMain(HINSTANCE, HINSTANCE, LPSTR, INT) {
 		}
 		else {
 			
-			//'Update':
-			ySpeed += 1.0f;
-			y += ySpeed;
-			x += xSpeed;
-			if (GetKeyState('A')) {
-				xSpeed += 1.0f;
+			GameController::Update();
+			if (GetKeyState('S')) {
+				GameController::SwitchLevel(new Level2());
 			}
-			if (GetKeyState('D')) {
-				xSpeed -= 1.0f;
-			}
-
-			if (y > WindowHeight) {
-				y = WindowHeight;
-				ySpeed = -30.0f;
-			}
-			if (x < 0) {
-				x = 0;
-				xSpeed = 5.0f;
-			}
-			else if (x > WindowWidth) {
-				x = WindowWidth;
-				xSpeed = -5.0f;
+			else if (GetKeyState('W')) {
+				GameController::SwitchLevel(new Level1());
 			}
 			//Render:
 			graphics->BeginDraw();
-			graphics->ClearScreen(0.0f,0.0f,0.5f);
-			graphics->DrawCircle(x, y, 50, 1.0f, 0.0f, 0.0f, 1.0f);
+			GameController::Render(graphics);
 			graphics->EndDraw();
+			
 		}
 	}
+
 	delete graphics;
 	return 0;
 }

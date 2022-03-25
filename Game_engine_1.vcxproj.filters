@@ -13,33 +13,45 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Resources">
-      <UniqueIdentifier>{7efd851b-af4d-4ddc-bff0-0f6a6ca14abb}</UniqueIdentifier>
+    <Filter Include="Pliki zasobów\Levels">
+      <UniqueIdentifier>{0dec2ac4-54c3-4c5f-9d6c-a3112c90c81b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Pliki zasobów\pch">
+    <Filter Include="Pliki zasobów\Structs">
+      <UniqueIdentifier>{46d8805a-5800-4bb4-a8ed-11edeb268642}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe\pch">
       <UniqueIdentifier>{464455d5-2b0e-4255-a04a-0bcb23aad56f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Window.cpp">
-      <Filter>Pliki źródłowe</Filter>
+    <ClCompile Include="Game\Levels\Level_1.cpp">
+      <Filter>Pliki zasobów\Levels</Filter>
     </ClCompile>
-    <ClCompile Include="Application.cpp">
-      <Filter>Pliki źródłowe</Filter>
+    <ClCompile Include="Game\Levels\Level_2.cpp">
+      <Filter>Pliki zasobów\Levels</Filter>
     </ClCompile>
-    <ClCompile Include="pch\pch.cpp">
-      <Filter>Pliki zasobów\pch</Filter>
+    <ClCompile Include="Game\pch\pch.cpp">
+      <Filter>Pliki nagłówkowe\pch</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Main\Window.cpp">
+      <Filter>Pliki źródłowe</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Game\Levels\Level_1.h">
+      <Filter>Pliki zasobów\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Levels\Level_2.h">
+      <Filter>Pliki zasobów\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Structs\Obj.h">
+      <Filter>Pliki zasobów\Structs</Filter>
+    </ClInclude>
     <ClInclude Include="resource.h">
-      <Filter>Pliki nagłówkowe</Filter>
+      <Filter>Pliki zasobów</Filter>
     </ClInclude>
-    <ClInclude Include="Application.h">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="pch\pch.h">
-      <Filter>Pliki zasobów\pch</Filter>
+    <ClInclude Include="Game\pch\pch.h">
+      <Filter>Pliki nagłówkowe\pch</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

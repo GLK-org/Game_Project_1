@@ -138,9 +138,9 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
-      <PrecompiledHeader>Create</PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>Engine.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>C:\Users\tymek\source\repos\Engine;%(AdditionalIncludeDirectories);C:\Users\tymek\source\repos\Engine</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(LocalDebuggerWorkingDirectory)Level_control;$(LocalDebuggerWorkingDirectory)pch;$(LocalDebuggerWorkingDirectory)Core;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -151,37 +151,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\Game_engine_1\Core\Core.cpp">
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\tymek\source\repos\Game_engine_1;C:\Users\tymek\source\repos\Engine;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\tymek\source\repos\Game_engine_1;C:\Users\tymek\source\repos\Engine;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ClCompile>
-    <ClCompile Include="..\Game_engine_1\Core\CoreMinimal.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Engine.h</PrecompiledHeaderFile>
+    <ClCompile Include="Core\CoreMinimal.cpp">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Engine.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\tymek\source\repos\Engine;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\tymek\source\repos\Engine;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Engine.cpp" />
-    <ClCompile Include="IApplication.cpp" />
-    <ClCompile Include="CoreDefinitions.cpp" />
-    <ClCompile Include="OEng.cpp" />
-    <ClCompile Include="Simulation.cpp" />
-    <ClCompile Include="Dx2bmp.cpp" />
+    <ClCompile Include="Level_control\GameController.cpp" />
+    <ClCompile Include="pch\Engine.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Game_engine_1\Core\Core.h" />
-    <ClInclude Include="..\Game_engine_1\Core\CoreMinimal.h" />
-    <ClInclude Include="..\Game_engine_1\WinEntry.h" />
-    <ClInclude Include="Engine.h" />
-    <ClInclude Include="IApplication.h" />
-    <ClInclude Include="CoreDefinitions.h" />
-    <ClInclude Include="Dx2bmp.h" />
-    <ClInclude Include="OEng.h" />
+    <ClInclude Include="..\resources\resource.h" />
+    <ClInclude Include="Core\CoreMinimal.h" />
+    <ClInclude Include="Level_control\GameController.h" />
+    <ClInclude Include="Level_control\GameLevel.h" />
+    <ClInclude Include="pch\Engine.h" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="Simulation.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="Resource.rc" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\Game_engine_1\Content\Caffle.png" />
