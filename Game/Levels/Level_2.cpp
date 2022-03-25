@@ -6,6 +6,7 @@
 
 
 void Level2::Load() {
+	objects.push_back(new Eli(100,100, 50, 50, 25, new Graphics()));
 	srand(time(NULL));
 	r = g = b = 0.0f;
 	x = xSpeed = 0.0f;
@@ -18,7 +19,7 @@ void Level2::Unload() {}
 void Level2::Render(Graphics* gfx)
 {
 	gfx->ClearScreen(0.0f, 0.5f, 0.5f);
-	gfx->DrawCircle(x, y, 100, 1.0f, 0.0f, 0.0f, 1.0f);
+	for(std::vector<Obj*>::iterator it; it!+)
 }
 
 void Level2::Update() {

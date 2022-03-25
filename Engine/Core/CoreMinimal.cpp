@@ -34,6 +34,22 @@ void Graphics::ClearScreen(float r, float g, float b)
     rendertarget->Clear(D2D1::ColorF(r, g, b));
 }
 
+void Graphics::CreateEllipseGeometry(float centerx, float centery, float w, float h,ID2D1EllipseGeometry * EllipseGeo) {
+  
+    HRESULT r = factory->CreateEllipseGeometry(D2D1::Ellipse(D2D1::Point2F(centerx, centery), w, h), &EllipseGeo);
+   if (r == S_OK) {
+
+        //TUTAJ DO WRZUCENIA BÊDZIE B£¥D Z BRAKIEM MO¯LIWOŒCI STWORZENIA ELIPSY
+   }
+}
+
+void Graphics::DrawGeo(ID2D1EllipseGeometry* EllipseGeo) {
+    ID2D1SolidColorBrush* brush;
+    rendertarget->CreateSolidColorBrush(D2D1::ColorF(0.0f, 0.0f, 0.0f, 1.0f), &brush);
+    rendertarget->DrawGeometry(EllipseGeo, brush, 5);
+
+}
+
 void Graphics::DrawCircle(float x, float y, float rad, float r, float g, float b, float a)
 {
     //tworzenie pêdzla i generowanie elipsy
@@ -43,11 +59,4 @@ void Graphics::DrawCircle(float x, float y, float rad, float r, float g, float b
     rendertarget->DrawEllipse(D2D1::Ellipse(D2D1::Point2F(x, y), rad, rad), brush, 3.0f);
     //
     brush->Release();
-}
-
-void Graphics::CreateEllipseGeometry(float centerx, float centery, float w, float h,ID2D1EllipseGeometry ** ElipseGeo) {
- //   factory->CreateEllipseGeometry(D2D1::Ellipse(D2D1::Point2F(centerx, centery), w, h), &ElipseGeo);
-   // if (factory == S_OK) {
-        //TUTAJ DO WRZUCENIA BÊDZIE B£¥D Z BRAKIEM MO¯LIWOŒCI STWORZENIA ELIPSY
-  //  }
 }
