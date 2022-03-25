@@ -118,10 +118,11 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeader>Create</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch/pch.h;pch.h;</PrecompiledHeaderFile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
+      <AdditionalIncludeDirectories>$(LocalDebuggerWorkingDirectory)Game\Levels;$(LocalDebuggerWorkingDirectory)Game\Main;$(LocalDebuggerWorkingDirectory)Game\Structs;$(LocalDebuggerWorkingDirectory)Game\pch;$(LocalDebuggerWorkingDirectory)Engine;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -141,7 +142,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
-      <AdditionalIncludeDirectories>$(LocalDebuggerWorkingDirectory)Engine;$(LocalDebuggerWorkingDirectory)Game\pch;$(LocalDebuggerWorkingDirectory)Game\Structs;$(LocalDebuggerWorkingDirectory)Game\Main;$(LocalDebuggerWorkingDirectory)Game\Levels;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(LocalDebuggerWorkingDirectory)Game\Levels;$(LocalDebuggerWorkingDirectory)Game\Main;$(LocalDebuggerWorkingDirectory)Game\Structs;$(LocalDebuggerWorkingDirectory)Game\pch;$(LocalDebuggerWorkingDirectory)Engine;$(LocalDebuggerWorkingDirectory)Engine;$(LocalDebuggerWorkingDirectory)Game\pch;$(LocalDebuggerWorkingDirectory)Game\Structs;$(LocalDebuggerWorkingDirectory)Game\Main;$(LocalDebuggerWorkingDirectory)Game\Levels;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -159,14 +160,17 @@
     </ClCompile>
     <ClCompile Include="Game\Levels\Level_2.cpp">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="Game\Main\Window.cpp">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">../Game/pch/pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\Game\pch\pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="Game\pch\pch.cpp">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">pch.h</PrecompiledHeaderFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

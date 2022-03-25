@@ -9,7 +9,8 @@ class Obj {
 	float posx, posy;
 
 public:
-	Obj(int x, int y) : posx(x), posy(y) { if (posx == NULL || posy == NULL) Obj::~Obj(); };
+	Obj(float x, float y) : posx(x), posy(y) { //if (x == NULL || y == NULL) Obj::~Obj(); 
+	};
 	float GetX() { return posx; };
 	float GetY() { return posy; };
 	virtual ~Obj() { };
@@ -30,16 +31,16 @@ public:
 class Eli : public Obj {
 	ID2D1EllipseGeometry* m_pEllipseGeometry;
 	float w, h;
-	float r, g, b, a;
+	float r;
 
 public:
 	Eli(float x, float y, float r, float w, float h, Graphics* gfx) : Obj(x, y) { 
-		if (w == NULL || h == NULL) {
-			Eli::Obj::~Obj(); 
-					}
+	//	if (w == NULL || h == NULL) {
+	//		Eli::Obj::~Obj(); 
+		//			}
 		this->w = w;
 		this->h = h;
-
+		this->r = r;
 		gfx->CreateEllipseGeometry(x, y, w, h, m_pEllipseGeometry);
 	};
 
@@ -47,7 +48,7 @@ public:
 		gfx->DrawGeo(m_pEllipseGeometry);
 	//	gfx->DrawCircle(Eli::GetX(), Eli::GetY(), r, 1.0f, 0.0f, 0.0f, 1.0f);
 	};
-	void Update();
+	void Update() {};
 
 };
 

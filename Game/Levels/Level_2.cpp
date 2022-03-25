@@ -11,7 +11,6 @@ void Level2::Load() {
 	r = g = b = 0.0f;
 	x = xSpeed = 0.0f;
 	y = ySpeed = 0.0f;
-
 }
 
 void Level2::Unload() {}
@@ -19,7 +18,9 @@ void Level2::Unload() {}
 void Level2::Render(Graphics* gfx)
 {
 	gfx->ClearScreen(0.0f, 0.5f, 0.5f);
-	for(std::vector<Obj*>::iterator it; it!+)
+	for (std::vector<Obj*>::iterator it; *it != objects.back(); it++ ) {
+		(*it)->Render(gfx);
+	}
 }
 
 void Level2::Update() {
