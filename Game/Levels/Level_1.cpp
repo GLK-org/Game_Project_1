@@ -11,13 +11,20 @@ Level1::~Level1()
 {
 }
 
-void Level1::Load() {
+char Level1::GetID()
+{
+	return id;
+}
+
+void Level1::Load(Graphics* gfx) {
 	x = xSpeed = 0.0f;
 	y = ySpeed = 0.0f;
 	
 }
 
-void Level1::Unload() {}
+void Level1::Unload() {
+
+}
 
 void Level1::Render(Graphics* gfx)
 {
