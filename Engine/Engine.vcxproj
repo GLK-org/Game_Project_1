@@ -44,6 +44,7 @@
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
+    <CLRSupport>false</CLRSupport>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -120,7 +121,12 @@
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>Engine.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(LocalDebuggerWorkingDirectory)Core;$(LocalDebuggerWorkingDirectory)pch;$(LocalDebuggerWorkingDirectory)Level_control</AdditionalIncludeDirectories>
+ G_BudowanieWarstw
+      <AdditionalIncludeDirectories>$(LocalDebuggerWorkingDirectory)Core;$(LocalDebuggerWorkingDirectory)pch;$(LocalDebuggerWorkingDirectory)Level_control;$(SolutionDir)Game\Structs</AdditionalIncludeDirectories>
+      <CompileAsManaged>false</CompileAsManaged>
+=======
+      
+master
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -140,7 +146,7 @@
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>Engine.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(LocalDebuggerWorkingDirectory)Level_control;$(LocalDebuggerWorkingDirectory)pch;$(LocalDebuggerWorkingDirectory)Core;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(LocalDebuggerWorkingDirectory)Core;$(LocalDebuggerWorkingDirectory)pch;$(LocalDebuggerWorkingDirectory)Level_control;$(LocalDebuggerWorkingDirectory)Core;$(LocalDebuggerWorkingDirectory)Level_control;$(LocalDebuggerWorkingDirectory)pch;$(LocalDebuggerWorkingDirectory)Level_control;$(LocalDebuggerWorkingDirectory)pch;$(LocalDebuggerWorkingDirectory)Core;%(AdditionalIncludeDirectories);$(LocalDebuggerWorkingDirectory)Core</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

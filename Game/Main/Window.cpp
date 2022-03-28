@@ -82,13 +82,14 @@ int CALLBACK WinMain(HINSTANCE, HINSTANCE, LPSTR, INT) {
 		MessageBox(0, L"Failed to Create Window", 0, 0);
 		return 0;
 	}
-	//Inicjalizacja obiektu do rysowania
+	//Inicjalizacja obiektu do rysowania, przekazanie mu handlera okna
 	graphics = new Graphics();
 
 	if (!graphics->Init(hWnd)) {
 		delete graphics;
 		return -1;
 	}
+	GameController::Init(graphics);
 	//Wyœwietlanie okna i ³adowanie wstêpnego poziomu
 	ShowWindow(hWnd, SW_SHOW);
 	GameController::LoadInitialLevel(new Level1());
@@ -108,10 +109,10 @@ int CALLBACK WinMain(HINSTANCE, HINSTANCE, LPSTR, INT) {
 		else {
 			
 			GameController::Update();
-			if (GetKeyState('S')) {
+			if (GetKeyState('2') & 0x8000) {
 				GameController::SwitchLevel(new Level2());
 			}
-			else if (GetKeyState('W')) {
+			else if (GetKeyState('1') & 0x8000) {
 				GameController::SwitchLevel(new Level1());
 			}
 			//Render:

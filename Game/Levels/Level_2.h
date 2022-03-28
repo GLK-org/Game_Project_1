@@ -1,14 +1,27 @@
 #pragma once
 #include "Level_control\GameLevel.h"
+#include <vector>
+#include "Obj.h"
+#include <ctime>
+#include <math.h>
+#include <numbers>
+#define _USE_MATH_DEFINES
 
 class Level2 : public GameLevel {
+	char id = '2';
+	std::vector<Obj*> objects;
+	Graphics* gfx;
 	float r, g, b;
 	float y, x;
 	float ySpeed, xSpeed;
+	double wind;
+	POINT p;
 public:
-	void Load() override;
+	void Load(Graphics* gfx=nullptr) override;
+	char GetID() override;
+	void AddObj(SHORT key=0) override;
 	void Unload() override;
-	void Render(Graphics* gfx) override;
+	void Render(Graphics* gfx = nullptr) override;
 	void Update() override;
 
 };
