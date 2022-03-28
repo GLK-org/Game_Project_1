@@ -38,7 +38,7 @@ bool Graphics::Init(HWND windowHandle)
   }
  int t= layers.size();
  //Ustawienie pierwszej warstwy - t³o, na aktywn¹
- rendertarget->PushLayer(D2D1::LayerParameters(D2D1::RectF(200.0f,10.0f,120.0f,200.0f)), layers[0]);
+ //rendertarget->PushLayer(D2D1::LayerParameters(D2D1::RectF(100.0f,10.0f,120.0f,200.0f)), layers[0]);
 
   return true;
 }
@@ -51,7 +51,7 @@ void Graphics::ClearScreen(float r, float g, float b)
     rendertarget->Clear(D2D1::ColorF(r, g, b));
 }
 
-void Graphics::CreateEllipseGeometry(D2D1_ELLIPSE &eli, ID2D1EllipseGeometry ** EllipseGeo) {
+void Graphics::CreateEllipseGeometry(D2D1_ELLIPSE * eli, ID2D1EllipseGeometry ** EllipseGeo) {
     HRESULT hr;
 
     hr = factory->CreateEllipseGeometry(eli, EllipseGeo);
@@ -60,8 +60,9 @@ void Graphics::CreateEllipseGeometry(D2D1_ELLIPSE &eli, ID2D1EllipseGeometry ** 
    }
 }
 
-void Graphics::DrawBG()
+void Graphics::DrawBG(D2D1_POINT_2F point, float tab[2])
 {
+    rendertarget->SetTransform(D2D1_MATRIX_3X2_F(D2D1::Matrix3x2F::Skew(tab[0],tab[1],point)));
 
 }
 
@@ -72,13 +73,30 @@ void Graphics::DrawGeo(ID2D1EllipseGeometry* EllipseGeo) {
     brush->Release();
 }
 
-void Graphics::DrawCircle(float x, float y, float rad, float r, float g, float b, float a)
+void Graphics::DrawEllipse(D2D1_ELLIPSE * eli, float r, float g, float b, float a)
 {
     //tworzenie pêdzla i generowanie elipsy
     ID2D1SolidColorBrush* brush;
     rendertarget->CreateSolidColorBrush(D2D1::ColorF(r, g, b, a), &brush);
 
-    rendertarget->DrawEllipse(D2D1::Ellipse(D2D1::Point2F(x, y), rad, rad), brush, 3.0f);
+    rendertarget->DrawEllipse(eli, brush, 3.0f);
     //
     brush->Release();
+}
+
+void Graphics::DrawRect(D2D1_RECT_F * rect, float r, float g, float b, float a)
+{
+    ID2D1SolidColorBrush* brush;
+    rendertarget->CreateSolidColorBrush(D2D1::ColorF(r, g, b, a), &brush);
+
+    rendertarget->DrawRectangle(rect, brush, 3.0f);
+    //
+    brush->Release();
+}
+
+void Graphics::FillRect(D2D1_RECT_F* rect)
+{
+    ID2D1SolidColorBrush* brush;
+    rendertarget->CreateSolidColorBrush(D2D1::ColorF(1.0f, 0.2f, 0.f, 1.0f), &brush);
+    rendertarget->FillRectangle(rect,brush);
 }

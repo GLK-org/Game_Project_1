@@ -121,7 +121,7 @@
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>Engine.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(LocalDebuggerWorkingDirectory)Core;$(LocalDebuggerWorkingDirectory)pch;$(LocalDebuggerWorkingDirectory)Level_control;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(LocalDebuggerWorkingDirectory)Core;$(LocalDebuggerWorkingDirectory)pch;$(LocalDebuggerWorkingDirectory)Level_control;$(SolutionDir)Game\Structs</AdditionalIncludeDirectories>
       <CompileAsManaged>false</CompileAsManaged>
     </ClCompile>
     <Link>

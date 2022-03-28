@@ -109,10 +109,10 @@ int CALLBACK WinMain(HINSTANCE, HINSTANCE, LPSTR, INT) {
 		else {
 			
 			GameController::Update();
-			if (GetKeyState('2')) {
+			if (GetKeyState('2') & 0x8000) {
 				GameController::SwitchLevel(new Level2());
 			}
-			else if (GetKeyState('1')) {
+			else if (GetKeyState('1') & 0x8000) {
 				GameController::SwitchLevel(new Level1());
 			}
 			//Render:

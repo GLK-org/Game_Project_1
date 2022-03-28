@@ -3,8 +3,6 @@
 #include <vector>
 
 Level1::Level1() {
-	x = xSpeed = 0.0f;
-	y = ySpeed = 0.0f;
 }
 
 Level1::~Level1()
@@ -20,6 +18,15 @@ void Level1::Load(Graphics* gfx) {
 	x = xSpeed = 0.0f;
 	y = ySpeed = 0.0f;
 	
+	eli = new Eli(this->x, this->y,50.0f,40.0f,52.0f, gfx);
+	buttons[0] = new Recta(this->x, this->y, 400.0f, 550.0f, 1366.0f,600.0f, gfx);
+	buttons[1] = new Recta(this->x, this->y, 1.0f, 600.0f, 1365.0f, 768.0f, gfx);
+	
+}
+
+void Level1::AddObj(SHORT key)
+{
+
 }
 
 void Level1::Unload() {
@@ -29,8 +36,12 @@ void Level1::Unload() {
 void Level1::Render(Graphics* gfx)
 {
 	gfx->ClearScreen(0.0f, 0.0f, 0.5f);
-	gfx->DrawCircle(x, y, 50, 1.0f, 0.0f, 0.0f, 1.0f);
-
+	this->eli->Render(gfx);
+	for (Obj* button : this->buttons) {
+		button->Render(gfx);
+	}
+	//Czy to nie powtórka rysowania ramki z render?!
+	buttons[1]->Fill(gfx);
 }
 
 void Level1::Update() {
@@ -38,15 +49,15 @@ void Level1::Update() {
 	ySpeed += 1.0f;
 	y += ySpeed;
 	x += xSpeed;
-	if (GetKeyState('A')) {
-		xSpeed += 0.1f;
-	}
-	if (GetKeyState('D')) {
+	if (GetKeyState('A') & 0x8000) {
 		xSpeed -= 0.1f;
 	}
+	if (GetKeyState('D') & 0x8000) {
+		xSpeed += 0.1f;
+	}
 
-	if (y > 768) {
-		y = 768;
+	if (y > 600) {
+		y = 600;
 		ySpeed = -30.0f;
 	}
 	if (x < 0) {
@@ -57,4 +68,7 @@ void Level1::Update() {
 		x = 1366;
 		xSpeed = -5.0f;
 	}
+	int temp[2] = { x,y };
+	this->eli->Update(temp);
+
 }
