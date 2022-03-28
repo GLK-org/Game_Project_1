@@ -1,12 +1,9 @@
 # Game_Project_1
 
-Aktualnie opracowywane funkcje:
+Aktualny cel na master:
 
-- Struktura z warstwami interakcji
-    + rozpoczęta, potrzeba przemyślenia modelu przed implementacją
+Model budowania warstw,
 
-- Rysowanie dowolnych prymitywów.
-    + pierwsza wersja wykonana dla elips, prostokątów 
+Model podstawowych typów interakcji z obiektami klasy Object niezależny od logiki poziomu,
 
-- Skalowanie
-    + do wykonania dostępnymi funkcjami D2D1 na macierzach
+Metody na zgrabniejsze umieszczanie obieków,
