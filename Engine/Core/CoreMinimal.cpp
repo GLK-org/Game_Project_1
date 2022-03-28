@@ -41,9 +41,20 @@ void Graphics::DrawCircle(float x, float y, float rad, float r, float g, float b
     rendertarget->CreateSolidColorBrush(D2D1::ColorF(r, g, b, a), &brush);
 
     rendertarget->DrawEllipse(D2D1::Ellipse(D2D1::Point2F(x, y), rad, rad), brush, 3.0f);
-    //
+
     brush->Release();
 }
+
+/*void Graphics::DrawSquare(float x, float y, float s, float r, float g, float b, float a)
+{
+    //tworzenie pêdzla i generowanie prostok¹ta
+    ID2D1SolidColorBrush* brush;
+    rendertarget->CreateSolidColorBrush(D2D1::ColorF(r, g, b, a), &brush);
+
+    rendertarget->DrawRectangle(Rectangle(x, y, x+s, y+s), brush, 3.0f);
+
+    brush->Release();
+}*/
 
 void Graphics::CreateEllipseGeometry(float centerx, float centery, float w, float h,ID2D1EllipseGeometry ** ElipseGeo) {
  //   factory->CreateEllipseGeometry(D2D1::Ellipse(D2D1::Point2F(centerx, centery), w, h), &ElipseGeo);

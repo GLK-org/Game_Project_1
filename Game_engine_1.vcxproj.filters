@@ -36,6 +36,12 @@
     <ClCompile Include="Game\Main\Window.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
+    <ClCompile Include="Game\Levels\Level_3.cpp">
+      <Filter>Pliki zasobów\Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Levels\Pauza.cpp">
+      <Filter>Pliki zasobów\Levels</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game\Levels\Level_1.h">
@@ -52,6 +58,12 @@
     </ClInclude>
     <ClInclude Include="Game\pch\pch.h">
       <Filter>Pliki nagłówkowe\pch</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Levels\Level_3.h">
+      <Filter>Pliki zasobów\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Levels\Pauza.h">
+      <Filter>Pliki zasobów\Levels</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

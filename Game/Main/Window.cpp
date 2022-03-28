@@ -2,6 +2,8 @@
 #include "Level_control\GameController.h"
 #include "Level_1.h"
 #include "Level_2.h"
+#include "Level_3.h"
+#include "Pauza.h"
 
 WCHAR		WindowClass[MAX_NAME_STRING];
 WCHAR		WindowTitle[MAX_NAME_STRING];
@@ -113,6 +115,12 @@ int CALLBACK WinMain(HINSTANCE, HINSTANCE, LPSTR, INT) {
 			}
 			else if (GetKeyState('W')) {
 				GameController::SwitchLevel(new Level1());
+			}
+			else if (GetKeyState('X')) {
+				GameController::SwitchLevel(new Level3());
+			}
+			else if (GetKeyState(27)) {
+				GameController::SwitchLevel(new Pauza());
 			}
 			//Render:
 			graphics->BeginDraw();

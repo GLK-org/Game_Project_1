@@ -1,2 +1,4 @@
-﻿  Engine.cpp
+﻿  CoreMinimal.cpp
+  Engine.cpp
 D:\Projekty\Game_Project_1\Engine\pch\Engine.cpp(1,1): fatal error C1854: nie można zastąpić informacji utworzonej podczas tworzenia prekompilowanego pliku nagłówkowego w pliku obiektowym: „D:\Projekty\Game_Project_1\Engine\x64\Debug\Engine.obj”
+  Generowanie kodu...
