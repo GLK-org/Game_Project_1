@@ -138,12 +138,19 @@ public:
 
 	}
 	void Update(int i[] = { 0 }) override {
-	/*	rec.bottom =0;
-		rec.top=0;
-		rec.left=0;
-		rec.right=0;*/
-	};
+		if (i == nullptr) {
+			rec.bottom = this->GetY();
+			rec.top = this->GetY();
+			rec.left = this->GetX();
+			rec.right = this->GetX();
+			return;
+		}
+		rec.bottom = i[1];
+		rec.top = i[1];
+		rec.left = i[0];
+		rec.right = i[0];
 
+	}
 	~Recta() {
 		Obj::~Obj();
 	}

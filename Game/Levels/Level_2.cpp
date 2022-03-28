@@ -32,7 +32,14 @@ void Level2::AddObj(SHORT key)
 	//	objects.push_back(obj);
 //	}
 //	if ((GetKeyState(key) & 0x8000) == (GetKeyState('P') & 0x8000) ) {
-		objects.push_back(new Eli(rand() % 1364 * 1.0f + 1.0f, rand() % 766 + 1.0f + rand() % 49 + 1.0f, rand() % 49 + 1.0f, rand() % 49 + 1.0f, rand() % 49 + 1.0f, gfx));
+	if (rand() % 2 == 1) {
+		objects.push_back(new Eli(rand() % 1364 + 1.0f, rand() % 766 + 1.0f, rand() % 49 + 1.0f, rand() % 49 + 1.0f, rand() % 49 + 1.0f, gfx));
+	}
+	else {
+		float width= rand() % 1364 + 1.0f;
+		float height= rand() % 766 + 1.0f;
+		objects.push_back(new Recta(width, height, rand() % 1364 + 1.0f, rand() % 766 + 1.0f, rand() % 49 + 1.0f, rand() % 49 + 1.0f, gfx));
+	}
 //	}
 }
 
@@ -81,17 +88,17 @@ void Level2::Update()
 			(*it)->SetX(0);
 			xSpeed = 5.0f;
 		}
-		else if (x > 1366) {
+		else if (((*it)->GetX()) > 1366) {
 			(*it)->SetX(1366);
 			xSpeed = -5.0f;
 		}
 		(*it)->SetY(((*it)->GetY()) + ySpeed);
-		(*it)->SetX(((*it)->GetX()) + 5 * sin(((*it)->GetY()*std::numbers::pi / 180))+rand()%10/100);
+		(*it)->SetX(((*it)->GetX()) + 5 * sin(((*it)->GetY()*std::numbers::pi / 180))+rand()%10/100.0);
 		if (GetKeyState('A') & 0x8000) {
-			(*it)->SetX(((*it)->GetX()) - xSpeed);
+			(*it)->SetX(((*it)->GetX()) + xSpeed);
 		}
 		else if (GetKeyState('D') & 0x8000) {
-			(*it)->SetX(((*it)->GetX()) + xSpeed);
+			(*it)->SetX(((*it)->GetX()) - xSpeed);
 		}
 		else if (GetKeyState('W') & 0x8000) {
 			ySpeed = 1.0f;
@@ -104,7 +111,6 @@ void Level2::Update()
 
 		
 	
-		
 		(*it)->Update();
 		
 	}
