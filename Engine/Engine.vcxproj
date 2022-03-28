@@ -121,8 +121,12 @@
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>Engine.h</PrecompiledHeaderFile>
+ G_BudowanieWarstw
       <AdditionalIncludeDirectories>$(LocalDebuggerWorkingDirectory)Core;$(LocalDebuggerWorkingDirectory)pch;$(LocalDebuggerWorkingDirectory)Level_control;$(SolutionDir)Game\Structs</AdditionalIncludeDirectories>
       <CompileAsManaged>false</CompileAsManaged>
+=======
+      
+master
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
