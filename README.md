@@ -1,4 +1,4 @@
-# Game_Project_1
+# G_BudowanieWarstw
 
 Aktualnie opracowywane funkcje:
 
