@@ -1,8 +1,11 @@
 #include "Engine.h"
 #include "GameController.h"
 
+
 GameLevel* GameController::currentLevel;
 bool GameController::loading;
+
+
 Graphics* GameController::gfx;
 GameController::~GameController()
 {
@@ -48,5 +51,7 @@ void GameController::Render(Graphics* gfx)
 
 void GameController::Update()
 {
+	if (loading) return;
+
 	currentLevel->Update();
 }

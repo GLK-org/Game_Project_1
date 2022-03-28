@@ -15,6 +15,7 @@ class Level2 : public GameLevel {
 	float y, x;
 	float ySpeed, xSpeed;
 	double wind;
+	POINT p;
 public:
 	void Load(Graphics* gfx=nullptr) override;
 	char GetID() override;

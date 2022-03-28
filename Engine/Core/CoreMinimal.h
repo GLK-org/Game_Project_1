@@ -14,7 +14,7 @@ class ENGINE_API Graphics {
 public:
 	Graphics();
 	~Graphics();
-
+	
 	bool Init(HWND windowHandle);
 	void BeginDraw() { rendertarget->BeginDraw(); }
 	void EndDraw() { rendertarget->EndDraw(); }

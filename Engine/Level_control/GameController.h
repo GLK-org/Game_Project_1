@@ -4,9 +4,9 @@ class ENGINE_API GameController {
 	GameController();
 	static Graphics* gfx;
 	static GameLevel* currentLevel;
+	
 	~GameController();
 public:
-	
 	static bool loading;
 	static void Init(Graphics* gfx);
 	static void LoadInitialLevel(GameLevel* level);

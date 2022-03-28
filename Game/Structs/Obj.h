@@ -143,6 +143,7 @@ public:
 		rec.left=0;
 		rec.right=0;*/
 	};
+
 	~Recta() {
 		Obj::~Obj();
 	}
