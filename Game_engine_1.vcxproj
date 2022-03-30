@@ -123,7 +123,11 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
+ G_BudowanieWarstw
       <AdditionalIncludeDirectories>$(LocalDebuggerWorkingDirectory)Game\Levels;$(LocalDebuggerWorkingDirectory)Game\Main;$(LocalDebuggerWorkingDirectory)Game\Structs;$(LocalDebuggerWorkingDirectory)Game\pch;$(LocalDebuggerWorkingDirectory)Engine;</AdditionalIncludeDirectories>
+=======
+      <AdditionalIncludeDirectories>$(LocalDebuggerWorkingDirectory)Engine;$(LocalDebuggerWorkingDirectory)Game\pch;$(LocalDebuggerWorkingDirectory)Game\Structs;$(LocalDebuggerWorkingDirectory)Game\Main;$(LocalDebuggerWorkingDirectory)Game\Levels;</AdditionalIncludeDirectories>
+ master
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
