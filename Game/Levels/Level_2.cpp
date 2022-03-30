@@ -111,7 +111,7 @@ void Level2::Update()
 
 		
 	
-		(*it)->Update();
+		(*it)->Update(p);
 		
 	}
 }

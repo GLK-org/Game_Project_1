@@ -21,7 +21,7 @@ public:
 	void ClearScreen(float r, float g, float b);
 	void DrawEllipse(D2D1_ELLIPSE * eli, float r, float g, float b, float a);
 	void DrawRect(D2D1_RECT_F* rect, float , float g, float b, float a);
-	void FillRect(D2D1_RECT_F* rect);
+	void FillRect(D2D1_RECT_F* rect, float e[] = {0});
 	void CreateEllipseGeometry(D2D1_ELLIPSE * eli, ID2D1EllipseGeometry ** ElipseGeo);
 	void DrawBG(D2D1_POINT_2F point, float tab[2]);
 	void DrawGeo(ID2D1EllipseGeometry* EllipseGeo);

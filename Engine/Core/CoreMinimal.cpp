@@ -86,7 +86,7 @@ void Graphics::DrawEllipse(D2D1_ELLIPSE * eli, float r, float g, float b, float 
 
 void Graphics::DrawRect(D2D1_RECT_F * rect, float r, float g, float b, float a)
 {
-    ID2D1SolidColorBrush* brush;
+    ID2D1SolidColorBrush* brush; 
     rendertarget->CreateSolidColorBrush(D2D1::ColorF(r, g, b, a), &brush);
 
     rendertarget->DrawRectangle(rect, brush, 3.0f);
@@ -94,9 +94,17 @@ void Graphics::DrawRect(D2D1_RECT_F * rect, float r, float g, float b, float a)
     brush->Release();
 }
 
-void Graphics::FillRect(D2D1_RECT_F* rect)
+void Graphics::FillRect(D2D1_RECT_F* rect, float e[])
 {
+    
     ID2D1SolidColorBrush* brush;
-    rendertarget->CreateSolidColorBrush(D2D1::ColorF(1.0f, 0.2f, 0.f, 1.0f), &brush);
+    if (e != nullptr) {
+        rendertarget->CreateSolidColorBrush(D2D1::ColorF(e[0]/1000.0f, e[0]*2 / 1000.0f, 0.f, 1.0f), &brush);
+       
+    }
+    else {
+        rendertarget->CreateSolidColorBrush(D2D1::ColorF(1.0f, 0.2f, 0.f, 1.0f), &brush);
+    }
+    
     rendertarget->FillRectangle(rect,brush);
 }

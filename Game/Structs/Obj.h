@@ -7,19 +7,24 @@
 
 class Obj {
 	float posx, posy;
-
+	bool istriggered;
 public:
-	Obj(float x, float y) : posx(x), posy(y) { if (x == NULL || y == NULL) Obj::~Obj(); 
+	Obj(float x, float y) : posx(x), posy(y) {
+		istriggered = false; 
+		if (x == NULL || y == NULL) Obj::~Obj();
 	};
 	float GetX() { return posx; };
 	float GetY() { return posy; };
+	bool GetTrig() { return istriggered; };
 	void SetX(float x) {posx=x; };
 	void SetY(float y) {posy=y; };
+	void SetTrig(bool t) { istriggered=t; };
 	virtual bool Init(Graphics* gfx) = 0;
 	virtual void Render(Graphics* gfx) = 0;
-	virtual void Update(int i[] = { 0 }) = 0;
+	virtual bool CheckTrigg(const POINT& p) { return this->GetTrig(); };
+	virtual void Update(POINT& p, int i[] = { 0 }) = 0;
 	virtual void Transform(Graphics* gfx, float tab[2]) = 0;
-	virtual void Fill(Graphics* gfx) =0;
+	virtual void Fill(Graphics* gfx, float e[] = { 0 }) =0;
 	virtual ~Obj() { };
 };
 
@@ -71,9 +76,22 @@ public:
 	//	gfx->DrawCircle(Eli::GetX(), Eli::GetY(), r, 1.0f, 0.0f, 0.0f, 1.0f);
 
 	};
-	void Fill(Graphics* gfx) override {};
-	void Update(int i[] = { 0 }) override {
+	void Fill(Graphics* gfx, float e[] = { 0 }) override {};
+	bool CheckTrigg(const POINT& p) override {
+		if (p.x >= (eli.point.x-eli.radiusX/2) && p.x <= (eli.point.x + eli.radiusX/2)) {
+			if (p.y >= (eli.point.y - eli.radiusY/ 2) && p.y <= (eli.point.y + eli.radiusY/ 2)) {
+				this->SetTrig(true);
+				return this->GetTrig();
+			}
+		}
+		this->SetTrig(false);
+		return this->GetTrig();
+	};
+	void Update(POINT& p, int i[] = { 0 }) override {
+		//updatetrigger
+		this->CheckTrigg(p);
 
+		//updateloc
 		if (i == nullptr || (sizeof(i)/sizeof(*i)) < 2 ) {
 
 			eli.point.x = this->GetX();
@@ -132,13 +150,28 @@ public:
 		gfx->DrawRect(&rec, 0.4f,0.8f,0.6f,0.7f);
 
 	};
-	void Fill(Graphics* gfx) override {
-		gfx->FillRect(&rec);
+	void Fill(Graphics* gfx, float e[] = { 0 }) override {
+		gfx->FillRect(&rec, e);
 
 
 	}
-	void Update(int i[] = { 0 }) override {
+	bool CheckTrigg(const POINT& p) override {
+		if (p.x >= rec.left && p.x <= rec.right) {
+			if (p.y >= rec.top && p.y <= rec.bottom) {
+				this->SetTrig(true);
+				return this->GetTrig();
+			}
+			}
+		 this->SetTrig(false);
+		 return this->GetTrig();
+	};
+	void Update(POINT& p, int i[] = { 0 }) override {
+		//updatetrigger
+		
+
+		//updateloc
 		if (i == nullptr) {
+
 			rec.bottom = this->GetY();
 			rec.top = this->GetY();
 			rec.left = this->GetX();
@@ -149,7 +182,6 @@ public:
 		rec.top = i[1];
 		rec.left = i[0];
 		rec.right = i[0];
-
 	}
 	~Recta() {
 		Obj::~Obj();

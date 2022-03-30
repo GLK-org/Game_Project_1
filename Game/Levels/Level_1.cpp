@@ -43,14 +43,23 @@ void Level1::Render(Graphics* gfx)
 		button->Render(gfx);
 	}
 	//Czy to nie powtórka rysowania ramki z render?!
-	buttons[1]->Fill(gfx);
+	if (buttons[1]->CheckTrigg(p)) {
+		float e[1];
+		e[0]=(float)p.x;
+		buttons[1]->Fill(gfx, e);
+	}
+	else {
+		buttons[1]->Fill(gfx);
+	}
+	
 }
 
 void Level1::Update() {
 	//Zbiera informacje o pozycji myszy
 	GetCursorPos(&p);
+	ScreenToClient(FindWindowA("TutorialOneClass","TutorialOneTitle" ), &p);
 	// GetKeyState zbiera wciœniêcia przycisku, a "& 0x8000" to operacja bitowa na wyniku zbieraj¹ca ze s³owa bitowego flagi, czy przycisk jest teraz wciœniêty
-	if (GetKeyState(VK_SPACE) & 0x8000) {
+	if (GetKeyState(VK_SPACE) & 0x8000 || eli->CheckTrigg(p)) {
 		mode = !mode;
 	}
 	if (mode) {
@@ -66,7 +75,7 @@ void Level1::Update() {
 		}
 		if (p.x < 0) {
 			x = 0;
-			xSpeed = 5.0f;
+		//	xSpeed = 5.0f;
 		}
 		else if (p.x > 1366) {
 			x = 1366;
@@ -101,6 +110,6 @@ void Level1::Update() {
 	}
 	int temp[2] = { x,y };
 
-	this->eli->Update(temp);
+	this->eli->Update(p, temp);
 	
 }
