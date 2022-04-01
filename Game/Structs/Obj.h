@@ -20,7 +20,7 @@ public:
 	void SetY(float y) {posy=y; };
 	void SetTrig(bool t) { istriggered=t; };
 	virtual bool Init(Graphics* gfx) = 0;
-	virtual void Render(Graphics* gfx) = 0;
+	virtual void Render(Graphics* gfx, float r, float g, float b, float a) = 0;
 	virtual bool CheckTrigg(const POINT& p) { return this->GetTrig(); };
 	virtual void Update(POINT& p, float i[] = { 0 }) = 0;
 	virtual void Transform(Graphics* gfx, float tab[2]) = 0;
@@ -70,9 +70,9 @@ public:
 		gfx->DrawBG(eli.point, tab);
 	}
 
-	void Render(Graphics* gfx) override {	
+	void Render(Graphics* gfx, float r, float g, float b, float a) override {
 		
-		 gfx->DrawEllipse(&eli, 0.2f, 0.3f, 0.2f, 0.6f);
+		 gfx->DrawEllipse(&eli, r, g, b, a);
 	//	gfx->DrawCircle(Eli::GetX(), Eli::GetY(), r, 1.0f, 0.0f, 0.0f, 1.0f);
 
 	};
@@ -106,8 +106,8 @@ public:
 		}
 		SetX(i[0]);
 		SetY(i[1]);
-		eli.point.x += GetX();
-		eli.point.y += GetY();
+		eli.point.x = GetX();
+		eli.point.y = GetY();
 	};
 	~Eli()  {
 		if (m_pEllipseGeometry) {
@@ -151,7 +151,7 @@ public:
 		}
 		//gfx->DrawBG(rec.point, tab);
 	}
-	void Render(Graphics* gfx) override {
+	void Render(Graphics* gfx, float r, float g, float b, float a) override {
 		
 		//	gfx->DrawGeo(m_pEllipseGeometry);
 		gfx->DrawRect(&rec, 0.4f,0.8f,0.6f,0.7f);

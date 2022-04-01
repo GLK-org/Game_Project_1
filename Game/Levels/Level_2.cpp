@@ -57,7 +57,7 @@ void Level2::Render(Graphics* gfx)
 {
 	gfx->ClearScreen(0.0f, 0.5f, 0.5f);
 	for (std::vector<Obj*>::iterator it = objects.begin(); it != objects.end(); ++it) {
-		(*it)->Render(gfx);
+		(*it)->Render(gfx, rand() % 2, rand() % 2, rand() % 2, 1.0f);
 	}
 	
 }

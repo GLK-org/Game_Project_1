@@ -13,6 +13,9 @@ class Level1: public GameLevel {
 	float xSpeed;
 	POINT p;
 	bool mode;
+	double change;
+	bool asc;
+	double r, g, b, a;
 public:
 	 Level1();
 	 virtual ~Level1();
