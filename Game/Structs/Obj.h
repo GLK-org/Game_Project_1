@@ -22,7 +22,7 @@ public:
 	virtual bool Init(Graphics* gfx) = 0;
 	virtual void Render(Graphics* gfx) = 0;
 	virtual bool CheckTrigg(const POINT& p) { return this->GetTrig(); };
-	virtual void Update(POINT& p, int i[] = { 0 }) = 0;
+	virtual void Update(POINT& p, float i[] = { 0 }) = 0;
 	virtual void Transform(Graphics* gfx, float tab[2]) = 0;
 	virtual void Fill(Graphics* gfx, float e[] = { 0 }) =0;
 	virtual ~Obj() { };
@@ -87,20 +87,27 @@ public:
 		this->SetTrig(false);
 		return this->GetTrig();
 	};
-	void Update(POINT& p, int i[] = { 0 }) override {
+	void Update(POINT& p, float i[] = { 0 }) override {
+		
 		//updatetrigger
 		this->CheckTrigg(p);
 
 		//updateloc
 		if (i == nullptr || (sizeof(i)/sizeof(*i)) < 2 ) {
 
-			eli.point.x = this->GetX();
-			eli.point.y = this->GetY();
+			eli.point.x += this->GetX();
+			eli.point.y += this->GetY();
 			return;
 		}
-
-		eli.point.x = i[0];
-		eli.point.y = i[1];
+		for (int j = 0; j < 2; j++) {
+			if (i[j] < 0) {
+				return;
+			}
+		}
+		SetX(i[0]);
+		SetY(i[1]);
+		eli.point.x += GetX();
+		eli.point.y += GetY();
 	};
 	~Eli()  {
 		if (m_pEllipseGeometry) {
@@ -165,23 +172,25 @@ public:
 		 this->SetTrig(false);
 		 return this->GetTrig();
 	};
-	void Update(POINT& p, int i[] = { 0 }) override {
+	void Update(POINT& p, float i[] = { 0 }) override {
 		//updatetrigger
 		
 
 		//updateloc
 		if (i == nullptr) {
 
-			rec.bottom = this->GetY();
-			rec.top = this->GetY();
-			rec.left = this->GetX();
-			rec.right = this->GetX();
+			rec.bottom += this->GetY();
+			rec.top += this->GetY();
+			rec.left += this->GetX();
+			rec.right += this->GetX();
 			return;
 		}
-		rec.bottom = i[1];
-		rec.top = i[1];
-		rec.left = i[0];
-		rec.right = i[0];
+		SetX(i[0]);
+		SetY(i[1]);
+		rec.bottom += i[1];
+		rec.top += i[1];
+		rec.left += i[0];
+		rec.right += i[0];
 	}
 	~Recta() {
 		Obj::~Obj();

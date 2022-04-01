@@ -108,7 +108,7 @@ void Level1::Update() {
 			xSpeed = -5.0f;
 		}
 	}
-	int temp[2] = { x,y };
+	float temp[2] = { x,y };
 
 	this->eli->Update(p, temp);
 	
