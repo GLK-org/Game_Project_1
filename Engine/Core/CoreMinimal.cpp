@@ -6,28 +6,45 @@ Graphics::Graphics()
 {
     factory = NULL;
     rendertarget = NULL;
-
+    WICfactory = NULL;
 }
 
 Graphics::~Graphics()
 {
+    
     if (factory) { factory->Release(); }
     if (rendertarget) { rendertarget->Release(); }
+    if (WICfactory) { WICfactory->Release(); }
+    layers.clear();
+
 }
 
 bool Graphics::Init(HWND windowHandle)
 {
+    CoInitialize(NULL);
     //WskaŸnik ¿eby ju¿ nie robiæ nowych kopi handlle;
     currentwindow = &windowHandle;
     //definiowanie factory, przekazywany wskaŸnik do wskaŸnika factory
    HRESULT res = D2D1CreateFactory(D2D1_FACTORY_TYPE_SINGLE_THREADED,&factory);
    if (res != S_OK) return false;
-    
+
+
+   res = CoCreateInstance(
+       CLSID_WICImagingFactory,
+       NULL,
+       CLSCTX_INPROC_SERVER,
+       IID_PPV_ARGS(&WICfactory)
+   );
+
+
+   );
    RECT rect;
    GetClientRect(*currentwindow, &rect);
    //Spojrzeæ na to
   res = factory->CreateHwndRenderTarget(D2D1::RenderTargetProperties(),D2D1::HwndRenderTargetProperties(*currentwindow,D2D1::SizeU(rect.right,rect.bottom)), &rendertarget);
   if (res != S_OK) return false;
+  
+  /*
   int layercount = 4;
   for (int i = 0; i < layercount;i++) {
       ID2D1Layer* temp;
@@ -36,7 +53,7 @@ bool Graphics::Init(HWND windowHandle)
       temp = nullptr;
       delete temp;
   }
- int t= layers.size();
+ int t= layers.size();*/
  //Ustawienie pierwszej warstwy - t³o, na aktywn¹
  //rendertarget->PushLayer(D2D1::LayerParameters(D2D1::RectF(100.0f,10.0f,120.0f,200.0f)), layers[0]);
 
@@ -58,6 +75,78 @@ void Graphics::CreateEllipseGeometry(D2D1_ELLIPSE * eli, ID2D1EllipseGeometry **
     if (hr == S_OK) {
 
    }
+}
+
+HRESULT Graphics::LoadBMP(
+    ID2D1RenderTarget* pRenderTarget,
+    IWICImagingFactory* pIWICFactory,
+    PCWSTR uri,
+    UINT destinationWidth,
+    UINT destinationHeight,
+    ID2D1Bitmap** ppBitmap
+)
+{
+
+    IWICBitmapDecoder* pDecoder = NULL;
+    IWICBitmapFrameDecode* pSource = NULL;
+    IWICStream* pStream = NULL;
+    IWICFormatConverter* pConverter = NULL;
+    IWICBitmapScaler* pScaler = NULL;
+
+    HRESULT hr = pIWICFactory->CreateDecoderFromFilename(
+        uri,
+        NULL,
+        GENERIC_READ,
+        WICDecodeMetadataCacheOnLoad,
+        &pDecoder
+    );
+
+    if (SUCCEEDED(hr))
+    {
+        // Create the initial frame.
+        hr = pDecoder->GetFrame(0, &pSource);
+    }
+
+    if (SUCCEEDED(hr))
+    {
+
+        // Convert the image format to 32bppPBGRA
+        // (DXGI_FORMAT_B8G8R8A8_UNORM + D2D1_ALPHA_MODE_PREMULTIPLIED).
+        hr = pIWICFactory->CreateFormatConverter(&pConverter);
+
+    }
+
+
+    if (SUCCEEDED(hr))
+    {
+        hr = pConverter->Initialize(
+            pSource,
+            GUID_WICPixelFormat32bppPBGRA,
+            WICBitmapDitherTypeNone,
+            NULL,
+            0.f,
+            WICBitmapPaletteTypeMedianCut
+        );
+
+        if (SUCCEEDED(hr))
+        {
+
+            // Create a Direct2D bitmap from the WIC bitmap.
+            hr = pRenderTarget->CreateBitmapFromWicBitmap(
+                pConverter,
+                NULL,
+                ppBitmap
+            );
+        }
+
+        pDecoder->Release();
+        pSource->Release();
+        pStream->Release();
+        pConverter->Release();
+        pScaler->Release();
+
+        return hr;
+    }
 }
 
 void Graphics::DrawBG(D2D1_POINT_2F point, float tab[2])

@@ -2,6 +2,7 @@
 #include "../pch/Engine.h"
 #include "d2d1.h"
 #include "d2d1_1.h"
+#include <wincodec.h>
 #include <vector>
 
 class ENGINE_API Graphics {
@@ -9,6 +10,7 @@ class ENGINE_API Graphics {
 	HWND* currentwindow;
 	std::vector<ID2D1Layer*> layers;
 	ID2D1Factory* factory;
+	IWICImagingFactory* WICfactory;
 	ID2D1HwndRenderTarget* rendertarget;
 
 public:
@@ -23,6 +25,14 @@ public:
 	void DrawRect(D2D1_RECT_F* rect, float , float g, float b, float a);
 	void FillRect(D2D1_RECT_F* rect, float e[] = {0});
 	void CreateEllipseGeometry(D2D1_ELLIPSE * eli, ID2D1EllipseGeometry ** ElipseGeo);
+	HRESULT LoadBMP(
+		ID2D1RenderTarget* pRenderTarget,
+		IWICImagingFactory* pIWICFactory,
+		PCWSTR uri,
+		UINT destinationWidth,
+		UINT destinationHeight,
+		ID2D1Bitmap** ppBitmap
+	);
 	void DrawBG(D2D1_POINT_2F point, float tab[2]);
 	void DrawGeo(ID2D1EllipseGeometry* EllipseGeo);
 };

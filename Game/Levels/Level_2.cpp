@@ -9,9 +9,9 @@ void Level2::Load(Graphics* gfx ) {
 	srand(time(NULL));
 	r = g = b = 0.0f;
 	x = 0.0f;
-	xSpeed = 0.0f;
 	y = 0.0f;
-	ySpeed = 0.0f;
+	ySpeed = 1.0f;
+	xSpeed = 1.0f;
 	objects.push_back(new Eli(123.2f,452.9f,52.2f,50.0f,66.8f, gfx));
 }
 
@@ -43,6 +43,10 @@ void Level2::AddObj(SHORT key ){
 					objects.erase(it);
 					break;
 				}
+				else if ((*it)->GetX() <= 0 || (*it)->GetX() >= 1366) {
+					objects.erase(it);
+					break;
+				}
 				
 			}
 			timer++;
@@ -63,11 +67,16 @@ void Level2::Render(Graphics* gfx)
 }
 
 void Level2::Update() {
-	ySpeed = 10.0f;
-	xSpeed = 10.0f;
+	this->AddObj(); 
+	if (ySpeed < 10.0f) {
+		ySpeed += 0.1f;
+	}
+	else {
+		ySpeed = 1.0f;
+	}
 	for (std::vector<Obj*>::iterator it = objects.begin(); it != objects.end(); ++it) {
-			(*it)->SetY(( (1/(*it)->GetY())+log(ySpeed)));
-			(*it)->SetX( (*it)->GetX() + xSpeed  * (sin((rand() % 360) * std::numbers::pi) / 180));
+		y = log10((*it)->GetY() + ySpeed + rand() % 3);
+		x= xSpeed+xSpeed  * (sin((rand() % 180) * std::numbers::pi) / 180.0);
 		
 	
 	if (GetKeyState('A')) {
@@ -78,19 +87,19 @@ void Level2::Update() {
 	}
 
 	if ((*it)->GetY() >= 768) {
-		y = 768;
+		(*it)->SetY(768);
 		//ySpeed = -0.5f;
 	}
 	if ((*it)->GetX() <= 0) {
-		x = 0;
+		(*it)->SetX(0);
 		//xSpeed = 5.0f;
 	}
 	else if ((*it)->GetX() >= 1366) {
-		x = 1366;
+		(*it)->SetX(1366);
 		//xSpeed = -5.0f;
 	}
 	float tab[2] = { x,y };
-	(*it)->Update(p);
+	(*it)->Update(p,tab);
 	}
-	this->AddObj();
+	
 }

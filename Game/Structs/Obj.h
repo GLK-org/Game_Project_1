@@ -28,15 +28,6 @@ public:
 	virtual ~Obj() { };
 };
 
-class ColTex {
-	
-	//oteksturowanie bêdzie tutaj
-
-public:
-	ColTex();
-	~ColTex();
-};
-
 class Eli : public Obj {
 	D2D1_ELLIPSE eli;
     ID2D1EllipseGeometry* m_pEllipseGeometry;
@@ -95,8 +86,8 @@ public:
 		//updateloc
 		if (i == nullptr || (sizeof(i)/sizeof(*i)) < 2 ) {
 
-			eli.point.x += this->GetX();
-			eli.point.y += this->GetY();
+			eli.point.x = this->GetX();
+			eli.point.y = this->GetY();
 			return;
 		}
 		for (int j = 0; j < 2; j++) {
@@ -106,8 +97,8 @@ public:
 		}
 		SetX(i[0]);
 		SetY(i[1]);
-		eli.point.x = GetX();
-		eli.point.y = GetY();
+		eli.point.x = i[0];
+		eli.point.y = i[1];
 	};
 	~Eli()  {
 		if (m_pEllipseGeometry) {
@@ -185,12 +176,13 @@ public:
 			rec.right += this->GetX();
 			return;
 		}
+
 		SetX(i[0]);
 		SetY(i[1]);
-		rec.bottom += i[1];
-		rec.top += i[1];
-		rec.left += i[0];
-		rec.right += i[0];
+		rec.bottom += i[1] -rec.bottom;
+		rec.top += i[1]-rec.top;
+		rec.left += i[0]- rec.left;
+		rec.right += i[0]- rec.right;
 	}
 	~Recta() {
 		Obj::~Obj();

@@ -40,8 +40,8 @@ void Level1::Unload() {
 void Level1::Render(Graphics* gfx)
 {
 		r = log(change + 0.24)+1;
-		g = log(change + 0.175)+1;
-		b = log(change + 0.15)+1;
+		g = log(-change + 0.175)+1;
+		b = log(-change + 0.15)+1;
 
 	gfx->ClearScreen(0.0f, 0.0f, 0.5f);
 	this->eli->Render(gfx, r,g,b,a);
