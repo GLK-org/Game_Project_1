@@ -168,6 +168,10 @@
     <ClCompile Include="Game\Levels\Level_3.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Game\Levels\Level_4.cpp" />
+    <ClCompile Include="Game\Levels\Level_5.cpp" />
+    <ClCompile Include="Game\Levels\Level_6.cpp" />
+    <ClCompile Include="Game\Levels\Menu.cpp" />
     <ClCompile Include="Game\Main\Window.cpp">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">../Game/pch/pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\Game\pch\pch.h</PrecompiledHeaderFile>
@@ -183,6 +187,10 @@
     <ClInclude Include="Game\Levels\Level_1.h" />
     <ClInclude Include="Game\Levels\Level_2.h" />
     <ClInclude Include="Game\Levels\Level_3.h" />
+    <ClInclude Include="Game\Levels\Level_4.h" />
+    <ClInclude Include="Game\Levels\Level_5.h" />
+    <ClInclude Include="Game\Levels\Level_6.h" />
+    <ClInclude Include="Game\Levels\Menu.h" />
     <ClInclude Include="Game\pch\pch.h" />
     <ClInclude Include="Game\Structs\Level_controls.h" />
     <ClInclude Include="Game\Structs\Obj.h" />

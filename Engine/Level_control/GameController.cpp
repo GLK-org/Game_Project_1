@@ -15,6 +15,7 @@ GameController::~GameController()
 void GameController::Init(Graphics* gfx1)
 {
 	time = 0.0f;
+	increment = 0.1f;
 	gfx = gfx1;
 	loading = true;
 	currentLevel = nullptr;

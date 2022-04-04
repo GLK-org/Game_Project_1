@@ -71,11 +71,11 @@ void Level2::Render(Graphics* gfx)
 {
 	gfx->ClearScreen(0.0f, 0.5f, 0.5f);
 	for (std::vector<Obj*>::iterator it = objects.begin(); it != objects.end(); ++it) {
-		/*if ((int)(GameController::increment * 1.01) % 2 == 0) {
-			r = rand() % 2 / 2.0;
-			g = rand() % 2 / 2.0;
-			b = rand() % 2 / 2.0;
-		}*/
+		if ((int)(GameController::time) % 2 == 0) {
+			r = sin((GameController::time *  std::numbers::pi) / 180);
+			g = cos((GameController::time * std::numbers::pi) / 180);
+			b = -tan((GameController::time * std::numbers::pi) / 180);
+		}
 		
 		(*it)->Render(gfx, r, g, b, 1);
 	}
@@ -88,15 +88,9 @@ void Level2::Update() {
 		return;
 	};
 	this->AddObj(); 
-	if (ySpeed < 10.0f) {
-		ySpeed += 0.1f;
-	}
-	else {
-		ySpeed = 1.0f;
-	}
 	for (std::vector<Obj*>::iterator it = objects.begin(); it != objects.end(); ++it) {
-		y = log10((*it)->GetY() + ySpeed + rand() % 3);
-		x= xSpeed+xSpeed  * (sin((rand() % 180) * std::numbers::pi) / 180.0);
+		y = log2(GameController::time*(rand()%10) + ySpeed*100.0f);
+		x = 100.0f*sin((rand()%360* std::numbers::pi) ) / 180.0;
 		
 	
 	if (GetKeyState('A')) {
@@ -106,20 +100,21 @@ void Level2::Update() {
 		xSpeed -= 0.1f;
 	}
 
-	if ((*it)->GetY() >= 768) {
-		(*it)->SetY(768);
-		//ySpeed = -0.5f;
+	if ((*it)->GetY() > 768) {
+		(*it)->SetY(767);
+		ySpeed = -0.5f;
 	}
-	if ((*it)->GetX() <= 0) {
-		(*it)->SetX(0);
-		//xSpeed = 5.0f;
+	if ((*it)->GetX() < 0) {
+		(*it)->SetX(1);
+		xSpeed = 0.5f;
 	}
-	else if ((*it)->GetX() >= 1366) {
-		(*it)->SetX(1366);
-		//xSpeed = -5.0f;
+	else if ((*it)->GetX() > 1366) {
+		(*it)->SetX(1365);
+		xSpeed = -0.5f;
 	}
+
 	float tab[2] = { x,y };
-	(*it)->Update(p,tab);
+	(*it)->Update(p,true,tab);
 	}
 	
 }

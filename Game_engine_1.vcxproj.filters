@@ -31,6 +31,18 @@
     <Filter Include="Pliki zasobów\Levels\3">
       <UniqueIdentifier>{8551a2a0-b72a-4d85-b2ab-0f0d71b91052}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Pliki zasobów\Levels\4">
+      <UniqueIdentifier>{3d9e3339-1785-4545-951b-b1c54250e959}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki zasobów\Levels\5">
+      <UniqueIdentifier>{7a3ce7f4-4d67-4485-b453-c1304735f8cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki zasobów\Levels\6">
+      <UniqueIdentifier>{e2d5806c-c0c9-40c2-ade8-a6f9efdcc5d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki zasobów\Levels\Menu">
+      <UniqueIdentifier>{b45465f3-197f-4f99-9cd7-689603fc40aa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game\pch\pch.cpp">
@@ -47,6 +59,18 @@
     </ClCompile>
     <ClCompile Include="Game\Levels\Level_3.cpp">
       <Filter>Pliki zasobów\Levels\3</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Levels\Level_4.cpp">
+      <Filter>Pliki zasobów\Levels\4</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Levels\Level_5.cpp">
+      <Filter>Pliki zasobów\Levels\5</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Levels\Level_6.cpp">
+      <Filter>Pliki zasobów\Levels\6</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Levels\Menu.cpp">
+      <Filter>Pliki zasobów\Levels\Menu</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -70,6 +94,18 @@
     </ClInclude>
     <ClInclude Include="Game\Structs\Level_controls.h">
       <Filter>Pliki zasobów\Structs</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Levels\Level_4.h">
+      <Filter>Pliki zasobów\Levels\4</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Levels\Level_5.h">
+      <Filter>Pliki zasobów\Levels\5</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Levels\Level_6.h">
+      <Filter>Pliki zasobów\Levels\6</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Levels\Menu.h">
+      <Filter>Pliki zasobów\Levels\Menu</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

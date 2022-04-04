@@ -135,7 +135,6 @@ public:
 
 	bool Init(Graphics* gfx) override {
 		
-		//gfx->CreateEllipseGeometry(rec, &m_pEllipseGeometry);
 		return true;
 
 	}
@@ -147,8 +146,7 @@ public:
 		//gfx->DrawBG(rec.point, tab);
 	}
 	void Render(Graphics* gfx, float r, float g, float b, float a) override {
-		
-		//	gfx->DrawGeo(m_pEllipseGeometry);
+
 		gfx->DrawRect(&rec, 0.4f,0.8f,0.6f,0.7f);
 
 	};
@@ -167,6 +165,7 @@ public:
 		 this->SetTrig(false);
 		 return this->GetTrig();
 	};
+
 	void Update(POINT& p, bool move = false, float i[] = { 0 }) override {
 		//updatetrigger
 		this->ttl += GameController::increment;
@@ -178,19 +177,19 @@ public:
 		
 		if (i == nullptr) {
 
-			rec.bottom += this->GetY();
-			rec.top += this->GetY();
-			rec.left += this->GetX();
-			rec.right += this->GetX();
+			rec.bottom = this->GetY();
+			rec.top = this->GetY();
+			rec.left = this->GetX();
+			rec.right = this->GetX();
 			return;
 		}
 
 		SetX(i[0]);
 		SetY(i[1]);
-		rec.bottom += i[1] -rec.bottom;
-		rec.top += i[1]-rec.top;
-		rec.left += i[0]- rec.left;
-		rec.right += i[0]- rec.right;
+		rec.bottom = i[1] -rec.bottom;
+		rec.top = i[1]-rec.top;
+		rec.left = i[0]- rec.left;
+		rec.right = i[0]- rec.right;
 		}
 	}
 

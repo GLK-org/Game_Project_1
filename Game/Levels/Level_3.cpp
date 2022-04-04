@@ -24,7 +24,7 @@ void Level3::Load(Graphics* gfx) {
 	//eli = new Eli(this->x, this->y, 50.0f, 40.0f, 52.0f, gfx);
 	rect = new Recta(100.0f,300.0f, 1066.0f, 200, 200 ,300, gfx);
 	pl = new Player(gfx, 200.0f,150.0f,50.0f, 100.0f,50.0f);
-	doors = new Doors(gfx, new Level2());
+	doors = new Doors(gfx, new Level2(), new Level4());
 //	buttons[0] = new Recta(this->x, this->y, 700.0f, 550.0f, 1366.0f, 600.0f, gfx);
 //	buttons[1] = new Recta(this->x, this->y, 1.0f, 600.0f, 1365.0f, 768.0f, gfx);
 	HRESULT hr;
@@ -113,7 +113,7 @@ void Level3::Update() {
 	
 	this->MouseLocUpdate();
 	rect->Update(p);
-	if (doors->UpdateTrig(p)) {
+	if (doors->UpdateTrig(p, *pl)) {
 		return;
 	};
 	if (GetKeyState(RI_MOUSE_LEFT_BUTTON_DOWN) & 0x8000) {
