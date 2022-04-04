@@ -1,4 +1,5 @@
-#include "Level_2.h"
+#include "pch.h"
+#include "Level_control/GameController.h"
 #include <ctime>
 #include <numbers>
 #include <math.h>
@@ -12,6 +13,7 @@ void Level2::Load(Graphics* gfx ) {
 	ySpeed = 1.0f;
 	xSpeed = 1.0f;
 	objects.push_back(new Eli(123.2f,452.9f,52.2f,50.0f,66.8f, gfx));
+	doors = new Doors(gfx, new Level1(), new Level3());
 }
 
 char Level2::GetID()
@@ -19,10 +21,14 @@ char Level2::GetID()
 	return id;
 }
 
-void Level2::Unload() {}
+void Level2::Unload() {
+	delete doors;
+}
+
+
 
 void Level2::AddObj(SHORT key ){
-	if (objects.size() > 150) {
+	if (objects.size() >50) {
 		return;
 	}
 		if (rand() % 2==0 ) {
@@ -35,7 +41,7 @@ void Level2::AddObj(SHORT key ){
 			objects.push_back(new Eli((rand() % 1265) + 100.0f, (rand() % 300) + 1.0f, (rand()%maxsize) + 1.0f, (rand() % maxsize) + 1.0f, (rand() % maxsize) + 1.0f, gfx));
 		}
 		int timer = 0;
-		while (objects.size() > 100) {
+		while (objects.size() > 50) {
 			
 			for (std::vector<Obj*>::iterator it = objects.begin(); it != objects.end(); ++it) {
 				if ((*it)->GetY() >= 768) {
@@ -53,7 +59,7 @@ void Level2::AddObj(SHORT key ){
 				break;
 			}
 		}
-
+		
 }
 
 void Level2::Render(Graphics* gfx)
@@ -62,10 +68,14 @@ void Level2::Render(Graphics* gfx)
 	for (std::vector<Obj*>::iterator it = objects.begin(); it != objects.end(); ++it) {
 		(*it)->Render(gfx, rand() % 2, rand() % 2, rand() % 2, 1.0f);
 	}
-	
+	doors->Render(gfx, p, r, 0.1f + g, b, 1.0f);
 }
 
 void Level2::Update() {
+	MouseLocUpdate();
+	if (doors->UpdateTrig(p)) {
+		return;
+	};
 	this->AddObj(); 
 	if (ySpeed < 10.0f) {
 		ySpeed += 0.1f;

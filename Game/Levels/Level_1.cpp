@@ -1,4 +1,5 @@
-#include "Level_1.h"
+#include "pch.h"
+#include "Level_control/GameController.h"
 #include "windowsx.h"
 #include <vector>
 
@@ -22,6 +23,7 @@ void Level1::Load(Graphics* gfx) {
 	eli = new Eli(this->x, this->y,50.0f,40.0f,52.0f, gfx);
 	buttons[0] = new Recta(this->x, this->y, 700.0f, 550.0f, 1366.0f,600.0f, gfx);
 	buttons[1] = new Recta(this->x, this->y, 1.0f, 600.0f, 1365.0f, 768.0f, gfx);
+	doors = new Doors(gfx, nullptr, new Level2());
 	change = 0.0;
 	a = 1;
 	asc = true;
@@ -77,10 +79,15 @@ void Level1::Render(Graphics* gfx)
 	}
 }
 
+
+
 void Level1::Update() {
 	//Zbiera informacje o pozycji myszy
-	GetCursorPos(&p);
-	ScreenToClient(FindWindowA("TutorialOneClass","TutorialOneTitle" ), &p);
+	this->MouseLocUpdate();
+
+	if (doors->UpdateTrig(p)) {
+		return;
+	};
 	// GetKeyState zbiera wciœniêcia przycisku, a "& 0x8000" to operacja bitowa na wyniku zbieraj¹ca ze s³owa bitowego flagi, czy przycisk jest teraz wciœniêty
 	if (GetKeyState(VK_SPACE) & 0x8000 || eli->CheckTrigg(p)) {
 		mode = !mode;
@@ -133,6 +140,6 @@ void Level1::Update() {
 	}
 	float temp[2] = { x,y };
 
-	this->eli->Update(p, temp);
+	this->eli->Update(p, true, temp);
 	
 }

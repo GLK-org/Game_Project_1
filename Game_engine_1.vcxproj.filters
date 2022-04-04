@@ -68,6 +68,9 @@
     <ClInclude Include="Game\Structs\Obj.h">
       <Filter>Pliki zasobów\Structs</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Structs\Level_controls.h">
+      <Filter>Pliki zasobów\Structs</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Game_engine_1.rc">

@@ -1,4 +1,4 @@
-#include "Level_3.h"
+#include "pch.h"
 #include "windowsx.h"
 #include <vector>
 
@@ -21,10 +21,10 @@ void Level3::Load(Graphics* gfx) {
 	y = ySpeed = 0.0f;
 	mode = false;
 	GetCursorPos(&p);
-	eli = new Eli(this->x, this->y, 50.0f, 40.0f, 52.0f, gfx);
-	rect = new Recta(100.0f,1.0f, 200, 200, 200 ,300, gfx);
-	left = new Recta(0.0f, 300.0f, 200, 200, 200, 300, gfx /*,new Level2()*/);
-	right = new Recta( 100.0f, 1.0f, 200, 200, 200, 300, gfx/*, new Level1() */ );
+	//eli = new Eli(this->x, this->y, 50.0f, 40.0f, 52.0f, gfx);
+	rect = new Recta(100.0f,300.0f, 1066.0f, 200, 200 ,300, gfx);
+	pl = new Player(gfx, 200.0f,150.0f,50.0f, 100.0f,50.0f);
+	doors = new Doors(gfx, new Level2());
 //	buttons[0] = new Recta(this->x, this->y, 700.0f, 550.0f, 1366.0f, 600.0f, gfx);
 //	buttons[1] = new Recta(this->x, this->y, 1.0f, 600.0f, 1365.0f, 768.0f, gfx);
 	HRESULT hr;
@@ -52,6 +52,7 @@ void Level3::AddObj(SHORT key)
 void Level3::Unload() {
 	delete eli;
 	rect->~Recta();
+	delete doors;
 //	for (int i = 0; i < 2; i++) {
 //		delete buttons[i];
 	
@@ -73,6 +74,10 @@ void Level3::Render(Graphics* gfx)
 		}
 		change -= 0.02;
 	}
+	float e[4] = { r, g, 0.1f + b, a };
+	rect->Render(gfx, r, 0.1f + g, b, a);
+	doors->Render(gfx, p, r, 0.1f + g, b, a);
+	pl->Render(gfx, p);
   /*	
 	this->eli->Render(gfx, r, g, b, a);
 	for (Obj* button : this->buttons) {
@@ -105,10 +110,17 @@ void Level3::Render(Graphics* gfx)
 
 void Level3::Update() {
 	//Zbiera informacje o pozycji myszy
-	GetCursorPos(&p);
-	ScreenToClient(FindWindowA("TutorialOneClass", "TutorialOneTitle"), &p);
+	
+	this->MouseLocUpdate();
+	rect->Update(p);
+	if (doors->UpdateTrig(p)) {
+		return;
+	};
+	if (GetKeyState(RI_MOUSE_LEFT_BUTTON_DOWN) & 0x8000) {
+		pl->MoveToPoint(p);
+	}
 	// GetKeyState zbiera wciœniêcia przycisku, a "& 0x8000" to operacja bitowa na wyniku zbieraj¹ca ze s³owa bitowego flagi, czy przycisk jest teraz wciœniêty
-	if (GetKeyState(VK_SPACE) & 0x8000 || eli->CheckTrigg(p)) {
+	if (GetKeyState(VK_SPACE) & 0x8000) {
 		mode = !mode;
 	}
 	/*if (mode) {
@@ -159,6 +171,5 @@ void Level3::Update() {
 	}*/
 	float temp[2] = { x,y };
 
-	this->eli->Update(p, temp);
 
 }

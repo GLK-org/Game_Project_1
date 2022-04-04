@@ -11,4 +11,8 @@ public:
 	virtual void AddObj(SHORT key=0) = 0;
 	virtual void Render(Graphics* gfx = nullptr) = 0;
 	virtual void Update() = 0;
+	void MouseLocUpdate() {
+		GetCursorPos(&p);
+		ScreenToClient(FindWindowA("TutorialOneClass", "TutorialOneTitle"), &p);
+	};
 };

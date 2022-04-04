@@ -7,6 +7,7 @@ class ENGINE_API GameController {
 	
 	~GameController();
 public:
+	static float time;
 	static bool loading;
 	static void Init(Graphics* gfx);
 	static void LoadInitialLevel(GameLevel* level);

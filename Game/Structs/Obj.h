@@ -22,7 +22,7 @@ public:
 	virtual bool Init(Graphics* gfx) = 0;
 	virtual void Render(Graphics* gfx, float r, float g, float b, float a) = 0;
 	virtual bool CheckTrigg(const POINT& p) { return this->GetTrig(); };
-	virtual void Update(POINT& p, float i[] = { 0 }) = 0;
+	virtual void Update(POINT& p, bool move = false, float i[] = { 0 }) = 0;
 	virtual void Transform(Graphics* gfx, float tab[2]) = 0;
 	virtual void Fill(Graphics* gfx, float e[] = { 0 }) =0;
 	virtual ~Obj() { };
@@ -47,7 +47,7 @@ public:
 		this->r = r;
 		eli = D2D1::Ellipse(D2D1::Point2F(this->GetX(), this->GetY()), w, h);
 	};
-
+	D2D1_POINT_2F EGetPoint(float e) {return eli.point; };
 	bool Init(Graphics* gfx) override {
 		//Do usuniêcia
 		return true;
@@ -78,7 +78,7 @@ public:
 		this->SetTrig(false);
 		return this->GetTrig();
 	};
-	void Update(POINT& p, float i[] = { 0 }) override {
+	void Update(POINT& p, bool move = false, float i[] = { 0 }) override {
 		
 		//updatetrigger
 		this->CheckTrigg(p);
@@ -109,11 +109,10 @@ public:
 };
 
 class Recta : public Obj {
-
+	ID2D1Bitmap* bmp;
 	D2D1_RECT_F rec;
 	//Niepotrzebnie trzymane dodatkowo
 	float left, right, top, bottom;
-
 
 public:
 	Recta(float x, float y, float l, float t, float r, float b, Graphics* gfx) : Obj(x, y) {
@@ -121,6 +120,7 @@ public:
 			Recta::Obj::~Obj();
 		}
 		//Powtórzone informacje, mog¹ siê przydaæ ale zobaczymy
+		this->bmp = nullptr;
 		this->rec = { 0 };
 		this->left = l;
 		this->top = t;
@@ -163,11 +163,14 @@ public:
 		 this->SetTrig(false);
 		 return this->GetTrig();
 	};
-	void Update(POINT& p, float i[] = { 0 }) override {
+	void Update(POINT& p, bool move = false, float i[] = { 0 }) override {
 		//updatetrigger
 		
 
 		//updateloc
+		if (move) {
+
+		
 		if (i == nullptr) {
 
 			rec.bottom += this->GetY();
@@ -183,8 +186,16 @@ public:
 		rec.top += i[1]-rec.top;
 		rec.left += i[0]- rec.left;
 		rec.right += i[0]- rec.right;
+		}
 	}
+
+	ID2D1Bitmap** GetBmp() {
+
+		return &bmp;
+	}
+
 	~Recta() {
 		Obj::~Obj();
 	}
 };
+

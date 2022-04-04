@@ -1,25 +1,26 @@
 #pragma once
 #include "Level_control\GameLevel.h"
+#include "Level_controls.h"
 #include "Obj.h"
 class Level3 : public GameLevel {
 	//Mysz do przeniesienia
 
 	char id = '3';
 	Obj* eli;
+	Player* pl;
 	Recta* rect;
-	Recta* left;
-	Recta* right;
+	Doors* doors;
 	//Obj* buttons;
 	float y;
 	float x;
 	float ySpeed;
 	float xSpeed;
-	POINT p;
 	bool mode;
 	double change;
 	bool asc;
 	double r, g, b, a;
 public:
+
 	Level3();
 	virtual ~Level3();
 	char GetID() override;
