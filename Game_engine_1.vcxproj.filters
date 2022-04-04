@@ -22,36 +22,51 @@
     <Filter Include="Pliki nagłówkowe\pch">
       <UniqueIdentifier>{464455d5-2b0e-4255-a04a-0bcb23aad56f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Pliki zasobów\Levels\1">
+      <UniqueIdentifier>{9ba5481f-83b3-45c9-9296-38ea481c2639}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki zasobów\Levels\2">
+      <UniqueIdentifier>{a423ed2d-b398-45b8-832c-8cc71ffefe4d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki zasobów\Levels\3">
+      <UniqueIdentifier>{8551a2a0-b72a-4d85-b2ab-0f0d71b91052}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Game\Levels\Level_1.cpp">
-      <Filter>Pliki zasobów\Levels</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Levels\Level_2.cpp">
-      <Filter>Pliki zasobów\Levels</Filter>
-    </ClCompile>
     <ClCompile Include="Game\pch\pch.cpp">
       <Filter>Pliki nagłówkowe\pch</Filter>
     </ClCompile>
     <ClCompile Include="Game\Main\Window.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
+    <ClCompile Include="Game\Levels\Level_1.cpp">
+      <Filter>Pliki zasobów\Levels\1</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Levels\Level_2.cpp">
+      <Filter>Pliki zasobów\Levels\2</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Levels\Level_3.cpp">
+      <Filter>Pliki zasobów\Levels\3</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Game\Levels\Level_1.h">
-      <Filter>Pliki zasobów\Levels</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Levels\Level_2.h">
-      <Filter>Pliki zasobów\Levels</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Structs\Obj.h">
-      <Filter>Pliki zasobów\Structs</Filter>
-    </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>Pliki zasobów</Filter>
     </ClInclude>
     <ClInclude Include="Game\pch\pch.h">
       <Filter>Pliki nagłówkowe\pch</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Levels\Level_1.h">
+      <Filter>Pliki zasobów\Levels\1</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Levels\Level_2.h">
+      <Filter>Pliki zasobów\Levels\2</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Levels\Level_3.h">
+      <Filter>Pliki zasobów\Levels\3</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Structs\Obj.h">
+      <Filter>Pliki zasobów\Structs</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

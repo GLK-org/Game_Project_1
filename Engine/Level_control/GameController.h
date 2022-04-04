@@ -14,3 +14,4 @@ public:
 	static void Render(Graphics* gfx);
 	static void Update();
 };
+

@@ -39,7 +39,7 @@
     <ClCompile Include="pch\Engine.cpp">
       <Filter>Pliki źródłowe\Engine_pch</Filter>
     </ClCompile>
-    <ClCompile Include="CoreWriter.cpp">
+    <ClCompile Include="Core\CoreWriter.cpp">
       <Filter>Pliki źródłowe\Core\Private</Filter>
     </ClCompile>
   </ItemGroup>
@@ -62,12 +62,12 @@
     <ClInclude Include="pch\Engine.h">
       <Filter>Pliki źródłowe\Engine_pch</Filter>
     </ClInclude>
-    <ClInclude Include="CoreWriter.h">
+    <ClInclude Include="Core\CoreWriter.h">
       <Filter>Pliki źródłowe\Core\Public</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\Game_engine_1\Content\Caffle.png">
+    <Image Include="Content\Caffle.bmp">
       <Filter>Pliki zasobów</Filter>
     </Image>
   </ItemGroup>

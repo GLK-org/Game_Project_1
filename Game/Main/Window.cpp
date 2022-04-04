@@ -1,7 +1,5 @@
 #include "..\Game\pch\pch.h"
 #include "Level_control\GameController.h"
-#include "Level_1.h"
-#include "Level_2.h"
 
 WCHAR		WindowClass[MAX_NAME_STRING];
 WCHAR		WindowTitle[MAX_NAME_STRING];
@@ -108,15 +106,19 @@ int CALLBACK WinMain(HINSTANCE, HINSTANCE, LPSTR, INT) {
 		}
 		else {
 			
-			GameController::Update();
+			
 			if (GetKeyState('2') & 0x8000) {
 				GameController::SwitchLevel(new Level2());
 			}
 			else if (GetKeyState('1') & 0x8000) {
 				GameController::SwitchLevel(new Level1());
 			}
+			else if (GetKeyState('3') & 0x8000) {
+				GameController::SwitchLevel(new Level3());
+			}
 			//Render:
 			graphics->BeginDraw();
+			GameController::Update();
 			GameController::Render(graphics);
 			graphics->EndDraw();
 			

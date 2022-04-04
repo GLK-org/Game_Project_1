@@ -34,10 +34,10 @@ bool Graphics::Init(HWND windowHandle)
        NULL,
        CLSCTX_INPROC_SERVER,
        IID_PPV_ARGS(&WICfactory)
-   );
 
 
    );
+
    RECT rect;
    GetClientRect(*currentwindow, &rect);
    //Spojrzeæ na to
@@ -86,12 +86,19 @@ HRESULT Graphics::LoadBMP(
     ID2D1Bitmap** ppBitmap
 )
 {
-
+    if (pRenderTarget == nullptr) {
+        pRenderTarget = rendertarget;
+    }
+    if (pIWICFactory == nullptr) {
+        pIWICFactory = WICfactory;
+    }
     IWICBitmapDecoder* pDecoder = NULL;
     IWICBitmapFrameDecode* pSource = NULL;
+    //Stream narazie nieu¿ywany
     IWICStream* pStream = NULL;
     IWICFormatConverter* pConverter = NULL;
     IWICBitmapScaler* pScaler = NULL;
+
 
     HRESULT hr = pIWICFactory->CreateDecoderFromFilename(
         uri,
@@ -162,8 +169,11 @@ void Graphics::DrawGeo(ID2D1EllipseGeometry* EllipseGeo) {
     brush->Release();
 }
 
-void Graphics::DrawEllipse(D2D1_ELLIPSE * eli, float r, float g, float b, float a)
-{
+void Graphics::DrawEllipse(
+    D2D1_ELLIPSE * eli,
+    float r, float g, float b, float a
+    )
+    {
     //tworzenie pêdzla i generowanie elipsy
     ID2D1SolidColorBrush* brush;
     rendertarget->CreateSolidColorBrush(D2D1::ColorF(r, g, b, a), &brush);
@@ -173,8 +183,11 @@ void Graphics::DrawEllipse(D2D1_ELLIPSE * eli, float r, float g, float b, float 
     brush->Release();
 }
 
-void Graphics::DrawRect(D2D1_RECT_F * rect, float r, float g, float b, float a)
-{
+void Graphics::DrawRect(
+    D2D1_RECT_F * rect,
+    float r, float g, float b, float a
+    )
+    {
     ID2D1SolidColorBrush* brush; 
     rendertarget->CreateSolidColorBrush(D2D1::ColorF(r, g, b, a), &brush);
 

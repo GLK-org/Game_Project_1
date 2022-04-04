@@ -162,24 +162,24 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Engine.h</PrecompiledHeaderFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Core\CoreWriter.cpp" />
     <ClCompile Include="Level_control\GameController.cpp" />
     <ClCompile Include="pch\Engine.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="CoreWriter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\resources\resource.h" />
     <ClInclude Include="Core\CoreMinimal.h" />
+    <ClInclude Include="Core\CoreWriter.h" />
     <ClInclude Include="Level_control\GameController.h" />
     <ClInclude Include="Level_control\GameLevel.h" />
     <ClInclude Include="pch\Engine.h" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="CoreWriter.h" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\Game_engine_1\Content\Caffle.png" />
+    <Image Include="Content\Caffle.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
