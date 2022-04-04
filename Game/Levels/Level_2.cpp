@@ -8,12 +8,16 @@
 void Level2::Load(Graphics* gfx ) {
 	srand(time(NULL));
 	r = g = b = 0.0f;
+	inc = true;
 	x = 0.0f;
 	y = 0.0f;
 	ySpeed = 1.0f;
 	xSpeed = 1.0f;
 	objects.push_back(new Eli(123.2f,452.9f,52.2f,50.0f,66.8f, gfx));
 	doors = new Doors(gfx, new Level1(), new Level3());
+	 r = rand() % 2 / 2.0;
+	g = rand() % 2 / 2.0;
+	b = rand() % 2 / 2.0;
 }
 
 char Level2::GetID()
@@ -28,9 +32,6 @@ void Level2::Unload() {
 
 
 void Level2::AddObj(SHORT key ){
-	if (objects.size() >50) {
-		return;
-	}
 		if (rand() % 2==0 ) {
 			float width = (rand() % 101 )+ 1.0f;
 			float height = (rand() % 101) + 1.0f;
@@ -41,7 +42,7 @@ void Level2::AddObj(SHORT key ){
 			objects.push_back(new Eli((rand() % 1265) + 100.0f, (rand() % 300) + 1.0f, (rand()%maxsize) + 1.0f, (rand() % maxsize) + 1.0f, (rand() % maxsize) + 1.0f, gfx));
 		}
 		int timer = 0;
-		while (objects.size() > 50) {
+		while (objects.size() > 100) {
 			
 			for (std::vector<Obj*>::iterator it = objects.begin(); it != objects.end(); ++it) {
 				if ((*it)->GetY() >= 768) {
@@ -49,6 +50,10 @@ void Level2::AddObj(SHORT key ){
 					break;
 				}
 				else if ((*it)->GetX() <= 0 || (*it)->GetX() >= 1366) {
+					objects.erase(it);
+					break;
+				}
+				else if ((*it)->ttl > 10.0f) {
 					objects.erase(it);
 					break;
 				}
@@ -66,7 +71,13 @@ void Level2::Render(Graphics* gfx)
 {
 	gfx->ClearScreen(0.0f, 0.5f, 0.5f);
 	for (std::vector<Obj*>::iterator it = objects.begin(); it != objects.end(); ++it) {
-		(*it)->Render(gfx, rand() % 2, rand() % 2, rand() % 2, 1.0f);
+		/*if ((int)(GameController::increment * 1.01) % 2 == 0) {
+			r = rand() % 2 / 2.0;
+			g = rand() % 2 / 2.0;
+			b = rand() % 2 / 2.0;
+		}*/
+		
+		(*it)->Render(gfx, r, g, b, 1);
 	}
 	doors->Render(gfx, p, r, 0.1f + g, b, 1.0f);
 }

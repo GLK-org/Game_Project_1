@@ -9,6 +9,7 @@
 #define _USE_MATH_DEFINES
 
 class Level2 : public GameLevel {
+	bool inc;
 	char id = '2';
 	std::vector<Obj*> objects;
 	Graphics* gfx;

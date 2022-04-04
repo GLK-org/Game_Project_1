@@ -5,6 +5,7 @@
 GameLevel* GameController::currentLevel;
 bool GameController::loading;
 float GameController::time;
+float GameController::increment;
 
 Graphics* GameController::gfx;
 GameController::~GameController()
@@ -47,7 +48,7 @@ void GameController::Render(Graphics* gfx)
 {
 
 	if (loading) return;
-	time += 0.1f;
+	time += increment;
 	currentLevel->Render(gfx);
 }
 
@@ -57,6 +58,6 @@ void GameController::Update()
 {
 
 	if (loading) return;
-	time += 0.1f;
+	time += increment;
 	currentLevel->Update();
 }

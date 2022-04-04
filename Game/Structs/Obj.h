@@ -1,5 +1,6 @@
 #pragma once
 #include "Core\CoreMinimal.h"
+#include "Level_control\GameController.h"
 #define RED float[3] {1.0f,0.0f,0.0f};
 #define GREEN float[3] {0.0f,1.0f,0.0f};
 #define BLUE float[3] {0.0f,0.0f,1.0f};
@@ -8,8 +9,11 @@
 class Obj {
 	float posx, posy;
 	bool istriggered;
+
 public:
+	float ttl;
 	Obj(float x, float y) : posx(x), posy(y) {
+		ttl = 0.0f;
 		istriggered = false; 
 		if (x == NULL || y == NULL) Obj::~Obj();
 	};
@@ -79,7 +83,7 @@ public:
 		return this->GetTrig();
 	};
 	void Update(POINT& p, bool move = false, float i[] = { 0 }) override {
-		
+		this->ttl += GameController::increment;
 		//updatetrigger
 		this->CheckTrigg(p);
 
@@ -165,7 +169,8 @@ public:
 	};
 	void Update(POINT& p, bool move = false, float i[] = { 0 }) override {
 		//updatetrigger
-		
+		this->ttl += GameController::increment;
+
 
 		//updateloc
 		if (move) {

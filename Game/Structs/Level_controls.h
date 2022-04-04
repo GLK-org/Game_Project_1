@@ -172,12 +172,18 @@ struct Player {
 };
 
 
-struct Interactable {
+struct Interactible {
 
+	Obj* ob;
+	float ttl;
+public:
 
+	Interactible(){
 
-
-
+	}
+	void Render();
+	~Interactible() {
+	};
 
 
 };
