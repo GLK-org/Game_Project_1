@@ -114,7 +114,7 @@ void Level2::Update() {
 	}
 
 	float tab[2] = { x,y };
-	(*it)->Update(p,true,tab);
+	(*it)->Update(true,tab);
 	}
 	
 }

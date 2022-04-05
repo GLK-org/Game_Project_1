@@ -116,10 +116,12 @@ int CALLBACK WinMain(HINSTANCE, HINSTANCE, LPSTR, INT) {
 			else if (GetKeyState('3') & 0x8000) {
 				GameController::SwitchLevel(new Level3());
 			}
+			else if (GetKeyState(VK_ESCAPE) & 0x8000) {
+				GameController::paused = !GameController::paused;
+			}
 			//Render:
 			graphics->BeginDraw();
-			GameController::Update();
-			GameController::Render(graphics);
+			GameController::Play(graphics);
 			graphics->EndDraw();
 			
 		}

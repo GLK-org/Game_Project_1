@@ -43,6 +43,9 @@
     <Filter Include="Pliki zasobów\Levels\Menu">
       <UniqueIdentifier>{b45465f3-197f-4f99-9cd7-689603fc40aa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Pliki zasobów\Levels\Pause">
+      <UniqueIdentifier>{2ef77094-ec47-4222-9f9e-1e21a2095309}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game\pch\pch.cpp">
@@ -71,6 +74,9 @@
     </ClCompile>
     <ClCompile Include="Game\Levels\Menu.cpp">
       <Filter>Pliki zasobów\Levels\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Levels\Pause.cpp">
+      <Filter>Pliki zasobów\Levels\Pause</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -106,6 +112,9 @@
     </ClInclude>
     <ClInclude Include="Game\Levels\Menu.h">
       <Filter>Pliki zasobów\Levels\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Levels\Pause.h">
+      <Filter>Pliki zasobów\Levels\Pause</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

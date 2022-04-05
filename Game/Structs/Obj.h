@@ -1,6 +1,7 @@
 #pragma once
-#include "Core\CoreMinimal.h"
-#include "Level_control\GameController.h"
+#include "GameController.h"
+#include "CoreMinimal.h"
+
 #define RED float[3] {1.0f,0.0f,0.0f};
 #define GREEN float[3] {0.0f,1.0f,0.0f};
 #define BLUE float[3] {0.0f,0.0f,1.0f};
@@ -26,7 +27,8 @@ public:
 	virtual bool Init(Graphics* gfx) = 0;
 	virtual void Render(Graphics* gfx, float r, float g, float b, float a) = 0;
 	virtual bool CheckTrigg(const POINT& p) { return this->GetTrig(); };
-	virtual void Update(POINT& p, bool move = false, float i[] = { 0 }) = 0;
+	virtual void Update(POINT& p) = 0;
+	virtual void Update(bool move = false, float i[] = { 0 }) = 0;
 	virtual void Transform(Graphics* gfx, float tab[2]) = 0;
 	virtual void Fill(Graphics* gfx, float e[] = { 0 }) =0;
 	virtual ~Obj() { };
@@ -82,10 +84,16 @@ public:
 		this->SetTrig(false);
 		return this->GetTrig();
 	};
-	void Update(POINT& p, bool move = false, float i[] = { 0 }) override {
+	void Update(POINT& p) override {
+		this->CheckTrigg(p);
+		eli.point.x = this->GetX();
+		eli.point.y = this->GetY();
+	
+	}
+
+	void Update(bool move = false, float i[] = { 0 }) override {
 		this->ttl += GameController::increment;
 		//updatetrigger
-		this->CheckTrigg(p);
 
 		//updateloc
 		if (i == nullptr || (sizeof(i)/sizeof(*i)) < 2 ) {
@@ -166,7 +174,15 @@ public:
 		 return this->GetTrig();
 	};
 
-	void Update(POINT& p, bool move = false, float i[] = { 0 }) override {
+	void Update(POINT& p) override {
+		this->CheckTrigg(p);
+		rec.left = this->GetX()-(1/2)*rec.right;
+		rec.right = this->GetX()+(1 / 2) * rec.right;
+		rec.top = this->GetY()-(1 / 2) * rec.bottom;
+		rec.bottom += this->GetY() + (1 / 2) * rec.bottom;
+	}
+
+	void Update(bool move = false, float i[] = { 0 }) override {
 		//updatetrigger
 		this->ttl += GameController::increment;
 

@@ -7,7 +7,7 @@ class Level3 : public GameLevel {
 
 	char id = '3';
 	Obj* eli;
-	Player* pl;
+	Player* player;
 	Recta* rect;
 	Doors* doors;
 	//Obj* buttons;

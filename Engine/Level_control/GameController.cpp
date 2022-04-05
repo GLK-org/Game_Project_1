@@ -4,9 +4,9 @@
 
 GameLevel* GameController::currentLevel;
 bool GameController::loading;
+bool GameController::paused;
 float GameController::time;
 float GameController::increment;
-
 Graphics* GameController::gfx;
 GameController::~GameController()
 {
@@ -45,12 +45,41 @@ void GameController::SwitchLevel(GameLevel* level)
 	loading = false;
 }
 
+void GameController::Pause()
+{
+	//Do obudowania render i interakcja z pauz¹
+	if (gfx == nullptr) return;
+	GameController::PUpdate();
+	GameController::Render(gfx);
+	
+}
+
+void GameController::Play(Graphics* gfx)
+{
+	if (gfx == nullptr) return;
+
+	if(paused) {
+		GameController::Pause();
+	}
+	else {
+
+	
+	GameController::Update();
+	GameController::Render(gfx);
+	}
+}
+
 void GameController::Render(Graphics* gfx)
 {
 
 	if (loading) return;
 	time += increment;
 	currentLevel->Render(gfx);
+}
+
+void GameController::PUpdate()
+{
+
 }
 
 

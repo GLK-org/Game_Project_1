@@ -3,7 +3,7 @@
 #include "pch.h"
 #include "Core/CoreMinimal.h"
 #include "Level_control/GameController.h"
-
+#include <vector>
 
 struct Player {
 
@@ -82,26 +82,26 @@ struct Player {
 
 		if (targetloc.x < x && x - targetloc.x>2.0f) {
 			temp[0] -= Deltaspeed;
-			character->Update(targetloc, true, temp);
+			character->Update(true, temp);
 
 			//przesuñ w lewo
 		}
 		else if (x < targetloc.x && targetloc.x - x  > 2.0f) {
 			temp[0] += Deltaspeed;
-			character->Update(targetloc, true, temp);
+			character->Update(true, temp);
 
 			//przesuñ w prawo
 		}
 
 		if (targetloc.y < y && y - targetloc.y > 2.0f) {
 			temp[1] -= Deltaspeed;
-			character->Update(targetloc, true, temp);
+			character->Update(true, temp);
 
 			//przesuñ w górê
 		}
 		else if (y < targetloc.y && targetloc.y - y  > 2.0f) {
 			temp[1] += Deltaspeed;
-			character->Update(targetloc, true, temp);
+			character->Update(true, temp);
 
 			//przesuñ w dó³
 		}
@@ -138,8 +138,7 @@ public:
 
 			return false;
 		}
-		left->Update(p);
-		right->Update(p);
+
 		if (left->CheckTrigg(p) && prev != nullptr) {
 			if (GetKeyState(RI_MOUSE_LEFT_BUTTON_DOWN) & 0x8000) {
 				GameController::SwitchLevel(prev);
@@ -170,8 +169,6 @@ public:
 
 			return false;
 		}
-		left->Update(p);
-		right->Update(p);
 		if (left->CheckTrigg(p) && prev!=nullptr) {
 			if (GetKeyState(RI_MOUSE_LEFT_BUTTON_DOWN) & 0x8000) {
 					if (lambda(player.character->EGetPoint(0.0f).x, left->GetX())) {
@@ -214,25 +211,37 @@ public:
 };
 
 
-typedef struct {
+class Interactibles {
+	struct El {
+		Obj* ob;
+		float ttl;
+		float r, g, b, a;
+		El() {
+			ttl = 0;
+			r = g = b = 0;
+			a = 1.0f;
 
-	unsigned int et;
-	float bet;
+		}
+		void Update() {
+			ob->Update();
+			ttl += 0.1f;
+		}
+	};
 
-} Tert;
+	std::vector <El* > objs;
 
-struct Interactible {
-	Obj* ob;
-	float ttl;
 public:
 
-	Interactible(Obj* obj){
+	Interactibles(){
+
 	}
 	void Render(Graphics* gfx, float r, float g, float b, float a) {
-		ob->Render(gfx,r,g,b,a);
+		for (std::vector<El*>::iterator it = objs.begin(); it != objs.end(); ++it) {
+			(*it)->ob->Render(gfx,r,g,b,a);
+		}
 	
 	};
-	~Interactible() {
+	~Interactibles() {
 	};
 
 

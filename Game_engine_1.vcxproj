@@ -123,7 +123,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
-      <AdditionalIncludeDirectories>$(LocalDebuggerWorkingDirectory)Game\Levels;$(LocalDebuggerWorkingDirectory)Game\Main;$(LocalDebuggerWorkingDirectory)Game\Structs;$(LocalDebuggerWorkingDirectory)Game\pch;$(LocalDebuggerWorkingDirectory)Engine;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(LocalDebuggerWorkingDirectory)Engine\Level_control;$(LocalDebuggerWorkingDirectory)Game\Levels;$(LocalDebuggerWorkingDirectory)Game\Main;$(LocalDebuggerWorkingDirectory)Game\Structs;$(LocalDebuggerWorkingDirectory)Game\pch;$(LocalDebuggerWorkingDirectory)Engine\Core;$(LocalDebuggerWorkingDirectory)Engine;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -143,7 +143,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
-      <AdditionalIncludeDirectories>$(LocalDebuggerWorkingDirectory)Game\Levels;$(LocalDebuggerWorkingDirectory)Game\Main;$(LocalDebuggerWorkingDirectory)Game\Structs;$(LocalDebuggerWorkingDirectory)Game\pch;$(LocalDebuggerWorkingDirectory)Engine;$(LocalDebuggerWorkingDirectory)Engine;$(LocalDebuggerWorkingDirectory)Game\pch;$(LocalDebuggerWorkingDirectory)Game\Structs;$(LocalDebuggerWorkingDirectory)Game\Main;$(LocalDebuggerWorkingDirectory)Game\Levels;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(LocalDebuggerWorkingDirectory)Engine\Level_control;$(LocalDebuggerWorkingDirectory)Game\Levels;$(LocalDebuggerWorkingDirectory)Game\Main;$(LocalDebuggerWorkingDirectory)Game\Structs;$(LocalDebuggerWorkingDirectory)Game\pch;$(LocalDebuggerWorkingDirectory)Engine\Core;$(LocalDebuggerWorkingDirectory)Engine;$(LocalDebuggerWorkingDirectory)Engine;$(LocalDebuggerWorkingDirectory)Game\pch;$(LocalDebuggerWorkingDirectory)Game\Structs;$(LocalDebuggerWorkingDirectory)Game\Main;$(LocalDebuggerWorkingDirectory)Game\Levels;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -172,6 +172,7 @@
     <ClCompile Include="Game\Levels\Level_5.cpp" />
     <ClCompile Include="Game\Levels\Level_6.cpp" />
     <ClCompile Include="Game\Levels\Menu.cpp" />
+    <ClCompile Include="Game\Levels\Pause.cpp" />
     <ClCompile Include="Game\Main\Window.cpp">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">../Game/pch/pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\Game\pch\pch.h</PrecompiledHeaderFile>
@@ -191,6 +192,7 @@
     <ClInclude Include="Game\Levels\Level_5.h" />
     <ClInclude Include="Game\Levels\Level_6.h" />
     <ClInclude Include="Game\Levels\Menu.h" />
+    <ClInclude Include="Game\Levels\Pause.h" />
     <ClInclude Include="Game\pch\pch.h" />
     <ClInclude Include="Game\Structs\Level_controls.h" />
     <ClInclude Include="Game\Structs\Obj.h" />

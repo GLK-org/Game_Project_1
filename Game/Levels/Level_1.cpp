@@ -139,7 +139,13 @@ void Level1::Update() {
 		}
 	}
 	float temp[2] = { x,y };
-
-	this->eli->Update(p, true, temp);
+	//Wybór trybów miêdzy update'owaniem lokalizacji przez pozycjê myszy albo obliczenia
+	if (mode) {
+		this->eli->Update(p);
+	}
+	else {
+		this->eli->Update(true, temp);
+	}
+	
 	
 }
