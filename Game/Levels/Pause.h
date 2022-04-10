@@ -1,5 +1,6 @@
 #pragma once
-#include "Obj.h"
+#include "Level_control\GameLevel.h"
+#include "Primitives.h"
 #include  <vector>
 
 class PauseCl : GameLevel {
@@ -16,10 +17,10 @@ class PauseCl : GameLevel {
 	
 
 public:
-	 void Load(Graphics* gfx);
-	 char GetID();
-	 void Unload();
-	 void AddObj(SHORT key = 0);
-	 void Render(Graphics* gfx = nullptr);
-	 void Update();
+	 void Load(Graphics* gfx) override;
+	 char GetID() override;
+	 void Unload() override;
+	 void AddObj(SHORT key = 0) override;
+	 void Render(Graphics* gfx = nullptr) override;
+	 void Update() override;
 };

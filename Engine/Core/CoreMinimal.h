@@ -1,6 +1,5 @@
 #pragma once
 #include "../pch/Engine.h"
-#include "d2d1.h"
 #include "d2d1_1.h"
 #include <wincodec.h>
 #include <vector>
@@ -22,8 +21,10 @@ public:
 	void EndDraw() { rendertarget->EndDraw(); }
 	void ClearScreen(float r, float g, float b);
 	void DrawEllipse(D2D1_ELLIPSE * eli, float r, float g, float b, float a);
-	void DrawRect(D2D1_RECT_F* rect, float , float g, float b, float a);
+	void DrawRect(D2D1_RECT_F* rect, float r, float g, float b, float a);
 	void FillRect(D2D1_RECT_F* rect, float e[] = {0});
+	void DrawLine(D2D1_POINT_2F p1, D2D1_POINT_2F p2, float length, float r = 0.0f, float g = 0.0f, float b = 0.0f, float a = 1.0f);
+	void DrawLine(D2D1_POINT_2F p1, D2D1_POINT_2F p2, float r=0.0f, float g = 0.0f, float b = 0.0f, float a = 1.0f);
 	void CreateEllipseGeometry(D2D1_ELLIPSE * eli, ID2D1EllipseGeometry ** ElipseGeo);
 	HRESULT LoadBMP(
 		ID2D1RenderTarget* pRenderTarget,

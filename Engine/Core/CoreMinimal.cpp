@@ -4,6 +4,7 @@
 
 Graphics::Graphics()
 {
+    currentwindow = NULL;
     factory = NULL;
     rendertarget = NULL;
     WICfactory = NULL;
@@ -209,4 +210,25 @@ void Graphics::FillRect(D2D1_RECT_F* rect, float e[])
     }
     
     rendertarget->FillRectangle(rect,brush);
+}
+
+void Graphics::DrawLine(D2D1_POINT_2F p1, D2D1_POINT_2F p2, float r, float g, float b, float a)
+{
+    ID2D1SolidColorBrush* brush;
+    rendertarget->CreateSolidColorBrush(D2D1::ColorF(r, g, b, a), &brush);
+
+    rendertarget->DrawLine(p1, p2, brush);
+    //
+
+}
+
+void Graphics::DrawLine(D2D1_POINT_2F p1, D2D1_POINT_2F p2, float length, float r, float g, float b, float a)
+{
+    ID2D1SolidColorBrush* brush;
+    rendertarget->CreateSolidColorBrush(D2D1::ColorF(r, g, b, a), &brush);
+    p2.x *= length;
+    p2.y *= length;
+    rendertarget->DrawLine(p1, p2, brush);
+    //
+
 }

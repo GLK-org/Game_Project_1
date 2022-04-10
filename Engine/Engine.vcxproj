@@ -162,7 +162,9 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Engine.h</PrecompiledHeaderFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Core\CoreTransforms.cpp" />
     <ClCompile Include="Core\CoreWriter.cpp" />
+    <ClCompile Include="Core\CoreLogging.cpp" />
     <ClCompile Include="Level_control\GameController.cpp" />
     <ClCompile Include="pch\Engine.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
@@ -171,7 +173,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\resources\resource.h" />
+    <ClInclude Include="Core\CoreLogging.h" />
     <ClInclude Include="Core\CoreMinimal.h" />
+    <ClInclude Include="Core\CoreTransforms.h" />
     <ClInclude Include="Core\CoreWriter.h" />
     <ClInclude Include="Level_control\GameController.h" />
     <ClInclude Include="Level_control\GameLevel.h" />

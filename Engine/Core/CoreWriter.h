@@ -4,8 +4,8 @@
 #include "d2d1_1.h"
 #include <vector>
 #include "CoreMinimal.h"
-
-class Writer {
+/*
+class ENGINE_API Writer {
 
 
 	static  WCHAR msc_fontName[];
@@ -13,13 +13,5 @@ class Writer {
 	static HRESULT hr;
 	static ID2D1Factory* m_pD2DFactory;
 
-	void Do() {
-
-	
-	hr = D2D1CreateFactory(D2D1_FACTORY_TYPE_SINGLE_THREADED, &m_pD2DFactory);
-
-		if (SUCCEEDED(hr)) {
-
-		}
-	}
-};
+	void Do();
+};*/

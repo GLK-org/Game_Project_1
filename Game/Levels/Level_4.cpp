@@ -15,6 +15,7 @@ char Level4::GetID()
 
 void Level4::Load(Graphics* gfx)
 {
+	eli = new Eli(123.2f, 452.9f, 52.2f, 50.0f, 66.8f, gfx);
 	doors = new Doors(gfx, new Level3(), new Level5());
 	r = g = b = 0.4f;
 }

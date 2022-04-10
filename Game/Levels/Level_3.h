@@ -1,7 +1,7 @@
 #pragma once
 #include "Level_control\GameLevel.h"
 #include "Level_controls.h"
-#include "Obj.h"
+#include "Primitives.h"
 class Level3 : public GameLevel {
 	//Mysz do przeniesienia
 

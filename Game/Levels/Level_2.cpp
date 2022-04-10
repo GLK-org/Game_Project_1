@@ -89,8 +89,8 @@ void Level2::Update() {
 	};
 	this->AddObj(); 
 	for (std::vector<Obj*>::iterator it = objects.begin(); it != objects.end(); ++it) {
-		y = log2(GameController::time*(rand()%10) + ySpeed*100.0f);
-		x = 100.0f*sin((rand()%360* std::numbers::pi) ) / 180.0;
+		y = log2((double)GameController::time*(rand()%10) + ySpeed*100.0);
+		x = 2000.0*(sin((((double)GameController::time+rand()%360) * std::numbers::pi) ) / 180.0);
 		
 	
 	if (GetKeyState('A')) {
@@ -99,22 +99,18 @@ void Level2::Update() {
 	else if (GetKeyState('D')) {
 		xSpeed -= 0.1f;
 	}
-
-	if ((*it)->GetY() > 768) {
+	float peek = (*it)->GetY();
+	if ((*it)->GetY() > 768.0) {
 		(*it)->SetY(767);
-		ySpeed = -0.5f;
 	}
-	if ((*it)->GetX() < 0) {
+	if ((*it)->GetX() < 0.0) {
 		(*it)->SetX(1);
-		xSpeed = 0.5f;
 	}
-	else if ((*it)->GetX() > 1366) {
+	else if ((*it)->GetX() > 1366.0) {
 		(*it)->SetX(1365);
-		xSpeed = -0.5f;
 	}
 
-	float tab[2] = { x,y };
-	(*it)->Update(true,tab);
+	(*it)->Update(x,y);
 	}
 	
 }

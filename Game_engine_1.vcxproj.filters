@@ -116,6 +116,12 @@
     <ClInclude Include="Game\Levels\Pause.h">
       <Filter>Pliki zasobów\Levels\Pause</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Structs\Primitives.h">
+      <Filter>Pliki zasobów\Structs</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Structs\Phys_obj.h">
+      <Filter>Pliki zasobów\Structs</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Game_engine_1.rc">

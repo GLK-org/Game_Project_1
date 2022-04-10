@@ -1,5 +1,5 @@
 #pragma once
-#include "Obj.h"
+#include "Primitives.h"
 #include "pch.h"
 #include "Core/CoreMinimal.h"
 #include "Level_control/GameController.h"
@@ -77,31 +77,25 @@ struct Player {
 		//constraints here
 		float x = character->EGetPoint(0.0f).x;
 		float y = character->EGetPoint(0.0f).y;
-		float temp[2] = { x,y };
-
 
 		if (targetloc.x < x && x - targetloc.x>2.0f) {
-			temp[0] -= Deltaspeed;
-			character->Update(true, temp);
+			character->Update(x, y);
 
 			//przesuñ w lewo
 		}
 		else if (x < targetloc.x && targetloc.x - x  > 2.0f) {
-			temp[0] += Deltaspeed;
-			character->Update(true, temp);
+			character->Update(x, y);
 
 			//przesuñ w prawo
 		}
 
 		if (targetloc.y < y && y - targetloc.y > 2.0f) {
-			temp[1] -= Deltaspeed;
-			character->Update(true, temp);
+			character->Update(x, y);
 
 			//przesuñ w górê
 		}
 		else if (y < targetloc.y && targetloc.y - y  > 2.0f) {
-			temp[1] += Deltaspeed;
-			character->Update(true, temp);
+			character->Update(x, y);
 
 			//przesuñ w dó³
 		}
@@ -124,6 +118,7 @@ public:
 
 	Doors(Graphics* gfx, GameLevel* prev = nullptr, GameLevel* next = nullptr) {
 		this->threshold = GameController::time;
+		this->wait = 0;
 		this->prev = prev;
 		this->next = next;
 		this->left = new Recta(1.0f, 300.0f, 1, 300, 100, 567, gfx);
@@ -223,7 +218,7 @@ class Interactibles {
 
 		}
 		void Update() {
-			ob->Update();
+		//	ob->Update();
 			ttl += 0.1f;
 		}
 	};

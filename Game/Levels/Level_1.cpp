@@ -37,7 +37,7 @@ void Level1::AddObj(SHORT key)
 
 void Level1::Unload() {
 
-	eli->~Obj();
+	eli->~Eli();
 	for (int i = 0; i < 2; i++) {
 		delete buttons[i];
 	}
@@ -93,58 +93,75 @@ void Level1::Update() {
 		mode = !mode;
 	}
 	if (mode) {
-		x = p.x;
+		x  = p.x;
+		xSpeed = ySpeed = 0;
 		y = p.y;
-		if (p.y > 600) {
-			y = 600;
+		if (eli->GetY() > 600) {
+			eli->SetY(600);
 		//	ySpeed = -30.0f;
 		}
-		else if (p.y < 300) {
-			y = 300;
+		else if (eli->GetY() < 300) {
+			eli->SetY(300);
 
 		}
-		if (p.x < 0) {
-			x = 0;
+		if (eli->GetX() < 0) {
+			eli->SetX(0);
 		//	xSpeed = 5.0f;
 		}
-		else if (p.x > 1366) {
-			x = 1366;
+		else if (eli->GetX() > 1366) {
+			eli->SetX(1366);
 		//	xSpeed = -5.0f;
 		}
 	}
 	else {
 
 		ySpeed += 1.0f;
-		y += ySpeed;
-		x += xSpeed;
+		xSpeed -= 1.0f;
+		y = ySpeed;
+		x = xSpeed;
 		if (GetKeyState('A') & 0x8000) {
 			xSpeed -= 0.1f;
 		}
 		if (GetKeyState('D') & 0x8000) {
 			xSpeed += 0.1f;
 		}
+		float peek = eli->EGetPoint(0.0f).y;
+		OutputDebugStringA(MakeLPCSTR({ &peek }));
 
-
-		if (y > 600) {
-			y = 600;
-			ySpeed = -30.0f;
+		if (eli->EGetPoint(0.0f).y > 600.0f) {
+			eli->Getpshx().collidey = true;
+			MakeMesBoxA({ &eli->Getpshx().vVect->angle.y }, "Test");
+			ySpeed = 30.0f;
+		//	this->eli->Update(x, y);
 		}
-		if (x < 0) {
-			x = 0;
+		else
+		{
+			eli->Getpshx().collidey = false;
+		}
+		if (eli->EGetPoint(0.0f).x < 0.0f) {
+			eli->Getpshx().collidex = true;
+			eli->Getpshx().vVect->angle.x = 1.0f;
 			xSpeed = 5.0f;
+	//		this->eli->Update(x, y);
 		}
-		else if (x > 1366) {
-			x = 1366;
-			xSpeed = -5.0f;
+		else if (eli->EGetPoint(0.0f).x > 1366.0f) {
+			eli->Getpshx().collidex = true;
+			eli->Getpshx().vVect->angle.y = -1.0f;
+			xSpeed = 5.0f;
+		//	this->eli->Update(x, y);
+		}
+		else {
+			eli->Getpshx().collidex = false;
 		}
 	}
-	float temp[2] = { x,y };
+	y = ySpeed;
+	x = xSpeed;
 	//Wybór trybów miêdzy update'owaniem lokalizacji przez pozycjê myszy albo obliczenia
 	if (mode) {
 		this->eli->Update(p);
 	}
 	else {
-		this->eli->Update(true, temp);
+		this->eli->Update(x, y);
 	}
 	
 	

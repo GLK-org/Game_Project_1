@@ -90,8 +90,9 @@ int CALLBACK WinMain(HINSTANCE, HINSTANCE, LPSTR, INT) {
 	GameController::Init(graphics);
 	//Wyœwietlanie okna i ³adowanie wstêpnego poziomu
 	ShowWindow(hWnd, SW_SHOW);
+	Menu* m = new Menu();
 	GameController::LoadInitialLevel(new Level1());
-
+	
 	//Nas³uchuj zdarzenie wy³¹czenia tak, ¿eby okno siê nie wy³¹cza³o do tego momentu
 
 	//Definiowanie pustej zmiennej msg (Tak, ten format zdaje siê konieczny, do research'u)

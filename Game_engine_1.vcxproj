@@ -196,6 +196,8 @@
     <ClInclude Include="Game\pch\pch.h" />
     <ClInclude Include="Game\Structs\Level_controls.h" />
     <ClInclude Include="Game\Structs\Obj.h" />
+    <ClInclude Include="Game\Structs\Phys_obj.h" />
+    <ClInclude Include="Game\Structs\Primitives.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>

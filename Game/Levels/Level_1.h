@@ -1,12 +1,12 @@
 #pragma once
 #include "Level_control\GameLevel.h"
 #include "Level_controls.h"
-#include "Obj.h"
+#include "Primitives.h"
 class Level1: public GameLevel {
 	//Mysz do przeniesienia
 	
 	char id = '1';
-    Obj* eli;
+    Eli* eli;
 	Obj* buttons[2];
 	Doors* doors;
 	float y;

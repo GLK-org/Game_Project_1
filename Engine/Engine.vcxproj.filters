@@ -28,6 +28,9 @@
     <Filter Include="Pliki źródłowe\Engine_pch">
       <UniqueIdentifier>{f3ef8480-c2bb-4636-b864-df746958df93}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Pliki źródłowe\Core\Functions">
+      <UniqueIdentifier>{875dc02a-9615-464d-9ed7-06c319f6d021}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\CoreMinimal.cpp">
@@ -40,6 +43,12 @@
       <Filter>Pliki źródłowe\Engine_pch</Filter>
     </ClCompile>
     <ClCompile Include="Core\CoreWriter.cpp">
+      <Filter>Pliki źródłowe\Core\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\CoreTransforms.cpp">
+      <Filter>Pliki źródłowe\Core\Functions</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\CoreLogging.cpp">
       <Filter>Pliki źródłowe\Core\Private</Filter>
     </ClCompile>
   </ItemGroup>
@@ -63,6 +72,12 @@
       <Filter>Pliki źródłowe\Engine_pch</Filter>
     </ClInclude>
     <ClInclude Include="Core\CoreWriter.h">
+      <Filter>Pliki źródłowe\Core\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\CoreTransforms.h">
+      <Filter>Pliki źródłowe\Core\Functions</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\CoreLogging.h">
       <Filter>Pliki źródłowe\Core\Public</Filter>
     </ClInclude>
   </ItemGroup>
