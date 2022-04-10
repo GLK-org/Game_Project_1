@@ -14,10 +14,12 @@ static char * MakeLPCSTR(float args[],std::string text="") {
 
 static void MakeMesBoxA(float args[], std:: string text="") {
 	//na razie tylko jeden element do zczytania
-	std::string temp = text;
-	temp = temp + " " + std::to_string(args[0]);
+	
+	std::string temp = text + " " + std::to_string(args[0]);
+
 	// nie wiem po cholerê obudowa³em w funkcjê ale do bardziej dla przyk³adu chyba
 		//okno rodzica, tekst, tytu³, standard zachowania
-	MessageBoxA(0,text.c_str(),0,0);
+	MessageBoxA(0,temp.c_str(),0,0);
+
 }
 

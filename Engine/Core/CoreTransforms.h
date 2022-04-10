@@ -2,7 +2,11 @@
 #include "CoreMinimal.h"
 #include <math.h>
 #include <numbers>
-
+#define VERY_FAST 20.0f
+#define FAST 15.0f
+#define MEDIUM_FAST 10.0f
+#define SLOW 5.0f
+#define STOP 0.0f
 struct ENGINE_API VelocVect {
 	D2D1_POINT_2F v_0, angle;
 	float len;
@@ -14,4 +18,5 @@ struct ENGINE_API VelocVect {
 
 };
 
-void Sq(POINT& result, double limit);
+void ENGINE_API Sq(const D2D1_POINT_2F& result, double limit);
+double ENGINE_API Angle(const D2D1_POINT_2F& v_0, const D2D1_POINT_2F& v_1, const D2D1_POINT_2F& v_2);

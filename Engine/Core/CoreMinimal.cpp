@@ -226,9 +226,10 @@ void Graphics::DrawLine(D2D1_POINT_2F p1, D2D1_POINT_2F p2, float length, float 
 {
     ID2D1SolidColorBrush* brush;
     rendertarget->CreateSolidColorBrush(D2D1::ColorF(r, g, b, a), &brush);
-    p2.x *= length;
-    p2.y *= length;
-    rendertarget->DrawLine(p1, p2, brush);
+    D2D1_POINT_2F finale;
+    finale.x = (p2.x+p1.x);
+    finale.y = (p2.y+ p1.y) ;
+    rendertarget->DrawLine(p1, finale, brush);
     //
 
 }

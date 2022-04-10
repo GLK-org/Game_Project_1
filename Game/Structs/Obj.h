@@ -10,12 +10,16 @@
 class Obj {
 	float posx, posy;
 	bool istriggered;
+	
 public:
+	phsxObj* phsx;
 	float ttl;
 	Obj(float x, float y) : posx(x), posy(y) {
+
 		ttl = 0.0f;
 		istriggered = false; 
 		if (x == NULL || y == NULL) Obj::~Obj();
+
 	};
 	float GetX() { return posx; };
 	float GetY() { return posy; };
@@ -28,8 +32,10 @@ public:
 	virtual bool CheckTrigg(const POINT& p) { return this->GetTrig(); };
 	virtual void Update(POINT& p) = 0;
 	virtual void Update(float x=0, float y=0) = 0;
+//	virtual void DrawVelocityVect(Graphics gfx) = 0;
 	virtual void Transform(Graphics* gfx, float tab[2]) = 0;
 	virtual void Fill(Graphics* gfx, float e[] = { 0 }) =0;
+//	virtual void phsxUpdate(float x=0, float y=0) = 0;
 	virtual ~Obj() { };
 };
 

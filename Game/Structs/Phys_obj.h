@@ -14,14 +14,18 @@ struct phsxObj {
 		collidex = collidey = false;
 		vVect = new VelocVect();
 		mass = 0.0f;
-		accellim = 2.5f;
+		accellim = SLOW;
 	}
 
-	phsxObj(D2D1_POINT_2F& e, double m=0.0f) {
+	phsxObj(D2D1_POINT_2F& e, float speed = SLOW, double m=0.0f) {
 		collidex = collidey = false;
 		vVect = new VelocVect(e);
 		mass = m;
-		accellim = 2.5f;
+		accellim = speed;
+	}
+	void SetVLim(float lim) {
+		if (signbit(lim) == true) return;
+		accellim = lim;
 	}
 	void LinAccelerate(const D2D1_POINT_2F& p, double ax, double ay) {
 		
@@ -44,10 +48,7 @@ struct phsxObj {
 		//OutputDebugStringA(MakeLPCSTR( { &(vVect->len) } ) );
 		//OutputDebugStringA(MakeLPCSTR({ &(vVect->v_0.x) }));
 		//OutputDebugStringA(MakeLPCSTR({ &(vVect->v_0.y) }));
-		float ax, ay;
-		ax = (float)(rand() % 10);
-		ay = (float)(rand() % 10);
-		D2D1_POINT_2F e = { ax,ay };
+		D2D1_POINT_2F e = { p.x,p.y };
 		vVect->UpdateLoc(e);
 		vVect->Angle(p);
 
@@ -58,7 +59,7 @@ struct phsxObj {
 
 	void SqrdAccelerate(double ax, double ay) {
 		POINT p(ax, ay);
-		Sq(p, accellim);
+//		Sq(p, accellim);
 		vVect->v_0.x += ax;
 		vVect->v_0.y += ay;
 	}
@@ -70,20 +71,24 @@ struct phsxObj {
 
 	void SqrdDeccelerate(double ax, double ay) {
 		POINT p(ax, ay);
-		Sq(p, accellim);
+//		Sq(p, accellim);
 		vVect->v_0.x -= ax;
 		vVect->v_0.y -= ay;
 	}
 
-	void PhsxUpdate(D2D1_POINT_2F& target) {
+	void PhsxUpdate(D2D1_POINT_2F& target, float speed =SLOW) {
 		//prymitywne collidery ale ¿eby coœ by³o
 		//k¹t modyfikuje tu przyspieszenie, ogólnie nie ogranicza siê tylko do wskazywania kierunku
 		//w którym pchaæ ma length
+		if (signbit(accellim) == false) {
+			accellim = speed;
+		}
+	
 		if (!collidex) {
-			target.x += vVect->len * (vVect->angle.x)/ abs(vVect->angle.x);
+			target.x += vVect->len * (vVect->angle.x);
 		}
 		if (!collidey) {
-			target.y += vVect->len * (vVect->angle.y) / abs(vVect->angle.y);
+			target.y += vVect->len * (vVect->angle.y);
 		}
 		
 	}

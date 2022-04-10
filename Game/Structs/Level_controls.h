@@ -4,6 +4,10 @@
 #include "Core/CoreMinimal.h"
 #include "Level_control/GameController.h"
 #include <vector>
+#include "CoreTransforms.h"
+#include "CoreLogging.h"
+
+
 
 struct Player {
 
@@ -48,6 +52,9 @@ struct Player {
 		if (targetloc.x < 0 || targetloc.y < 0) {
 			return true;
 		}
+		//Get the anglex and angley
+		//Get
+
 		float x = character->EGetPoint(0.0f).x;
 		float y = character->EGetPoint(0.0f).y;
 		float temp[2] = { x,y };
@@ -71,13 +78,18 @@ struct Player {
 		return true;
 	}
 
-	void MoveToPoint(POINT& p) {
+	void MoveToPoint(POINT& p, float speed=STOP) {
 		this->toggle = true;
 		targetloc = p;
+		D2D1_POINT_2F temp;
+		temp.x = p.x;
+		temp.y = p.y;
 		//constraints here
 		float x = character->EGetPoint(0.0f).x;
 		float y = character->EGetPoint(0.0f).y;
-
+		float angle = (float)Angle(character->EGetPoint(0.0f), character->Getpshx().vVect->v_0, temp);
+		std::string temp1 = "Angle: " + std::to_string(angle)+"\n";
+		OutputDebugStringA(temp1.c_str());
 		if (targetloc.x < x && x - targetloc.x>2.0f) {
 			character->Update(x, y);
 

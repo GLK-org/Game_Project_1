@@ -117,7 +117,7 @@ void Level3::Update() {
 		return;
 	};
 	if (GetKeyState(RI_MOUSE_LEFT_BUTTON_DOWN) & 0x8000) {
-		player->MoveToPoint(p);
+		player->MoveToPoint(p,VERY_FAST);
 	}
 	// GetKeyState zbiera wciœniêcia przycisku, a "& 0x8000" to operacja bitowa na wyniku zbieraj¹ca ze s³owa bitowego flagi, czy przycisk jest teraz wciœniêty
 	if (GetKeyState(VK_SPACE) & 0x8000) {

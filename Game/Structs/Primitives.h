@@ -4,7 +4,6 @@
 
 class Eli : public Obj {
 	D2D1_ELLIPSE eli;
-	phsxObj* phsx;
 	float w, h;
 	float r;
 
@@ -44,9 +43,10 @@ public:
 
 	}
 
-	void DrawVelocityVect(Graphics* gfx) {
-		gfx->DrawLine(eli.point,phsx->vVect->v_0, phsx->vVect->len, 0.2f,0.3f,0.4f,1.0f);
-	}
+	/*void DrawVelocityVect(Graphics* gfx) {
+		gfx->DrawLine(eli.point, this->phsx->vVect->v_0, this->phsx->vVect->len, 0.2f, 0.3f, 0.4f, 1.0f);
+	};*/
+
 	phsxObj& Getpshx() {
 		return *phsx;
 	}
@@ -62,7 +62,7 @@ public:
 
 		gfx->DrawEllipse(&eli, r, g, b, a);
 		//	gfx->DrawCircle(Eli::GetX(), Eli::GetY(), r, 1.0f, 0.0f, 0.0f, 1.0f);
-		DrawVelocityVect(gfx);
+		//DrawVelocityVect(gfx);
 	};
 	void Fill(Graphics* gfx, float e[] = { 0 }) override {};
 	bool CheckTrigg(const POINT& p) override {
@@ -85,12 +85,11 @@ public:
 	}
 
 	void Update(float x=0, float y=0) override {
-		this->ttl += GameController::increment;
+		this->ttl += GameController::increment * 10.0f;
 
 
-		///phsx->LinAccelerate(this->eli.point,x, y);
-		phsx->LinAccelerate(this->eli.point);
-		phsx->PhsxUpdate(this->eli.point);
+		phsx->LinAccelerate(this->eli.point, x, y);
+		phsx->PhsxUpdate(this->eli.point, MEDIUM_FAST);
 		//updatetrigger
 
 		//updateloc
@@ -113,6 +112,13 @@ public:
 		eli.point.x = i[0];
 		eli.point.y = i[1];*/
 	};
+	/*void phsxUpdate(float x = 0, float y = 0) override {
+		this->ttl += GameController::increment * 10.0f;
+
+
+		phsx->LinAccelerate(this->eli.point, x, y);
+		phsx->PhsxUpdate(this->eli.point);
+	}*/
 	~Eli() {
 		Obj::~Obj();
 	}
@@ -121,8 +127,7 @@ public:
 class Recta : public Obj {
 	ID2D1Bitmap* bmp;
 	D2D1_RECT_F rec;
-	//Niepotrzebnie trzymane dodatkowo
-	float left, right, top, bottom;
+	D2D1_POINT_2F center;
 
 public:
 	Recta(float x, float y, float l, float t, float r, float b, Graphics* gfx) : Obj(x, y) {
@@ -132,13 +137,17 @@ public:
 		//Powtórzone informacje, mog¹ siê przydaæ ale zobaczymy
 		this->bmp = nullptr;
 		this->rec = { 0 };
-		this->left = l;
-		this->top = t;
-		this->right = r;
-		this->bottom = b;
 		rec = D2D1::RectF(l, t, r, b);
+		center.x = l - r;
+		center.y = b - t;
 	};
+	void UpdateCenter(float x, float y) {
+		//KOORDYNATY CENTRUM PROSTOK¥TA NIE MOG¥ BYÆ UJEMNE
+		if (signbit(x) == true || signbit(y) == true) return;
+		center.x = x;
+		center.y = y;
 
+	};
 	bool Init(Graphics* gfx) override {
 
 		return true;
@@ -171,7 +180,9 @@ public:
 		this->SetTrig(false);
 		return this->GetTrig();
 	};
-
+	/*void DrawVelocityVect(Graphics* gfx) {
+		gfx->DrawLine({0}, phsx->vVect->v_0, phsx->vVect->len, 0.2f, 0.3f, 0.4f, 1.0f);
+	}; */
 	void Update(POINT& p) override {
 		this->CheckTrigg(p);
 		rec.left = this->GetX() - (1 / 2) * rec.right;
@@ -195,6 +206,17 @@ public:
 		
 	}
 
+/*	void phsxUpdate(float x = 0, float y = 0) override {
+		this->ttl += GameController::increment * 10.0f;
+
+
+		phsx->LinAccelerate(this->center, x, y);
+		phsx->PhsxUpdate(this->center);
+		rec.bottom += center.y;
+		rec.top += center.y;
+		rec.left += center.x;
+		rec.right += center.x;
+	}*/
 	ID2D1Bitmap** GetBmp() {
 
 		return &bmp;

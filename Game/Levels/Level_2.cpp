@@ -83,14 +83,15 @@ void Level2::Render(Graphics* gfx)
 }
 
 void Level2::Update() {
+	float ty = y;
 	MouseLocUpdate();
 	if (doors->UpdateTrig(p)) {
 		return;
 	};
 	this->AddObj(); 
 	for (std::vector<Obj*>::iterator it = objects.begin(); it != objects.end(); ++it) {
-		y = log2((double)GameController::time*(rand()%10) + ySpeed*100.0);
-		x = 2000.0*(sin((((double)GameController::time+rand()%360) * std::numbers::pi) ) / 180.0);
+		y = log2((double)(*it)->ttl + ySpeed*100.0);
+		x =  20.0*sin((double)(*it)->ttl * (90-(rand()%180) * std::numbers::pi)  / 180.0);
 		
 	
 	if (GetKeyState('A')) {

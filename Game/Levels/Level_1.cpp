@@ -16,8 +16,10 @@ char Level1::GetID()
 }
 
 void Level1::Load(Graphics* gfx) {
-	x = xSpeed = 0.0f;
-	y = ySpeed = 0.0f;
+	x =  0.0f;
+	xSpeed = 10.0f;
+	y =0.0f;
+	ySpeed = 10.0f;
 	mode = false;
 	GetCursorPos(&p);
 	eli = new Eli(this->x, this->y,50.0f,40.0f,52.0f, gfx);
@@ -115,23 +117,26 @@ void Level1::Update() {
 	}
 	else {
 
-		ySpeed += 1.0f;
-		xSpeed -= 1.0f;
 		y = ySpeed;
 		x = xSpeed;
 		if (GetKeyState('A') & 0x8000) {
-			xSpeed -= 0.1f;
+			xSpeed -= 1.0f;
 		}
 		if (GetKeyState('D') & 0x8000) {
-			xSpeed += 0.1f;
+			xSpeed += 1.0f;
+		}if (GetKeyState('W') & 0x8000) {
+			ySpeed -= 1.0f;
+		}
+		if (GetKeyState('S') & 0x8000) {
+			ySpeed += 1.0f;
 		}
 		float peek = eli->EGetPoint(0.0f).y;
 		OutputDebugStringA(MakeLPCSTR({ &peek }));
 
 		if (eli->EGetPoint(0.0f).y > 600.0f) {
-			eli->Getpshx().collidey = true;
-			MakeMesBoxA({ &eli->Getpshx().vVect->angle.y }, "Test");
-			ySpeed = 30.0f;
+			//eli->Getpshx().collidey = true;
+	//		MakeMesBoxA({ &eli->Getpshx().vVect->angle.y }, "Test");
+			eli->Getpshx().vVect->angle.y = -1.0f;
 		//	this->eli->Update(x, y);
 		}
 		else
@@ -139,15 +144,15 @@ void Level1::Update() {
 			eli->Getpshx().collidey = false;
 		}
 		if (eli->EGetPoint(0.0f).x < 0.0f) {
-			eli->Getpshx().collidex = true;
+		//	eli->Getpshx().collidex = true;
 			eli->Getpshx().vVect->angle.x = 1.0f;
-			xSpeed = 5.0f;
+		//	xSpeed = 5.0f;
 	//		this->eli->Update(x, y);
 		}
 		else if (eli->EGetPoint(0.0f).x > 1366.0f) {
-			eli->Getpshx().collidex = true;
-			eli->Getpshx().vVect->angle.y = -1.0f;
-			xSpeed = 5.0f;
+			//eli->Getpshx().collidex = true;
+			eli->Getpshx().vVect->angle.x = -1.0f;
+		//	xSpeed = 5.0f;
 		//	this->eli->Update(x, y);
 		}
 		else {
