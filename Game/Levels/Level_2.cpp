@@ -90,6 +90,7 @@ void Level2::Update() {
 	if (doors->UpdateTrig(p)) {
 		return;
 	};
+
 	this->AddObj(); 
 	for (std::vector<Obj*>::iterator it = objects.begin(); it != objects.end(); ++it) {
 		y = log2((double)(*it)->ttl + ySpeed*100.0);
@@ -112,7 +113,10 @@ void Level2::Update() {
 	else if ((*it)->GetX() > 1366.0) {
 		(*it)->SetX(1365);
 	}
-
+	if ((*it)->CheckTrigg(p) && (GetKeyState(RI_MOUSE_LEFT_BUTTON_DOWN) & 0x8000)) {
+		objects.erase(it);
+		return;
+	}
 	(*it)->Update(x,y);
 	}
 	

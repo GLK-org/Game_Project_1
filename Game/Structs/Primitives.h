@@ -8,7 +8,7 @@ class Eli : public Obj {
 	float r;
 
 public:
-	Eli(float x, float y, float r, float w, float h, Graphics* gfx) : Obj(x, y) {
+	Eli(float x, float y, float r, float w, float h, Graphics* gfx, bool phs=true) : Obj(x, y) {
 		if (w == NULL || h == NULL) {
 			Eli::Obj::~Obj();
 		}
@@ -19,7 +19,8 @@ public:
 		this->r = r;
 		eli = D2D1::Ellipse(D2D1::Point2F(this->GetX(), this->GetY()), w, h);
 		//Zapisuje pozycjê startow¹ elipsy do obiektu pseudofizycznego
-		phsx = new phsxObj(eli.point);
+		if(phs) phsx = new phsxObj(eli.point);
+		
 	};
 
 	float GetSetX(float x=NULL) {
@@ -62,10 +63,20 @@ public:
 
 		gfx->DrawEllipse(&eli, r, g, b, a);
 		//	gfx->DrawCircle(Eli::GetX(), Eli::GetY(), r, 1.0f, 0.0f, 0.0f, 1.0f);
-		DrawVelocityVect(gfx);
+		if(debugmode==true)DrawVelocityVect(gfx);
 	};
 	void Fill(Graphics* gfx, float e[] = { 0 }) override {};
 	bool CheckTrigg(const POINT& p) override {
+		if (p.x >= (eli.point.x - eli.radiusX / 2) && p.x <= (eli.point.x + eli.radiusX / 2)) {
+			if (p.y >= (eli.point.y - eli.radiusY / 2) && p.y <= (eli.point.y + eli.radiusY / 2)) {
+				this->SetTrig(true);
+				return this->GetTrig();
+			}
+		}
+		this->SetTrig(false);
+		return this->GetTrig();
+	};
+	bool CheckTrigg(const D2D1_POINT_2F& p) override {
 		if (p.x >= (eli.point.x - eli.radiusX / 2) && p.x <= (eli.point.x + eli.radiusX / 2)) {
 			if (p.y >= (eli.point.y - eli.radiusY / 2) && p.y <= (eli.point.y + eli.radiusY / 2)) {
 				this->SetTrig(true);
@@ -87,9 +98,11 @@ public:
 	void Update(float x=0, float y=0) override {
 		this->ttl += GameController::increment * 1.0f;
 
-
-		phsx->LinAccelerate(this->eli.point, x, y);
-		phsx->PhsxUpdate(this->eli.point, SLOW);
+		if (phsx!=nullptr) {
+			phsx->LinAccelerate(this->eli.point, x, y);
+			phsx->PhsxUpdate(this->eli.point, FAST);
+		}
+		
 		//updatetrigger
 
 		//updateloc
@@ -120,7 +133,6 @@ public:
 		phsx->PhsxUpdate(this->eli.point);
 	}*/
 	~Eli() {
-		Obj::~Obj();
 	}
 };
 
@@ -130,7 +142,7 @@ class Recta : public Obj {
 	D2D1_POINT_2F center;
 
 public:
-	Recta(float x, float y, float width, float height, Graphics* gfx) : Obj(x, y) {
+	Recta(float x, float y, float width, float height, Graphics* gfx, bool phs = true) : Obj(x, y) {
 		if (width == NULL || height == NULL ) {
 			Recta::Obj::~Obj();
 		}
@@ -146,7 +158,8 @@ public:
 		rec = D2D1::RectF(l, t, r, b);
 		center.x =  r - l;
 		center.y = b - t;
-		phsx = new phsxObj(center, FAST);
+		if(phs) phsx = new phsxObj(center, FAST);
+		
 	};
 	void UpdateCenter(float x, float y) {
 		//KOORDYNATY CENTRUM PROSTOK¥TA NIE MOG¥ BYÆ UJEMNE
@@ -176,7 +189,10 @@ public:
 	void Render(Graphics* gfx, float r, float g, float b, float a) override {
 
 		gfx->DrawRect(&rec, 0.4f, 0.8f, 0.6f, 0.7f);
-
+		if (debugmode==true) {
+			DrawVelocityVect(gfx);
+		}
+		
 	};
 
 	void Fill(Graphics* gfx, float e[] = { 0 }) override {
@@ -194,8 +210,18 @@ public:
 		this->SetTrig(false);
 		return this->GetTrig();
 	};
+	bool CheckTrigg(const D2D1_POINT_2F& p) override {
+		if (p.x >= rec.left && p.x <= rec.right) {
+			if (p.y >= rec.top && p.y <= rec.bottom) {
+				this->SetTrig(true);
+				return this->GetTrig();
+			}
+		}
+		this->SetTrig(false);
+		return this->GetTrig();
+	};
 	void DrawVelocityVect(Graphics* gfx) {
-		gfx->DrawLine({0}, phsx->vVect->v_0, phsx->vVect->len, 0.2f, 0.3f, 0.4f, 1.0f);
+		gfx->DrawLine(center, phsx->vVect->v_0, phsx->vVect->len, 0.2f, 0.3f, 0.4f, 1.0f);
 	}; 
 
 	void Update(POINT& p) override {
@@ -222,20 +248,17 @@ public:
 			rec.right += x;
 
 		*/
-		phsx->LinAccelerate(center, x, y);
-		phsx->PhsxUpdate(center);
-		rec.bottom = 2 * center.y;
-		rec.top = rec.bottom - center.y;
-		rec.right = 2 * center.x;
-		rec.left = rec.right - center.x;
-
-
-	};
-	
-	void phsxUpdate(float x = 0, float y = 0) {
-		this->ttl += GameController::increment * 10.0f;
-
-
+		if (phsx != nullptr) {
+			phsx->LinAccelerate(center, x, y);
+			phsx->PhsxUpdate(center);
+			rec.bottom = 2 * center.y;
+			rec.top = rec.bottom - center.y;
+			rec.right = 2 * center.x;
+			rec.left = rec.right - center.x;
+		}
+		
+		this->SetX(center.y);
+		this->SetY(center.x);
 
 	};
 	ID2D1Bitmap** GetBmp() {
@@ -244,6 +267,6 @@ public:
 	};
 
 	~Recta() {
-		Obj::~Obj();
+		delete bmp;
 	};
 };

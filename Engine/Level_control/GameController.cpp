@@ -3,6 +3,7 @@
 
 
 GameLevel* GameController::currentLevel;
+bool GameController::gravity = false;
 bool GameController::loading;
 bool GameController::paused;
 float GameController::time;

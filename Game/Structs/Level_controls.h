@@ -11,10 +11,8 @@
 
 struct Player {
 
-
+    int speed;
 	Eli* character;
-	float Deltaspeed;
-	bool toggle;
 	POINT targetloc;
 	Player(Graphics* gfx,
 		float spawnx,
@@ -23,22 +21,13 @@ struct Player {
 		float width,
 		float height
 	) {
-		this->targetloc.x = -1;
-		this->targetloc.y = -1;
-		this->toggle = false;
+		this->speed = 0;
 		character = new Eli(spawnx, spawny, rad, width, height, gfx);
-		Deltaspeed = 5.0f;
+		this->targetloc.x = spawnx;
+		this->targetloc.y = spawny;
 	}
 	void Render(Graphics* gfx, POINT& p, bool fill = false, float r = 0.2f, float g = 0.0f, float b = 0.5f, float a = 1) {
-		if (CheckPoint(targetloc) == false && toggle == true) {
-			MoveToPoint(targetloc);
-		}
-		else {
-			this->targetloc.x = -1;
-			this->targetloc.y = -1;
-			toggle = false;
-		}
-
+		character->ttl += GameController::increment;
 
 		if (fill) {
 
@@ -48,45 +37,37 @@ struct Player {
 			character->Render(gfx, r, g, b, a);
 		}
 	}
-	bool CheckPoint(POINT& p) {
-		if (targetloc.x < 0 || targetloc.y < 0) {
-			return true;
-		}
+	bool CheckPoint() {
 
 		float x = character->EGetPoint(0.0f).x;
 		float y = character->EGetPoint(0.0f).y;
-		float temp[2] = { x,y };
-		if (p.x < x && x - p.x>2.0f) {
+		if (targetloc.x < x && x - targetloc.x>2.0f) {
 			return false;
 			//przesuñ w lewo
 		}
-		else if (x < p.x && p.x - x  > 2.0f) {
+		else if (x < targetloc.x && targetloc.x - x  > 2.0f) {
 			return false;
 			//przesuñ w prawo
 		}
 
-		if (p.y < y && y - p.y > 2.0f) {
+		if (targetloc.y < y && y - targetloc.y > 2.0f) {
 			return false;
 			//przesuñ w górê
 		}
-		else if (y < p.y && p.y - y  > 2.0f) {
+		else if (y < targetloc.y && targetloc.y - y  > 2.0f) {
 			return false;
 			//przesuñ w dó³
 		}
 		return true;
 	}
-
-	void MoveToPoint(POINT& p, float speed=STOP) {
-		this->toggle = true;
+	void SetPoint(POINT& p) {
 		targetloc = p;
-		D2D1_POINT_2F temp;
-		temp.x = p.x;
-		temp.y = p.y;
+
+	}
+	void MoveToPoint(POINT& p, float speed=STOP) {
 		//constraints here
 		float x = character->EGetPoint(0.0f).x;
 		float y = character->EGetPoint(0.0f).y;
-		float angle = (float)Angle(character->EGetPoint(0.0f), character->Getpshx().vVect->v_0, temp);
-		std::string temp1 = "Angle: " + std::to_string(angle)+"\n";
 		
 		if (targetloc.x < x && x - targetloc.x>2.0f) {
 			if (x-targetloc.x < 2.0f) {
@@ -107,7 +88,6 @@ struct Player {
 			//przesuñ w prawo
 		}
 		
-		temp1 = temp1 + " x: " + std::to_string(x) + "\n";
 		if (targetloc.y < y && y - targetloc.y > 2.0f) {
 			if (y - targetloc.y < 2.0f && y - targetloc.y > 0.0f) {
 				character->Update(0.0f, -(y - targetloc.y));
@@ -126,18 +106,74 @@ struct Player {
 
 			//przesuñ w dó³
 		}
-		temp1 = temp1 + " y: " + std::to_string(y) + "\n";
-		OutputDebugStringA(temp1.c_str());
 		return;
 
 	}
+	void Move(POINT& p, float speed, float limit[2][2] = {0}) {
+		if (limit != nullptr) {
+			if (p.x >= limit[0][0] && p.x <= limit[1][0]) {
+				if (p.y >= limit[0][1] && p.y <= limit[1][1]) {
 
 
+					if (GetKeyState(RI_MOUSE_LEFT_BUTTON_DOWN) & 0x8000) {
+						this->SetPoint(p);
+						this->speed++;
+						this->speed %= 5;
+					}
+				}
+			}
+		}
+		else {
+
+			if (GetKeyState(RI_MOUSE_LEFT_BUTTON_DOWN) & 0x8000) {
+				this->SetPoint(p);
+				this->speed++;
+				this->speed %= 5;
+			}
+		
+		}
+		
+		if (this->CheckPoint() == false) {
+			switch(this->speed) {
+				case 0: {
+					this->MoveToPoint(p, STOP);
+					return;
+				}
+				case 1: {
+					this->MoveToPoint(p, SLOW);
+					return;
+				}
+				case 2: {
+					this->MoveToPoint(p, MEDIUM_FAST);
+					return;
+				}
+				case 3: {
+					this->MoveToPoint(p, FAST);
+					return;
+				}
+				case 4: {
+					this->MoveToPoint(p, VERY_FAST);
+					return;
+				}
+				
+			}
+			this->speed = 0;
+		}
+		else {
+		//	this->character->Getpshx().ClearSpeed();
+		}
+	}
+	~Player() {
+		delete character;
+	}
 };
 
 
 struct Doors {
+	//Obiekt zdarzenia do kontroli blokady drzwi
 	float wait, threshold;
+	bool lopen, ropen;
+	float y=500;
 	Recta* left;
 	Recta* right;
 	GameLevel* prev;
@@ -146,11 +182,12 @@ public:
 
 	Doors(Graphics* gfx, GameLevel* prev = nullptr, GameLevel* next = nullptr) {
 		this->threshold = GameController::time;
+		this->lopen = this->ropen = true;
 		this->wait = 0;
 		this->prev = prev;
 		this->next = next;
-		this->left = new Recta(50.0f, 300.0f, 100.0f, 267.0f, gfx);
-		this->right = new Recta(1316.0f, 300.0f, 100.0f, 267.0f, gfx);
+		this->left = new Recta(50.0f, y, 100.0f, 267.0f, gfx,false);
+		this->right = new Recta(1316.0f,y, 100.0f, 267.0f, gfx,false);
 	
 	}
 	//Zmiana poziomu bez udzia³u gracza
@@ -162,13 +199,13 @@ public:
 			return false;
 		}
 
-		if (left->CheckTrigg(p) && prev != nullptr) {
+		if (left->CheckTrigg(p) && prev != nullptr && lopen==true) {
 			if (GetKeyState(RI_MOUSE_LEFT_BUTTON_DOWN) & 0x8000) {
 				GameController::SwitchLevel(prev);
 				return true;
 			}
 		}
-		if (right->CheckTrigg(p) && next != nullptr) {
+		if (right->CheckTrigg(p) && next != nullptr && ropen == true) {
 			if (GetKeyState(RI_MOUSE_LEFT_BUTTON_DOWN) & 0x8000) {
 				GameController::SwitchLevel(next);
 				return true;
@@ -192,7 +229,7 @@ public:
 
 			return false;
 		}
-		if (left->CheckTrigg(p) && prev!=nullptr) {
+		if (left->CheckTrigg(p) && prev!=nullptr && lopen == true) {
 			if (GetKeyState(RI_MOUSE_LEFT_BUTTON_DOWN) & 0x8000) {
 					if (lambda(player.character->EGetPoint(0.0f).x, left->GetX())) {
 						GameController::SwitchLevel(prev);
@@ -202,7 +239,7 @@ public:
 				
 			}
 		}
-		if (right->CheckTrigg(p) && next != nullptr) {
+		if (right->CheckTrigg(p) && next != nullptr && ropen == true) {
 			if (GetKeyState(RI_MOUSE_LEFT_BUTTON_DOWN) & 0x8000) {
 					if (lambda(right->GetX(), player.character->EGetPoint(0.0f).x) ) {
 						GameController::SwitchLevel(next);
@@ -216,20 +253,52 @@ public:
 	void Render(Graphics* gfx, POINT& p, float r, float g, float b, float a) {
 
 		if (left->CheckTrigg(p)) {
-			float e[4] = { r, g, 0.1f + b, a };
-			this->left->Fill(gfx, e);
+			float b[4];
+			if (lopen) {
+				 float e[4] = { 0.2f, 0.4f, 0.7f , a };
+				 for (int i : e) {
+					 b[i] = e[i];
+				 }
+			}
+			else {
+				float e[4] = { r, g, 0.1f, a };
+				for (int i : e) {
+					b[i] = e[i];
+				}
+				 
+			}
+			this->left->Fill(gfx, b);
 		}
 		else {
 			this->left->Render(gfx, r, g, 0.1f + b, a);
 
 		}
 		if (right->CheckTrigg(p)) {
-			float e[4] = { r, g, 0.1f + b, a };
-			this->right->Fill(gfx, e);
+			float b[4];
+			if (ropen) {
+				float e[4] = { 0.2f, 0.4f, 0.7f , a };
+				for (int i : e) {
+					b[i] = e[i];
+				}
+			}
+			else {
+				float e[4] = { r, g, 0.1f, a };
+				for (int i : e) {
+					b[i] = e[i];
+				}
+			}
+			
+			this->right->Fill(gfx, b);
 		}
 		else {
 			this->right->Render(gfx, r, g, 0.1f + b, a);
 		}
+	}
+	~Doors(){
+		delete left,right;
+		prev = nullptr;
+		next = nullptr;
+		delete prev, next;
 	}
 };
 

@@ -4,14 +4,17 @@
 #include "d2d1_1.h"
 #include <vector>
 #include "CoreMinimal.h"
-/*
+#include <dwrite.h>
+#include <string>
+
 class ENGINE_API Writer {
-
-
-	static  WCHAR msc_fontName[];
-	static FLOAT msc_fontSize;
-	static HRESULT hr;
-	static ID2D1Factory* m_pD2DFactory;
-
-	void Do();
-};*/
+	static const WCHAR msc_fontName[];
+	static const FLOAT msc_fontSize;
+public:
+	
+	 HRESULT hr;
+	 ID2D1Factory* m_pD2DFactory;
+	 IDWriteFactory* m_pDWriteFactory;
+	 IDWriteTextFormat* m_pTextFormat;
+	 void Do();
+};

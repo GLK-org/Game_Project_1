@@ -31,6 +31,15 @@
     <Filter Include="Pliki źródłowe\Core\Functions">
       <UniqueIdentifier>{875dc02a-9615-464d-9ed7-06c319f6d021}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Pliki źródłowe\Event_system">
+      <UniqueIdentifier>{256e3f3c-f7be-47fa-9118-eccd1ae8f50b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki źródłowe\Event_system\Handler">
+      <UniqueIdentifier>{7651a840-dd2e-4d19-91db-5d6e88c40153}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki źródłowe\Event_system\Sources">
+      <UniqueIdentifier>{f42e1f9f-31e4-40d3-8eba-465a7e0b41de}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\CoreMinimal.cpp">
@@ -45,11 +54,14 @@
     <ClCompile Include="Core\CoreWriter.cpp">
       <Filter>Pliki źródłowe\Core\Private</Filter>
     </ClCompile>
-    <ClCompile Include="Core\CoreTransforms.cpp">
-      <Filter>Pliki źródłowe\Core\Functions</Filter>
-    </ClCompile>
     <ClCompile Include="Core\CoreLogging.cpp">
       <Filter>Pliki źródłowe\Core\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\CoreTransforms.cpp">
+      <Filter>Pliki źródłowe\Core\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Event_system\Handler\Handler.cpp">
+      <Filter>Pliki źródłowe\Event_system\Handler</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -74,11 +86,17 @@
     <ClInclude Include="Core\CoreWriter.h">
       <Filter>Pliki źródłowe\Core\Public</Filter>
     </ClInclude>
-    <ClInclude Include="Core\CoreTransforms.h">
-      <Filter>Pliki źródłowe\Core\Functions</Filter>
-    </ClInclude>
     <ClInclude Include="Core\CoreLogging.h">
       <Filter>Pliki źródłowe\Core\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\CoreTransforms.h">
+      <Filter>Pliki źródłowe\Core\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Event_system\Handler\Handler.h">
+      <Filter>Pliki źródłowe\Event_system\Handler</Filter>
+    </ClInclude>
+    <ClInclude Include="Event_system\Sources\EVLevel1.h">
+      <Filter>Pliki źródłowe\Event_system\Sources</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

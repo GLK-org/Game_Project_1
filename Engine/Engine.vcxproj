@@ -126,7 +126,7 @@
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>Engine.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(LocalDebuggerWorkingDirectory)Core;$(LocalDebuggerWorkingDirectory)pch;$(LocalDebuggerWorkingDirectory)Level_control;$(SolutionDir)Game\Structs</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(LocalDebuggerWorkingDirectory)Core;$(LocalDebuggerWorkingDirectory)pch;$(LocalDebuggerWorkingDirectory)Event_system;$(LocalDebuggerWorkingDirectory)Level_control;$(SolutionDir)Game\Structs</AdditionalIncludeDirectories>
       <CompileAsManaged>false</CompileAsManaged>
     </ClCompile>
     <Link>
@@ -147,7 +147,7 @@
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>Engine.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(LocalDebuggerWorkingDirectory)Core;$(LocalDebuggerWorkingDirectory)pch;$(LocalDebuggerWorkingDirectory)Level_control;$(LocalDebuggerWorkingDirectory)Core;$(LocalDebuggerWorkingDirectory)Level_control;$(LocalDebuggerWorkingDirectory)pch;$(LocalDebuggerWorkingDirectory)Level_control;$(LocalDebuggerWorkingDirectory)pch;$(LocalDebuggerWorkingDirectory)Core;%(AdditionalIncludeDirectories);$(LocalDebuggerWorkingDirectory)Core</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(LocalDebuggerWorkingDirectory)Core;$(LocalDebuggerWorkingDirectory)pch;$(LocalDebuggerWorkingDirectory)Event_system;$(LocalDebuggerWorkingDirectory)Level_control;$(LocalDebuggerWorkingDirectory)Core;$(LocalDebuggerWorkingDirectory)Level_control;$(LocalDebuggerWorkingDirectory)pch;$(LocalDebuggerWorkingDirectory)Level_control;$(LocalDebuggerWorkingDirectory)pch;$(LocalDebuggerWorkingDirectory)Core;%(AdditionalIncludeDirectories);$(LocalDebuggerWorkingDirectory)Core</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -165,6 +165,7 @@
     <ClCompile Include="Core\CoreTransforms.cpp" />
     <ClCompile Include="Core\CoreWriter.cpp" />
     <ClCompile Include="Core\CoreLogging.cpp" />
+    <ClCompile Include="Event_system\Handler\Handler.cpp" />
     <ClCompile Include="Level_control\GameController.cpp" />
     <ClCompile Include="pch\Engine.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
@@ -177,6 +178,8 @@
     <ClInclude Include="Core\CoreMinimal.h" />
     <ClInclude Include="Core\CoreTransforms.h" />
     <ClInclude Include="Core\CoreWriter.h" />
+    <ClInclude Include="Event_system\Handler\Handler.h" />
+    <ClInclude Include="Event_system\Sources\EVLevel1.h" />
     <ClInclude Include="Level_control\GameController.h" />
     <ClInclude Include="Level_control\GameLevel.h" />
     <ClInclude Include="pch\Engine.h" />

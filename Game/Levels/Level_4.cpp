@@ -32,8 +32,9 @@ void Level4::Unload()
 void Level4::Render(Graphics* gfx)
 {
 	gfx->ClearScreen(r, g, b);
+	eli->Render(gfx, 0.2, 0.5, 0.3, 1.0);
 	doors->Render(gfx, p, r, 0.1f + g, b, a);
-
+	
 
 }
 
@@ -43,4 +44,5 @@ void Level4::Update()
 	if (doors->UpdateTrig(p)) {
 		return;
 	};
+	OutputDebugStringA("Stan\n");
 }

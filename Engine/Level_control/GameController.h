@@ -6,6 +6,7 @@ class ENGINE_API GameController {
 	static GameLevel* currentLevel;
 	~GameController();
 public:
+	static bool gravity;
 	static bool paused;
 	static float increment;
 	static float time;

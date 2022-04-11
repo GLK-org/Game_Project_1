@@ -1,7 +1,7 @@
 #pragma once
 #include "CoreLogging.h"
 #include "CoreTransforms.h"
-
+#include "GameController.h"
 struct phsxObj {
 	VelocVect* vVect;
 	float mass;//??
@@ -14,7 +14,7 @@ struct phsxObj {
 		collidex = collidey = false;
 		vVect = new VelocVect();
 		mass = 0.0f;
-		accellim = SLOW;
+		accellim = VERY_FAST;
 	}
 
 	phsxObj(D2D1_POINT_2F& e, float speed = SLOW, double m=0.0f) {
@@ -27,19 +27,31 @@ struct phsxObj {
 		if (signbit(lim) == true) return;
 		accellim = lim;
 	}
+	void ClearSpeed() {
+		vVect->v_0.x = vVect->v_0.y = 0.0f;
+		vVect->angle.x = vVect->angle.y = 0.0f;
+		vVect->len = 0.0f;
+	}
 	void LinAccelerate(const D2D1_POINT_2F& p, double ax, double ay) {
-		
+
 
 		//OutputDebugStringA(MakeLPCSTR( { &(vVect->len) } ) );
 		//OutputDebugStringA(MakeLPCSTR({ &(vVect->v_0.x) }));
 		//OutputDebugStringA(MakeLPCSTR({ &(vVect->v_0.y) }));
-		D2D1_POINT_2F e = {ax,ay};
+		if (GameController::gravity)
+									{
+			D2D1_POINT_2F e = { ax,ay + GRAV };
 		vVect->UpdateLoc(e);
-		vVect->Angle(p);
+			}
+		else {
+			D2D1_POINT_2F e = { ax,ay };
+			vVect->UpdateLoc(e);
+		}
 
+		vVect->Angle(p);
+		
 		vVect->Length(p, accellim);
 
-		
 	}
 	void LinAccelerate(const D2D1_POINT_2F& p) {
 
@@ -90,5 +102,10 @@ struct phsxObj {
 			target.y += vVect->len * (vVect->angle.y);
 		}
 		
+	}
+
+	
+	~phsxObj() {
+		delete vVect;
 	}
 };

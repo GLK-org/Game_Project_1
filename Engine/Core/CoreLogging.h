@@ -19,6 +19,7 @@ static void MakeMesBoxA(float args[], std:: string text="") {
 
 	// nie wiem po cholerê obudowa³em w funkcjê ale do bardziej dla przyk³adu chyba
 		//okno rodzica, tekst, tytu³, standard zachowania
+	
 	MessageBoxA(0,temp.c_str(),0,0);
 
 }

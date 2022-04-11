@@ -8,6 +8,8 @@
 #define MEDIUM_FAST 4.0f
 #define SLOW 2.0f
 #define STOP 0.0f
+#define GRAV 1.0f
+
 struct ENGINE_API VelocVect {
 	D2D1_POINT_2F v_0, angle;
 	float len;
