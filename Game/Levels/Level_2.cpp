@@ -35,7 +35,9 @@ void Level2::AddObj(SHORT key ){
 		if (rand() % 2==0 ) {
 			float width = (rand() % 101 )+ 1.0f;
 			float height = (rand() % 101) + 1.0f;
-			objects.push_back(new Recta((rand()%1265)+100.0f, (rand()%300)+1.0f,width, height,width+rand()% (int)width,height+rand()% (int)height, gfx));
+			float x1= (rand() % 1265) + 100.0f;
+			float y1 = (rand() % 300) + 1.0f ;
+			objects.push_back(new Recta(x1, y1 , width, height, gfx));
 		}
 		else {
 			int maxsize = (rand() % 200)+1;

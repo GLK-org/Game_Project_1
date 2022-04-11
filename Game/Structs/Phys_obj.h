@@ -33,7 +33,6 @@ struct phsxObj {
 		//OutputDebugStringA(MakeLPCSTR( { &(vVect->len) } ) );
 		//OutputDebugStringA(MakeLPCSTR({ &(vVect->v_0.x) }));
 		//OutputDebugStringA(MakeLPCSTR({ &(vVect->v_0.y) }));
-		
 		D2D1_POINT_2F e = {ax,ay};
 		vVect->UpdateLoc(e);
 		vVect->Angle(p);

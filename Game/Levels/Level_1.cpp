@@ -23,8 +23,8 @@ void Level1::Load(Graphics* gfx) {
 	mode = false;
 	GetCursorPos(&p);
 	eli = new Eli(this->x, this->y,50.0f,40.0f,52.0f, gfx);
-	buttons[0] = new Recta(this->x, this->y, 700.0f, 550.0f, 1366.0f,600.0f, gfx);
-	buttons[1] = new Recta(this->x, this->y, 1.0f, 600.0f, 1365.0f, 768.0f, gfx);
+	buttons[0] = new Recta(682.5f, 600.0f, 666.0f,50.f, gfx);
+	buttons[1] = new Recta(682.5f, 700.0f, 682.5f,100.0f, gfx);
 	doors = new Doors(gfx, nullptr, new Level2());
 	change = 0.0;
 	a = 1;

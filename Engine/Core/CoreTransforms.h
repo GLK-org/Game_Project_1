@@ -2,10 +2,11 @@
 #include "CoreMinimal.h"
 #include <math.h>
 #include <numbers>
-#define VERY_FAST 20.0f
-#define FAST 15.0f
-#define MEDIUM_FAST 10.0f
-#define SLOW 5.0f
+#define TURBO 10.f
+#define VERY_FAST 8.0f
+#define FAST 6.0f
+#define MEDIUM_FAST 4.0f
+#define SLOW 2.0f
 #define STOP 0.0f
 struct ENGINE_API VelocVect {
 	D2D1_POINT_2F v_0, angle;

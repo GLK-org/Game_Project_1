@@ -52,8 +52,6 @@ struct Player {
 		if (targetloc.x < 0 || targetloc.y < 0) {
 			return true;
 		}
-		//Get the anglex and angley
-		//Get
 
 		float x = character->EGetPoint(0.0f).x;
 		float y = character->EGetPoint(0.0f).y;
@@ -89,29 +87,47 @@ struct Player {
 		float y = character->EGetPoint(0.0f).y;
 		float angle = (float)Angle(character->EGetPoint(0.0f), character->Getpshx().vVect->v_0, temp);
 		std::string temp1 = "Angle: " + std::to_string(angle)+"\n";
-		OutputDebugStringA(temp1.c_str());
+		
 		if (targetloc.x < x && x - targetloc.x>2.0f) {
-			character->Update(x, y);
+			if (x-targetloc.x < 2.0f) {
+				character->Update(x-targetloc.x, 0.0f);
+				return;
+			}
+			character->Update(-speed,0.0f);
 
 			//przesuñ w lewo
 		}
 		else if (x < targetloc.x && targetloc.x - x  > 2.0f) {
-			character->Update(x, y);
+			if (targetloc.x - x < 2.0f) {
+				character->Update(x - targetloc.x, 0.0f);
+				return;
+			}
+			character->Update(speed,0.0f);
 
 			//przesuñ w prawo
 		}
-
+		
+		temp1 = temp1 + " x: " + std::to_string(x) + "\n";
 		if (targetloc.y < y && y - targetloc.y > 2.0f) {
-			character->Update(x, y);
+			if (y - targetloc.y < 2.0f && y - targetloc.y > 0.0f) {
+				character->Update(0.0f, -(y - targetloc.y));
+				return;
+			}
+			character->Update(0.0f,-speed);
 
 			//przesuñ w górê
 		}
 		else if (y < targetloc.y && targetloc.y - y  > 2.0f) {
-			character->Update(x, y);
+			if (y - targetloc.y < 2.0f && y - targetloc.y > 0.0f) {
+				character->Update(0.0f, targetloc.y-y);
+				return;
+			}
+			character->Update(0.0f,speed);
 
 			//przesuñ w dó³
 		}
-
+		temp1 = temp1 + " y: " + std::to_string(y) + "\n";
+		OutputDebugStringA(temp1.c_str());
 		return;
 
 	}
@@ -133,8 +149,8 @@ public:
 		this->wait = 0;
 		this->prev = prev;
 		this->next = next;
-		this->left = new Recta(1.0f, 300.0f, 1, 300, 100, 567, gfx);
-		this->right = new Recta(1365.0f, 1.0f, 1266.0f, 300, 1365, 567, gfx);
+		this->left = new Recta(50.0f, 300.0f, 100.0f, 267.0f, gfx);
+		this->right = new Recta(1316.0f, 300.0f, 100.0f, 267.0f, gfx);
 	
 	}
 	//Zmiana poziomu bez udzia³u gracza

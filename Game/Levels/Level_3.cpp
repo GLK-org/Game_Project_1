@@ -22,7 +22,7 @@ void Level3::Load(Graphics* gfx) {
 	mode = false;
 	GetCursorPos(&p);
 	//eli = new Eli(this->x, this->y, 50.0f, 40.0f, 52.0f, gfx);
-	rect = new Recta(100.0f,300.0f, 1066.0f, 200, 200 ,300, gfx);
+//	rect = new Recta(100.0f,300.0f, 1066.0f, 200, 200 ,300, gfx);
 	player = new Player(gfx, 200.0f,150.0f,50.0f, 100.0f,50.0f);
 	doors = new Doors(gfx, new Level2(), new Level4());
 //	buttons[0] = new Recta(this->x, this->y, 700.0f, 550.0f, 1366.0f, 600.0f, gfx);
@@ -51,7 +51,7 @@ void Level3::AddObj(SHORT key)
 
 void Level3::Unload() {
 	delete eli;
-	rect->~Recta();
+//	rect->~Recta();
 	delete doors;
 //	for (int i = 0; i < 2; i++) {
 //		delete buttons[i];
@@ -75,7 +75,7 @@ void Level3::Render(Graphics* gfx)
 		change -= 0.02;
 	}
 	float e[4] = { r, g, 0.1f + b, a };
-	rect->Render(gfx, r, 0.1f + g, b, a);
+//	rect->Render(gfx, r, 0.1f + g, b, a);
 	doors->Render(gfx, p, r, 0.1f + g, b, a);
 	player->Render(gfx, p);
   /*	
@@ -112,7 +112,7 @@ void Level3::Update() {
 	//Zbiera informacje o pozycji myszy
 	
 	this->MouseLocUpdate();
-	rect->Update();
+//	rect->Update();
 	if (doors->UpdateTrig(p, *player)) {
 		return;
 	};
