@@ -122,6 +122,9 @@
     <ClInclude Include="Game\Structs\Phys_obj.h">
       <Filter>Pliki zasobów\Structs</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Levels\Level_includes.h">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Game_engine_1.rc">

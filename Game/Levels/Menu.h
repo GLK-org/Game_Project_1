@@ -1,22 +1,46 @@
 #pragma once
 #include "Level_control\GameLevel.h"
+#include "..\Engine\Level_control\GameController.h"
 #include "Primitives.h"
+#include "Level_controls.h"
+#include "Level_includes.h"
 #include <vector>
+#include <map>
 
+struct Buttons : public BaseButton {
+	int id;
+	Buttons(Obj* ob, float r, float g, float b, float a, int id = -1, std::string text = "0") : BaseButton(ob, r, g, b, a, text) { 
+		this->id = id; 
+			};
+	virtual ~Buttons() {};
 
-class Menu : GameLevel {
-	struct with {
-		Obj* ob;
-		bool fill;
-		with(Recta* rec) {
-			ob = rec;
-			fill = false;
+	void OnTrig() override {
+		if(id==0) {
+		
+			GameController::SwitchLevel(new Level1());
+			
 		}
-		bool GSfill(bool cfill = false) { if (cfill) { fill = !fill; } return fill; };
+		else if(id==1) {
+
+			
+		}
+		else if(id==2){
+			GameController::Unload();
+			
+		}
+		else {
+
+		}
+
+	
 	};
-	std::vector<with*> buttons;
+
+};
 
 
+class Menu :public GameLevel {
+	std::vector<Buttons*> buttons;
+	std::map<std::string, D2D1_RECT_F> text_boxes;
 public:
 
 	void Load(Graphics* gfx, Writer* wrt=nullptr) override;

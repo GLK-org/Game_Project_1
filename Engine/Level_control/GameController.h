@@ -5,8 +5,10 @@ class ENGINE_API GameController {
 	static Graphics* gfx;
 	static Writer* wrt;
 	static GameLevel* currentLevel;
+	
 	~GameController();
 public:
+	static bool exit;
 	static bool gravity;
 	static bool paused;
 	static float increment;
@@ -20,5 +22,6 @@ public:
 	static void Render(Graphics* gfx, Writer* wrt=nullptr);
 	static void PUpdate();
 	static void Update();
+	static void Unload();
 };
 

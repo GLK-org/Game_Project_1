@@ -3,7 +3,7 @@
 #include "Primitives.h"
 #include  <vector>
 
-class PauseCl : GameLevel {
+class PauseCl : public GameLevel {
 	struct with {
 		Obj* ob;
 		bool fill;

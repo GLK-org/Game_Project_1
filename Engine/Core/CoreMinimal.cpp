@@ -60,8 +60,6 @@ bool Graphics::Init(HWND windowHandle)
   return true;
 }
 
-
-
 void Graphics::ClearScreen(float r, float g, float b)
 {
 
@@ -75,6 +73,95 @@ void Graphics::CreateEllipseGeometry(D2D1_ELLIPSE * eli, ID2D1EllipseGeometry **
     if (hr == S_OK) {
 
    }
+}
+
+void Graphics::DrawBG(D2D1_POINT_2F point, float tab[2])
+{
+    rendertarget->SetTransform(D2D1_MATRIX_3X2_F(D2D1::Matrix3x2F::Skew(tab[0],tab[1],point)));
+
+}
+
+void Graphics::DrawGeo(ID2D1EllipseGeometry* EllipseGeo) {
+    ID2D1SolidColorBrush* brush;
+    rendertarget->CreateSolidColorBrush(D2D1::ColorF(0.0f, 0.0f, 0.0f, 1.0f), &brush);
+    rendertarget->DrawGeometry(EllipseGeo, brush, 5);
+    brush->Release();
+}
+
+void Graphics::DrawEllipse(
+    D2D1_ELLIPSE * eli,
+    float r, float g, float b, float a
+    )
+    {
+    //tworzenie pêdzla i generowanie elipsy
+    ID2D1SolidColorBrush* brush;
+    rendertarget->CreateSolidColorBrush(D2D1::ColorF(r, g, b, a), &brush);
+
+    rendertarget->DrawEllipse(eli, brush, 3.0f);
+    //
+    brush->Release();
+}
+
+void Graphics::DrawRect(
+    D2D1_RECT_F * rect,
+    float r, float g, float b, float a
+    )
+    {
+    ID2D1SolidColorBrush* brush; 
+    rendertarget->CreateSolidColorBrush(D2D1::ColorF(r, g, b, a), &brush);
+
+    rendertarget->DrawRectangle(rect, brush, 3.0f);
+    //
+    brush->Release();
+}
+
+void Graphics::FillRect(D2D1_RECT_F* rect, float e[])
+{
+    
+    ID2D1SolidColorBrush* brush;
+    if (e != nullptr) {
+        rendertarget->CreateSolidColorBrush(D2D1::ColorF(e[0]/1000.0f, e[1]*2 / 1000.0f, e[2], e[3]), &brush);
+       
+    }
+    else {
+        rendertarget->CreateSolidColorBrush(D2D1::ColorF(1.0f, 0.2f, 0.f, 1.0f), &brush);
+    }
+    
+    rendertarget->FillRectangle(rect,brush);
+}
+
+void Graphics::DrawLine(D2D1_POINT_2F& p1, D2D1_POINT_2F& p2, float r, float g, float b, float a)
+{
+    ID2D1SolidColorBrush* brush;
+    rendertarget->CreateSolidColorBrush(D2D1::ColorF(r, g, b, a), &brush);
+
+    rendertarget->DrawLine(p1, p2, brush);
+    //
+
+}
+
+void Graphics::DrawLine(D2D1_POINT_2F& p1, D2D1_POINT_2F& p2, float length, float r, float g, float b, float a)
+{
+    ID2D1SolidColorBrush* brush;
+    rendertarget->CreateSolidColorBrush(D2D1::ColorF(r, g, b, a), &brush);
+    D2D1_POINT_2F finale;
+    finale.x = (p2.x+p1.x);
+    finale.y = (p2.y+ p1.y) ;
+    rendertarget->DrawLine(p1, finale, brush);
+    //
+
+}
+
+void Graphics::DrawLine(D2D1_POINT_2F& p1, D2D1_POINT_2F& p2, float length, D2D1_POINT_2F& angle, float r, float g, float b, float a)
+{
+    ID2D1SolidColorBrush* brush;
+    rendertarget->CreateSolidColorBrush(D2D1::ColorF(r, g, b, a), &brush);
+    D2D1_POINT_2F finale;
+    finale.x = p1.x+length*angle.x;
+    finale.y = p1.y+length*angle.y;
+    rendertarget->DrawLine(p1, finale, brush);
+    //
+
 }
 
 HRESULT Graphics::LoadBMP(
@@ -154,92 +241,4 @@ HRESULT Graphics::LoadBMP(
 
         return hr;
     }
-}
-
-void Graphics::DrawBG(D2D1_POINT_2F point, float tab[2])
-{
-    rendertarget->SetTransform(D2D1_MATRIX_3X2_F(D2D1::Matrix3x2F::Skew(tab[0],tab[1],point)));
-
-}
-
-void Graphics::DrawGeo(ID2D1EllipseGeometry* EllipseGeo) {
-    ID2D1SolidColorBrush* brush;
-    rendertarget->CreateSolidColorBrush(D2D1::ColorF(0.0f, 0.0f, 0.0f, 1.0f), &brush);
-    rendertarget->DrawGeometry(EllipseGeo, brush, 5);
-    brush->Release();
-}
-
-void Graphics::DrawEllipse(
-    D2D1_ELLIPSE * eli,
-    float r, float g, float b, float a
-    )
-    {
-    //tworzenie pêdzla i generowanie elipsy
-    ID2D1SolidColorBrush* brush;
-    rendertarget->CreateSolidColorBrush(D2D1::ColorF(r, g, b, a), &brush);
-
-    rendertarget->DrawEllipse(eli, brush, 3.0f);
-    //
-    brush->Release();
-}
-
-void Graphics::DrawRect(
-    D2D1_RECT_F * rect,
-    float r, float g, float b, float a
-    )
-    {
-    ID2D1SolidColorBrush* brush; 
-    rendertarget->CreateSolidColorBrush(D2D1::ColorF(r, g, b, a), &brush);
-
-    rendertarget->DrawRectangle(rect, brush, 3.0f);
-    //
-    brush->Release();
-}
-
-void Graphics::FillRect(D2D1_RECT_F* rect, float e[])
-{
-    
-    ID2D1SolidColorBrush* brush;
-    if (e != nullptr) {
-        rendertarget->CreateSolidColorBrush(D2D1::ColorF(e[0]/1000.0f, e[0]*2 / 1000.0f, 0.f, 1.0f), &brush);
-       
-    }
-    else {
-        rendertarget->CreateSolidColorBrush(D2D1::ColorF(1.0f, 0.2f, 0.f, 1.0f), &brush);
-    }
-    
-    rendertarget->FillRectangle(rect,brush);
-}
-
-void Graphics::DrawLine(D2D1_POINT_2F& p1, D2D1_POINT_2F& p2, float r, float g, float b, float a)
-{
-    ID2D1SolidColorBrush* brush;
-    rendertarget->CreateSolidColorBrush(D2D1::ColorF(r, g, b, a), &brush);
-
-    rendertarget->DrawLine(p1, p2, brush);
-    //
-
-}
-
-void Graphics::DrawLine(D2D1_POINT_2F& p1, D2D1_POINT_2F& p2, float length, float r, float g, float b, float a)
-{
-    ID2D1SolidColorBrush* brush;
-    rendertarget->CreateSolidColorBrush(D2D1::ColorF(r, g, b, a), &brush);
-    D2D1_POINT_2F finale;
-    finale.x = (p2.x+p1.x);
-    finale.y = (p2.y+ p1.y) ;
-    rendertarget->DrawLine(p1, finale, brush);
-    //
-
-}
-void Graphics::DrawLine(D2D1_POINT_2F& p1, D2D1_POINT_2F& p2, float length, D2D1_POINT_2F& angle, float r, float g, float b, float a)
-{
-    ID2D1SolidColorBrush* brush;
-    rendertarget->CreateSolidColorBrush(D2D1::ColorF(r, g, b, a), &brush);
-    D2D1_POINT_2F finale;
-    finale.x = p1.x+length*angle.x;
-    finale.y = p1.y+length*angle.y;
-    rendertarget->DrawLine(p1, finale, brush);
-    //
-
 }

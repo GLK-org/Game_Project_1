@@ -191,6 +191,7 @@
     <ClInclude Include="Game\Levels\Level_4.h" />
     <ClInclude Include="Game\Levels\Level_5.h" />
     <ClInclude Include="Game\Levels\Level_6.h" />
+    <ClInclude Include="Game\Levels\Level_includes.h" />
     <ClInclude Include="Game\Levels\Menu.h" />
     <ClInclude Include="Game\Levels\Pause.h" />
     <ClInclude Include="Game\pch\pch.h" />

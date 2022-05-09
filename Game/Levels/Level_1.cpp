@@ -67,14 +67,19 @@ void Level1::Unload() {
 
 void Level1::Render(Graphics* gfx, Writer* wrt)
 {
+	if (doors->ropen) {
+		text_boxes.insert({ std::string("Move Right ->"), D2D1::RectF(WNDWIDTH/4, WNDHEIGHT/4, (3*WNDWIDTH)/4, (3*WNDHEIGHT)/4) });
+	}
 		r = log(change + 0.24)+1;
 		g = log(-change + 0.175)+1;
 		b = log(-change + 0.15)+1;
 
-	gfx->ClearScreen(0.0f, 0.0f, 0.5f);
+	gfx->ClearScreen(0.0f, 0.0f, 0.9f);
 	doors->Render(gfx,p,0.2,0.4,0.1,1.0);
 	player->Render(gfx, p);
 	this->eli->Render(gfx, r,g,b,a);
+	if(!doors->ropen){
+	
 	if (goal.size() == 1) {
 		goal[0]->Render(gfx, r, g, b, a);
 	}
@@ -82,18 +87,19 @@ void Level1::Render(Graphics* gfx, Writer* wrt)
 		D2D1_POINT_2F point = postab[rand() % 6];
 		goal.push_back( new Eli(point.x, point.y, 50.0f, 40.0f, 52.0f, gfx));
 	}
+	}
 	for (Obj* button : this->buttons) {
 		button->Render(gfx, rand() % 2, rand() % 2, rand() % 2, 1.0f);
 	}
 	//Czy to nie powtórka rysowania ramki z render?!
-	if (buttons[1]->CheckTrigg(p)) {
+	/*if (buttons[1]->CheckTrigg(p)) {
 		float e[1];
 		e[0]=(float)p.x;
 		buttons[1]->Fill(gfx, e);
 	}
-	else {
+	else {*/
 		buttons[1]->Fill(gfx);
-	}
+//	}
 	
 	if (asc==true) {
 		if (change >= 1.0) {
@@ -111,13 +117,32 @@ void Level1::Render(Graphics* gfx, Writer* wrt)
 	for (const auto& [key, value] : text_boxes) {
 		
 		if (key == "Points") {
+			float e[4] = { 0.8f,0.6f,0.5f,0.9f };
+			D2D1_RECT_F temp = value;
+			gfx->FillRect(&temp,e);
 			wrt->Draw_Text(key + ": " +std::to_string(points), value);
+			
 		}
 		 if (key == "Time") {
+			 float e[4] = { 0.8f,0.6f,0.5f,0.9f };
+			 D2D1_RECT_F temp = value;
+			 gfx->FillRect(&temp, e);
 			wrt->Draw_Text(key +": " + std::to_string((int)GameController::time / 60), value);
+			
 		}
 		if (key == "Goal") {
+			float e[4] = { 0.8f,0.7f,0.5f,0.9f };
+			D2D1_RECT_F temp = value;
+			gfx->FillRect(&temp,e);
 			wrt->Draw_Text(key + ": "+std::to_string(lvlgoal), value);
+			
+		}
+		if (key == "Move Right ->") {
+			if ((int)GameController::time % 20 != 0) {
+				wrt->Draw_Text(key, value);
+			}
+
+		
 		}
 	}
 	

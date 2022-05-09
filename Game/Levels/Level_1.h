@@ -12,10 +12,10 @@ struct Doors1 : public Doors {
 
 	Doors1(Graphics* gfx, GameLevel* prev = nullptr, GameLevel* next = nullptr) : Doors(gfx, prev, next) { Doors::lopen = false; Doors::ropen = false; };
 	void Checkconl() {
-
 	}
 	void Checkconr(int points) {
 		if (points > lvlgoal) ropen=true;
+
 
 	}
 };

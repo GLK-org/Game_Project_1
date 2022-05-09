@@ -6,7 +6,7 @@
 #include <vector>
 #include "CoreTransforms.h"
 #include "CoreLogging.h"
-
+#include "CoreWriter.h"
 
 
 struct Player {
@@ -26,7 +26,7 @@ struct Player {
 		this->targetloc.x = spawnx;
 		this->targetloc.y = spawny;
 	}
-	void Render(Graphics* gfx, POINT& p, bool fill = false, float r = 0.2f, float g = 0.0f, float b = 0.5f, float a = 1) {
+	void Render(Graphics* gfx, POINT& p, bool fill = false, float r = 0.2f, float g = 0.5f, float b = 0.5f, float a = 1) {
 		character->ttl += GameController::increment;
 
 		if (fill) {
@@ -338,6 +338,56 @@ public:
 	};
 	~Interactibles() {
 	};
+
+
+};
+
+class BaseButton {
+public:
+	Obj* ob;
+	float r, g, b, a;
+	std::string text;
+	BaseButton(Obj* ob, float r, float g, float b, float a, std::string text = "0") {
+		this->ob = ob;
+		this->r = r;
+		this->g = g;
+		this->b = b;
+		this->a = a;
+		this->text = text;
+	
+	};
+	virtual ~BaseButton() { delete ob; };
+	void Render(Graphics* gfx, float r, float g, float b, float a, bool wtext = false, Writer* wrt = {0}, bool colorable=false)
+	{
+		if (colorable == true) {
+			if (ob->GetTrig()) {
+				float e[4] = { r + 0.1f, g + 0.5f, b + 0.1f, a };
+				ob->Fill(gfx, e);
+			}
+			else {
+				ob->Render(gfx, r, g, b, a);
+				float e[4] = { r + 0.4f, g + 0.2f, b + 0.2f, a };
+				ob->Fill(gfx, e);
+			}
+		}
+		else {
+			ob->Render(gfx, r, g, b, a);
+			float e[4] = { r-0.4f, g+0.2f, b+0.2f, a };
+			ob->Fill(gfx,e);
+		}
+		
+		if (wtext == true) {
+			D2D1_RECT_F container(
+								ob->GetX()- ob->GetX() /2,
+								ob->GetY() - ob->GetY() / 2,
+								ob->GetX() + ob->GetX() / 2,
+								ob->GetY() + ob->GetY() / 2
+								);
+			wrt->Draw_Text(text, container);
+		};
+	}
+	bool CheckTrg(POINT& p) { return ob->CheckTrigg(p); };
+	virtual void OnTrig() =0;
 
 
 };

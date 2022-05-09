@@ -5,16 +5,18 @@
 
 void Menu::Load(Graphics* gfx, Writer* wrt)
 {
-//	buttons.push_back(new with(new Recta(100.0f, 300.0f, 500.0f, 200, 800, 280, gfx)));
-//	buttons.push_back(new with(new Recta(100.0f, 300.0f, 500.0f, 400, 800, 580, gfx)));
-//	buttons.push_back(new with(new Recta(100.0f, 300.0f, 500.0f, 600, 800, 780, gfx)));
-	for (std::vector<with*>::iterator it = buttons.begin(); it != buttons.end(); ++it) {
+	buttons.push_back(new Buttons(new Recta(WNDWIDTH /2, (2*WNDHEIGHT) / 7, WNDWIDTH / 4, 100.0f, gfx), 0.6f,0.2f,0.4f,1.0f, 0, "Play"));
+	buttons.push_back(new Buttons(new Recta(WNDWIDTH /2, (4*WNDHEIGHT) / 7, WNDWIDTH / 4, 100.0f, gfx), 0.6f, 0.2f, 0.4f, 1.0f, 1,"Time attack"));
+	buttons.push_back(new Buttons(new Recta(WNDWIDTH /2, (6*WNDHEIGHT) / 7, WNDWIDTH / 4, 100.0f, gfx), 0.6f, 0.2f, 0.4f, 1.0f, 2, "Exit"));
+	for (std::vector<Buttons*>::iterator it = buttons.begin(); it != buttons.end(); ++it) {
 	}
 }
 
 char Menu::GetID()
 {
+
 	return -1;
+
 }
 
 void Menu::Unload()
@@ -29,23 +31,25 @@ void Menu::AddObj(SHORT key)
 
 void Menu::Render(Graphics* gfx , Writer* wrt)
 {
-	for (std::vector<with*>::iterator it = buttons.begin(); it != buttons.end(); ++it) {
-		float r, g, b;
-		r = g = b = 0.2f;
-		if ((*it)->fill) {
-			float t[4] = { 0.5f, 0.5f, 0.5f, 1.0f };
-			(*it)->ob->Fill(gfx, t);
-		}
-		else {
-			(*it)->ob->Render(gfx, r, g, b, 1);
-		}
+
+	gfx->ClearScreen(0.8f,0.9f,0.5f);
+	for (std::vector<Buttons*>::iterator it = buttons.begin(); it != buttons.end(); ++it) {
+			(*it)->Render(gfx, (*it)->r, (*it)->g, (*it)->b, (*it)->a, true,wrt, true);
+		
 	}
 }
 
 void Menu::Update()
 {
-	for (std::vector<with*>::iterator it = buttons.begin(); it != buttons.end(); ++it) {
+	this->MouseLocUpdate();
 
-		(*it)->ob->Update();
+	for (std::vector<Buttons*>::iterator it = buttons.begin(); it != buttons.end(); ++it) {
+		if ((*it)->CheckTrg(p)) {
+			if (GetKeyState(RI_MOUSE_LEFT_BUTTON_DOWN) & 0x8000) {
+				(*it)->OnTrig();
+				return;
+			}
+		}
+	//	(*it)->ob->Update();
 	}
 }

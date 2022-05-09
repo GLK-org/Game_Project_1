@@ -6,6 +6,7 @@ GameLevel* GameController::currentLevel;
 bool GameController::gravity = false;
 bool GameController::loading;
 bool GameController::paused;
+bool GameController::exit = false;
 float GameController::time;
 float GameController::increment;
 Graphics* GameController::gfx;
@@ -94,4 +95,12 @@ void GameController::Update()
 	if (loading) return;
 	time += increment;
 	currentLevel->Update();
+}
+
+void GameController::Unload() {
+	loading = true;
+	currentLevel->Unload();
+	GameController::exit = true;
+	gfx->ClearScreen(0.0f, 0.0f, 0.0f);
+
 }

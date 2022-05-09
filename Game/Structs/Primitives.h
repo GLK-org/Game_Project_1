@@ -172,6 +172,7 @@ public:
 		
 	};
 
+	D2D1_RECT_F& GetRect() { return rec; }
 	void UpdateCenter(float x, float y) {
 		//KOORDYNATY CENTRUM PROSTOK¥TA NIE MOG¥ BYÆ UJEMNE
 		if (signbit(x) == true || signbit(y) == true) return;

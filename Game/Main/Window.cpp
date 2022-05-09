@@ -98,15 +98,14 @@ int CALLBACK WinMain(HINSTANCE, HINSTANCE, LPSTR, INT) {
 	//Wyœwietlanie okna i ³adowanie wstêpnego poziomu
 	
 	ShowWindow(hWnd, SW_SHOW);
-	Menu* m = new Menu();
-	GameController::LoadInitialLevel(new Level1());
+	GameController::LoadInitialLevel(new Menu());
 	
 	//Nas³uchuj zdarzenie wy³¹czenia tak, ¿eby okno siê nie wy³¹cza³o do tego momentu
 
 	//Definiowanie pustej zmiennej msg (Tak, ten format zdaje siê konieczny, do research'u)
 	MSG msg = { 0 };
 	//Nas³uchiwanie 
-	while (msg.message != WM_QUIT) {
+	while (msg.message != WM_QUIT ) {
 
 		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) {
 			TranslateMessage(&msg);
@@ -125,7 +124,10 @@ int CALLBACK WinMain(HINSTANCE, HINSTANCE, LPSTR, INT) {
 				GameController::SwitchLevel(new Level3());
 			}
 			else if (GetKeyState(VK_ESCAPE) & KEY_PRESSED) {
-				GameController::paused = !GameController::paused;
+				GameController::SwitchLevel(new Menu());
+			}
+			else if (GameController::exit == true) {
+				break;
 			}
 			//Render:
 			graphics->BeginDraw();
