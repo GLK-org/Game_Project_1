@@ -9,15 +9,18 @@ bool GameController::paused;
 float GameController::time;
 float GameController::increment;
 Graphics* GameController::gfx;
+Writer* GameController::wrt;
 GameController::~GameController()
 {
+
 }
 
-void GameController::Init(Graphics* gfx1)
+void GameController::Init(Graphics* gfx1, Writer* wrt1)
 {
 	time = 0.0f;
 	increment = 0.1f;
 	gfx = gfx1;
+	wrt = wrt1;
 	loading = true;
 	currentLevel = nullptr;
 }
@@ -26,7 +29,7 @@ void GameController::LoadInitialLevel(GameLevel* level)
 {
 	loading = true;
 	currentLevel = level;
-	currentLevel->Load(gfx);
+	currentLevel->Load(gfx,wrt);
 	loading = false;
 
 }
@@ -55,7 +58,7 @@ void GameController::Pause()
 	
 }
 
-void GameController::Play(Graphics* gfx)
+void GameController::Play(Graphics* gfx, Writer* wrt1)
 {
 	if (gfx == nullptr) return;
 
@@ -66,16 +69,16 @@ void GameController::Play(Graphics* gfx)
 
 	
 	GameController::Update();
-	GameController::Render(gfx);
+	GameController::Render(gfx,wrt);
 	}
 }
 
-void GameController::Render(Graphics* gfx)
+void GameController::Render(Graphics* gfx, Writer* wrt1)
 {
 
 	if (loading) return;
 	time += increment;
-	currentLevel->Render(gfx);
+	currentLevel->Render(gfx, wrt);
 }
 
 void GameController::PUpdate()

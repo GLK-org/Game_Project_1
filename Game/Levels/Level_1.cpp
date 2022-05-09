@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "Level_control/GameController.h"
 #include "windowsx.h"
-#include <vector>
+
 
 Level1::Level1() {
 }
@@ -15,27 +15,30 @@ char Level1::GetID()
 	return id;
 }
 
-void Level1::Load(Graphics* gfx) {
+void Level1::Load(Graphics* gfx, Writer* wrt) {
 
 	for (int i = 0; i < 6; i++) {
-		postab[i].x = 30+200*i;
-		postab[i].y = 30 + 100 *i;
-		
+		postab[i].x = 30 + 200 * i;
+		postab[i].y = 30 + 100 * i;
+
 	}
 	floorx = 682.5f;
 	floory = 700.0f;
-	width=1365;
-	height = 100;
+	width = WNDWIDTH - 1.0f;
+	height = WNDHEIGHT - 0.9 * WNDHEIGHT;
 	player = new Player(gfx, 200.0f, 500.0f, 50.0f, 100.0f, 50.0f);
 	points = 0;
-	x =  0.0f;
+	x = 0.0f;
 	xSpeed = 10.0f;
-	y =0.0f;
-	ySpeed = 10.0f;
+	y = 0.0f;
+	ySpeed = -10.0f;
 	mode = false;
 	GetCursorPos(&p);
-	eli = new Eli(this->x, this->y,50.0f,40.0f,52.0f, gfx);
+	eli = new Eli(this->x, this->y, 50.0f, 40.0f, 52.0f, gfx);
 	D2D1_POINT_2F point = postab[rand() % 6];
+	text_boxes.insert( { std::string("Goal"), D2D1::RectF(5, WNDHEIGHT - 110, 155, WNDHEIGHT - 10)});
+	text_boxes.insert({ std::string("Points"), D2D1::RectF(5, 5, 155, 105) });
+	text_boxes.insert({ std::string("Time"), D2D1::RectF(WNDWIDTH-175, 5, WNDWIDTH-35, 105) });
 	goal.push_back(new Eli(point.x,point.y, 50.0f, 40.0f, 52.0f, gfx));
 	buttons[0] = new Recta(682.5f, 600.0f, 666.0f,50.f, gfx);
 	buttons[1] = new Recta(floorx, floory, width,height, gfx);
@@ -45,6 +48,7 @@ void Level1::Load(Graphics* gfx) {
 	asc = true;
 	r = g = b = 0;
 //	reci.hookEvent(&ev);
+
 }
 
 void Level1::AddObj(SHORT key)
@@ -58,9 +62,10 @@ void Level1::Unload() {
 	for (int i = 0; i < 2; i++) {
 		delete buttons[i];
 	}
+	delete doors;
 }
 
-void Level1::Render(Graphics* gfx)
+void Level1::Render(Graphics* gfx, Writer* wrt)
 {
 		r = log(change + 0.24)+1;
 		g = log(-change + 0.175)+1;
@@ -103,6 +108,19 @@ void Level1::Render(Graphics* gfx)
 			change -= 0.02;
 		
 	}
+	for (const auto& [key, value] : text_boxes) {
+		
+		if (key == "Points") {
+			wrt->Draw_Text(key + ": " +std::to_string(points), value);
+		}
+		 if (key == "Time") {
+			wrt->Draw_Text(key +": " + std::to_string((int)GameController::time / 60), value);
+		}
+		if (key == "Goal") {
+			wrt->Draw_Text(key + ": "+std::to_string(lvlgoal), value);
+		}
+	}
+	
 }
 
 
@@ -163,18 +181,21 @@ void Level1::Update() {
 		y = ySpeed;
 		x = xSpeed;
 		if (GetKeyState('A') & 0x8000) {
-			xSpeed -= 1.0f;
+			xSpeed -= 0.1f;
 		}
 		if (GetKeyState('D') & 0x8000) {
-			xSpeed += 1.0f;
+			xSpeed += 0.1f;
 		}if (GetKeyState('W') & 0x8000) {
-			ySpeed -= 1.0f;
+			ySpeed -= 0.1f;
 		}
 		if (GetKeyState('S') & 0x8000) {
-			ySpeed += 1.0f;
+			ySpeed += 0.1f;
 		}
 		if (GetKeyState('L') & 0x8000) {
 			eli->ToggleDebug();
+		}
+		if (GetKeyState('H') & 0x8000) {
+			eli->Getpshx().ClearSpeed();
 		}
 		float peek = eli->EGetPoint(0.0f).y;
 		OutputDebugStringA(MakeLPCSTR({ &peek }));
@@ -220,10 +241,7 @@ void Level1::Update() {
 		this->eli->Update(p);
 	}
 	else {
-		if (ySpeed > VERY_FAST)ySpeed = VERY_FAST;
-		else if (ySpeed < -VERY_FAST)ySpeed = - VERY_FAST;
-		if (xSpeed > VERY_FAST)xSpeed = VERY_FAST;
-		else if (xSpeed < -VERY_FAST)xSpeed = - VERY_FAST;
+
 		this->eli->Update(x, y);
 	}
 	

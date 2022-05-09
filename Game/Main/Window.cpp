@@ -1,6 +1,5 @@
 #include "..\Game\pch\pch.h"
 #include "Level_control\GameController.h"
-
 WCHAR		WindowClass[MAX_NAME_STRING];
 WCHAR		WindowTitle[MAX_NAME_STRING];
 
@@ -8,6 +7,7 @@ INT			WindowHeight;
 INT			WindowWidth;
 
 Graphics* graphics;
+Writer * writer;
 LRESULT CALLBACK WindowProcess(HWND hWnd, UINT message, WPARAM wparam, LPARAM lparam) {
 
 	switch (message) {
@@ -41,8 +41,8 @@ int CALLBACK WinMain(HINSTANCE, HINSTANCE, LPSTR, INT) {
 	wcscpy_s(WindowClass, TEXT("TutorialOneClass"));
 	wcscpy_s(WindowTitle, TEXT("TutorialOneTitle"));
 
-	WindowWidth = 1366;
-	WindowHeight = 768;
+	WindowWidth = WNDWIDTH;
+	WindowHeight = WNDHEIGHT;
 	//Tworzenie i definiowanie w³aœciwoœci klasy okna
 
 	WNDCLASSEX wcex;
@@ -87,8 +87,16 @@ int CALLBACK WinMain(HINSTANCE, HINSTANCE, LPSTR, INT) {
 		delete graphics;
 		return -1;
 	}
-	GameController::Init(graphics);
+	writer = new Writer();
+
+	if (writer->Initialize(graphics->getFac(), graphics->getRTg()) != S_OK) {
+		delete writer;
+		return -1;
+	}
+
+	GameController::Init(graphics,writer);
 	//Wyœwietlanie okna i ³adowanie wstêpnego poziomu
+	
 	ShowWindow(hWnd, SW_SHOW);
 	Menu* m = new Menu();
 	GameController::LoadInitialLevel(new Level1());
@@ -97,7 +105,6 @@ int CALLBACK WinMain(HINSTANCE, HINSTANCE, LPSTR, INT) {
 
 	//Definiowanie pustej zmiennej msg (Tak, ten format zdaje siê konieczny, do research'u)
 	MSG msg = { 0 };
-
 	//Nas³uchiwanie 
 	while (msg.message != WM_QUIT) {
 
@@ -108,16 +115,16 @@ int CALLBACK WinMain(HINSTANCE, HINSTANCE, LPSTR, INT) {
 		else {
 			
 			
-			if (GetKeyState('2') & 0x8000) {
+			if (GetKeyState('2') & KEY_PRESSED) {
 				GameController::SwitchLevel(new Level2());
 			}
-			else if (GetKeyState('1') & 0x8000) {
+			else if (GetKeyState('1') & KEY_PRESSED) {
 				GameController::SwitchLevel(new Level1());
 			}
-			else if (GetKeyState('3') & 0x8000) {
+			else if (GetKeyState('3') & KEY_PRESSED) {
 				GameController::SwitchLevel(new Level3());
 			}
-			else if (GetKeyState(VK_ESCAPE) & 0x8000) {
+			else if (GetKeyState(VK_ESCAPE) & KEY_PRESSED) {
 				GameController::paused = !GameController::paused;
 			}
 			//Render:
@@ -129,5 +136,6 @@ int CALLBACK WinMain(HINSTANCE, HINSTANCE, LPSTR, INT) {
 	}
 
 	delete graphics;
+	delete writer;
 	return 0;
 }

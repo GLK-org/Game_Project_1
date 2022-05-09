@@ -12,9 +12,11 @@ class Obj {
 	bool istriggered;
 	
 public:
-	bool debugmode = false;
+
+	bool debugmode = true;
 	phsxObj* phsx;
 	float ttl;
+
 	Obj(float x, float y) : posx(x), posy(y) {
 
 		ttl = 0.0f;
@@ -23,9 +25,9 @@ public:
 
 	};
 	
-	float GetX() { return posx; };
-	float GetY() { return posy; };
-	bool GetTrig() { return istriggered; };
+	float GetX() const { return posx; };
+	float GetY() const { return posy; };
+	bool GetTrig() const { return istriggered; };
 	void SetX(float x) {posx=x; };
 	void SetY(float y) {posy=y; };
 	void SetTrig(bool t) { istriggered=t; };

@@ -15,51 +15,49 @@ VelocVect::VelocVect(D2D1_POINT_2F& e) {
 	angle.x = angle.y = 0.0f;
 }
 
-void VelocVect::UpdateLoc(const D2D1_POINT_2F& v_0) {
-		this->v_0.x += v_0.x;
-		this->v_0.y += v_0.y;
-	
-}
 
-void VelocVect::Length(const D2D1_POINT_2F& v_0, float lim)
+
+float VelocVect::Length(const D2D1_POINT_2F& vAdd, const D2D1_POINT_2F& center, float lim)
  {
- float Diffx = this->v_0.x;
- float Diffy =  this->v_0.y;
+ float Diffx = v_0.x-center.x;
+ float Diffy =  v_0.y-center.y;
  float res = sqrt((pow(Diffx, 2.0) + pow(Diffy, 2.0)));
- if (res > lim) {
-	 len = lim;
-	 return;
- }
- else {
-	 len = res;
-	 return;
- }
-	
-
+ if (res >= lim) {
+	 return lim;
 	}
+	 return res;
+	}
+
 void VelocVect::Angle(const D2D1_POINT_2F& origin) {
 	//Zmienne ¿eby po prostu wygodniej by³o wpisywaæ wspó³rzêdne
-	float Diffx = (this->v_0.x-origin.x)*std::numbers::pi;
-	float Diffy = (this->v_0.y-origin.y) * std::numbers::pi;
-	
-	if (Diffx > 90.0f ) {
-		Diffx = 90.0f * std::numbers::pi;
-		
-	}
-	else if (Diffx < -90.0f) {
-		Diffx = -90.0f * std::numbers::pi;
-	}
-	if (abs(Diffy) > 180.0f && signbit(Diffy)==true) {
-		Diffy = 180.0f * std::numbers::pi;
-
-	}
-	else if (abs(Diffy) > 180.0f && signbit(Diffy)==false) {
-           Diffy = 0.0f * std::numbers::pi;
-	}
-
-	angle.x =  sin(Diffx/ 180.0);
-	angle.y = cos(Diffy/ 180.0);
+	float Diffx = (this->v_0.x - origin.x);
+	float Diffy = (this->v_0.y - origin.y);
+	float m = 10.0;
+	angle.x =  atan((1/m)*Diffx);
+	angle.y =  atan((1/m)*Diffy);
 //	OutputDebugStringA(MakeLPCSTR( &angle.y ));
+}
+
+void VelocVect::UpdateLoc(const D2D1_POINT_2F& vAdd, const D2D1_POINT_2F& center, float lim) {
+
+	float tempx, tempy;
+	tempx = this->v_0.x + vAdd.x;
+	tempy = this->v_0.y + vAdd.y;
+	D2D1_POINT_2F et(tempx, tempy);
+	float test = Length(et,center,lim);
+	if (0 <= test && test <= lim) {
+
+		this->v_0.x += vAdd.x;
+		this->v_0.y += vAdd.y;
+		len = test;
+		Angle(center);
+	}
+	
+	//len = Length(v_0,center, FAST);
+	
+	
+
+	
 }
 
 void Sq(POINT& result, double limit) {
@@ -89,4 +87,16 @@ double Angle(const D2D1_POINT_2F& v_0, const D2D1_POINT_2F& v_1, const D2D1_POIN
 				/
 				bot );
 	return angle;
+}
+
+float ENGINE_API LLength(const POINT& v_0, const POINT& center, float lim)
+{
+	float Diffx = v_0.x - center.x;
+	float Diffy = v_0.y - center.y;
+	float res = sqrt((pow(Diffx, 2.0) + pow(Diffy, 2.0)));
+	if (res >= lim) {
+		return lim;
+	}
+	return res;
+
 }

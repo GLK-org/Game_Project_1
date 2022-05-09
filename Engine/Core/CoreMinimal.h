@@ -13,9 +13,11 @@ class ENGINE_API Graphics {
 	ID2D1HwndRenderTarget* rendertarget;
 
 public:
+
 	Graphics();
 	~Graphics();
-	
+	ID2D1Factory* getFac() { return factory; }
+	ID2D1RenderTarget& getRTg() { return *rendertarget; }
 	bool Init(HWND windowHandle);
 	void BeginDraw() { rendertarget->BeginDraw(); }
 	void EndDraw() { rendertarget->EndDraw(); }
@@ -23,8 +25,9 @@ public:
 	void DrawEllipse(D2D1_ELLIPSE * eli, float r, float g, float b, float a);
 	void DrawRect(D2D1_RECT_F* rect, float r, float g, float b, float a);
 	void FillRect(D2D1_RECT_F* rect, float e[] = {0});
-	void DrawLine(D2D1_POINT_2F p1, D2D1_POINT_2F p2, float length, float r = 0.0f, float g = 0.0f, float b = 0.0f, float a = 1.0f);
-	void DrawLine(D2D1_POINT_2F p1, D2D1_POINT_2F p2, float r=0.0f, float g = 0.0f, float b = 0.0f, float a = 1.0f);
+	void DrawLine(D2D1_POINT_2F& p1, D2D1_POINT_2F& p2, float length, D2D1_POINT_2F& angle, float r = 0.0f, float g = 0.0f, float b = 0.0f, float a = 1.0f);
+	void DrawLine(D2D1_POINT_2F& p1, D2D1_POINT_2F& p2, float length, float r = 0.0f, float g = 0.0f, float b = 0.0f, float a = 1.0f);
+	void DrawLine(D2D1_POINT_2F& p1, D2D1_POINT_2F& p2, float r=0.0f, float g = 0.0f, float b = 0.0f, float a = 1.0f);
 	void CreateEllipseGeometry(D2D1_ELLIPSE * eli, ID2D1EllipseGeometry ** ElipseGeo);
 	HRESULT LoadBMP(
 		ID2D1RenderTarget* pRenderTarget,

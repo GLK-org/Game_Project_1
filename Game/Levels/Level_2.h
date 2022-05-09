@@ -24,11 +24,11 @@ class Level2 : public GameLevel {
 	float ySpeed, xSpeed;
 	double wind;
 public:
-	void Load(Graphics* gfx=nullptr) override;
+	void Load(Graphics* gfx=nullptr, Writer* wrt = nullptr) override;
 	char GetID() override;
 	void AddObj(SHORT key=0) override;
 	void Unload() override;
-	void Render(Graphics* gfx = nullptr) override;
+	void Render(Graphics* gfx = nullptr, Writer* wrt = nullptr) override;
 	void Update() override;
 
 };

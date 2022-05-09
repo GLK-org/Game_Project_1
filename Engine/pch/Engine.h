@@ -15,6 +15,9 @@
 #else
 #define ENGINE_API _declspec(dllimport)
 #endif
-
+#define WNDHEIGHT 768.0f
+#define WNDWIDTH 1366.0f
+#define KEY_PRESSED 0x8000
 #define MAX_NAME_STRING 256
+
 #define HInstance() GetModuleHandle(NULL)

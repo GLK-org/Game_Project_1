@@ -45,7 +45,7 @@ public:
 	}
 
 	void DrawVelocityVect(Graphics* gfx) {
-		gfx->DrawLine(eli.point, this->phsx->vVect->v_0, this->phsx->vVect->len, 0.2f, 0.3f, 0.4f, 1.0f);
+		gfx->DrawLine(eli.point, this->phsx->vVect->v_0, this->phsx->vVect->len, this->phsx->vVect->angle, 0.2f, 0.3f, 0.4f, 1.0f);
 	};
 
 	phsxObj& Getpshx() {
@@ -57,7 +57,7 @@ public:
 			return;
 		}
 		gfx->DrawBG(eli.point, tab);
-	}
+	};
 
 	void Render(Graphics* gfx, float r, float g, float b, float a) override {
 
@@ -65,6 +65,7 @@ public:
 		//	gfx->DrawCircle(Eli::GetX(), Eli::GetY(), r, 1.0f, 0.0f, 0.0f, 1.0f);
 		if(debugmode==true)DrawVelocityVect(gfx);
 	};
+
 	void Fill(Graphics* gfx, float e[] = { 0 }) override {};
 	bool CheckTrigg(const POINT& p) override {
 		if (p.x >= (eli.point.x - eli.radiusX / 2) && p.x <= (eli.point.x + eli.radiusX / 2)) {
@@ -76,6 +77,7 @@ public:
 		this->SetTrig(false);
 		return this->GetTrig();
 	};
+
 	bool CheckTrigg(const D2D1_POINT_2F& p) override {
 		if (p.x >= (eli.point.x - eli.radiusX / 2) && p.x <= (eli.point.x + eli.radiusX / 2)) {
 			if (p.y >= (eli.point.y - eli.radiusY / 2) && p.y <= (eli.point.y + eli.radiusY / 2)) {
@@ -85,22 +87,26 @@ public:
 		}
 		this->SetTrig(false);
 		return this->GetTrig();
+
 	};
+
 	void Update(POINT& p) override {
 		this->CheckTrigg(p);
-		
-		
+
+
 		eli.point.x = this->GetSetX(p.x);
 		eli.point.y = this->GetSetY(p.y);
 
-	}
+	};
 
 	void Update(float x=0, float y=0) override {
 		this->ttl += GameController::increment * 1.0f;
 
 		if (phsx!=nullptr) {
 			phsx->LinAccelerate(this->eli.point, x, y);
-			phsx->PhsxUpdate(this->eli.point, FAST);
+			phsx->PhsxUpdate(this->eli.point,ttl);
+			this->SetX(eli.point.x);
+			this->SetY(eli.point.y);
 		}
 		
 		//updatetrigger
@@ -134,6 +140,7 @@ public:
 	}*/
 	~Eli() {
 	}
+
 };
 
 class Recta : public Obj {
@@ -143,10 +150,13 @@ class Recta : public Obj {
 
 public:
 	Recta(float x, float y, float width, float height, Graphics* gfx, bool phs = true) : Obj(x, y) {
+		
 		if (width == NULL || height == NULL ) {
 			Recta::Obj::~Obj();
 		}
+
 		//Powtórzone informacje, mog¹ siê przydaæ ale zobaczymy
+
 		this->bmp = nullptr;
 		this->rec = { 0 };
 		this->center = { 0 };
@@ -161,6 +171,7 @@ public:
 		if(phs) phsx = new phsxObj(center, FAST);
 		
 	};
+
 	void UpdateCenter(float x, float y) {
 		//KOORDYNATY CENTRUM PROSTOK¥TA NIE MOG¥ BYÆ UJEMNE
 		if (signbit(x) == true || signbit(y) == true) return;
@@ -178,14 +189,14 @@ public:
 
 		return true;
 
-	}
+	};
 	void Transform(Graphics* gfx, float tab[2]) override {
 
 		if (tab == nullptr || (sizeof(tab) / sizeof(*tab)) < 2) {
 			return;
 		}
 		//gfx->DrawBG(rec.point, tab);
-	}
+	};
 	void Render(Graphics* gfx, float r, float g, float b, float a) override {
 
 		gfx->DrawRect(&rec, 0.4f, 0.8f, 0.6f, 0.7f);
@@ -221,7 +232,8 @@ public:
 		return this->GetTrig();
 	};
 	void DrawVelocityVect(Graphics* gfx) {
-		gfx->DrawLine(center, phsx->vVect->v_0, phsx->vVect->len, 0.2f, 0.3f, 0.4f, 1.0f);
+		if(phsx)
+		gfx->DrawLine(center, phsx->vVect->v_0, phsx->vVect->len, phsx->vVect->angle, 0.2f, 0.3f, 0.4f, 1.0f);
 	}; 
 
 	void Update(POINT& p) override {
@@ -248,9 +260,11 @@ public:
 			rec.right += x;
 
 		*/
+
 		if (phsx != nullptr) {
+			//Do something here, something with making next input a modulated previous result
 			phsx->LinAccelerate(center, x, y);
-			phsx->PhsxUpdate(center);
+			phsx->PhsxUpdate(center,ttl);
 			rec.bottom = 2 * center.y;
 			rec.top = rec.bottom - center.y;
 			rec.right = 2 * center.x;

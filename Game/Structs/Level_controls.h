@@ -34,13 +34,16 @@ struct Player {
 
 		}
 		else {
+
 			character->Render(gfx, r, g, b, a);
+
 		}
 	}
 	bool CheckPoint() {
 
 		float x = character->EGetPoint(0.0f).x;
 		float y = character->EGetPoint(0.0f).y;
+
 		if (targetloc.x < x && x - targetloc.x>2.0f) {
 			return false;
 			//przesuñ w lewo
@@ -115,7 +118,7 @@ struct Player {
 				if (p.y >= limit[0][1] && p.y <= limit[1][1]) {
 
 
-					if (GetKeyState(RI_MOUSE_LEFT_BUTTON_DOWN) & 0x8000) {
+					if (GetKeyState(RI_MOUSE_LEFT_BUTTON_DOWN) & KEY_PRESSED) {
 						this->SetPoint(p);
 						this->speed++;
 						this->speed %= 5;
@@ -125,7 +128,7 @@ struct Player {
 		}
 		else {
 
-			if (GetKeyState(RI_MOUSE_LEFT_BUTTON_DOWN) & 0x8000) {
+			if (GetKeyState(RI_MOUSE_LEFT_BUTTON_DOWN) & KEY_PRESSED) {
 				this->SetPoint(p);
 				this->speed++;
 				this->speed %= 5;
@@ -200,13 +203,13 @@ public:
 		}
 
 		if (left->CheckTrigg(p) && prev != nullptr && lopen==true) {
-			if (GetKeyState(RI_MOUSE_LEFT_BUTTON_DOWN) & 0x8000) {
+			if (GetKeyState(RI_MOUSE_LEFT_BUTTON_DOWN) & KEY_PRESSED) {
 				GameController::SwitchLevel(prev);
 				return true;
 			}
 		}
 		if (right->CheckTrigg(p) && next != nullptr && ropen == true) {
-			if (GetKeyState(RI_MOUSE_LEFT_BUTTON_DOWN) & 0x8000) {
+			if (GetKeyState(RI_MOUSE_LEFT_BUTTON_DOWN) & KEY_PRESSED) {
 				GameController::SwitchLevel(next);
 				return true;
 			}
@@ -230,7 +233,7 @@ public:
 			return false;
 		}
 		if (left->CheckTrigg(p) && prev!=nullptr && lopen == true) {
-			if (GetKeyState(RI_MOUSE_LEFT_BUTTON_DOWN) & 0x8000) {
+			if (GetKeyState(RI_MOUSE_LEFT_BUTTON_DOWN) & KEY_PRESSED) {
 					if (lambda(player.character->EGetPoint(0.0f).x, left->GetX())) {
 						GameController::SwitchLevel(prev);
 						return true;
@@ -240,7 +243,7 @@ public:
 			}
 		}
 		if (right->CheckTrigg(p) && next != nullptr && ropen == true) {
-			if (GetKeyState(RI_MOUSE_LEFT_BUTTON_DOWN) & 0x8000) {
+			if (GetKeyState(RI_MOUSE_LEFT_BUTTON_DOWN) & KEY_PRESSED) {
 					if (lambda(right->GetX(), player.character->EGetPoint(0.0f).x) ) {
 						GameController::SwitchLevel(next);
 						return true;

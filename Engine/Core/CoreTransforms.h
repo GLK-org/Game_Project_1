@@ -2,6 +2,7 @@
 #include "CoreMinimal.h"
 #include <math.h>
 #include <numbers>
+
 #define TURBO 10.f
 #define VERY_FAST 8.0f
 #define FAST 6.0f
@@ -15,11 +16,12 @@ struct ENGINE_API VelocVect {
 	float len;
 	VelocVect();
 	VelocVect(D2D1_POINT_2F& e);
-	void UpdateLoc(const D2D1_POINT_2F& v_0);
-	void Length(const D2D1_POINT_2F& v_0, float lim);
+	void UpdateLoc(const D2D1_POINT_2F& v_0, const D2D1_POINT_2F& center, float lim=MEDIUM_FAST);
+	float Length(const D2D1_POINT_2F& v_0, const D2D1_POINT_2F& center, float lim);
 	void Angle(const D2D1_POINT_2F& v_0 = { 0 });
 
 };
 
+float ENGINE_API LLength(const POINT& v_0, const POINT& center, float lim);
 void ENGINE_API Sq(const D2D1_POINT_2F& result, double limit);
-double ENGINE_API Angle(const D2D1_POINT_2F& v_0, const D2D1_POINT_2F& v_1, const D2D1_POINT_2F& v_2);
+double ENGINE_API AAngle(const D2D1_POINT_2F& v_0, const D2D1_POINT_2F& v_1, const D2D1_POINT_2F& v_2);

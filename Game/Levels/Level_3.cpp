@@ -16,7 +16,7 @@ char Level3::GetID()
 	return id;
 }
 
-void Level3::Load(Graphics* gfx) {
+void Level3::Load(Graphics* gfx, Writer* wrt) {
 	x = xSpeed = 0.0f;
 	y = ySpeed = 0.0f;
 	mode = false;
@@ -58,7 +58,7 @@ void Level3::Unload() {
 	
 }
 
-void Level3::Render(Graphics* gfx)
+void Level3::Render(Graphics* gfx, Writer* wrt)
 {
 	
 	gfx->ClearScreen(r,g, b);

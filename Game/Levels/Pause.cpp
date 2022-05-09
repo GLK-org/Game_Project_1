@@ -2,7 +2,7 @@
 #include "Pause.h"
 
 
-void PauseCl::Load(Graphics* gfx)
+void PauseCl::Load(Graphics* gfx, Writer* wrt)
 {
 //	buttons.push_back(new with(new Recta(100.0f, 300.0f, 500.0f, 200, 800, 280, gfx)));
 //	buttons.push_back(new with(new Recta(100.0f, 300.0f, 500.0f, 400, 800, 580, gfx)));
@@ -24,7 +24,7 @@ void PauseCl::AddObj(SHORT key)
 {
 }
 
-void PauseCl::Render(Graphics* gfx)
+void PauseCl::Render(Graphics* gfx, Writer* wrt)
 {
 	for (std::vector<with*>::iterator it = buttons.begin(); it != buttons.end(); ++it) {
 		float r, g, b;

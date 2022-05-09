@@ -5,7 +5,7 @@
 #include <math.h>
 #include <typeinfo>
 
-void Level2::Load(Graphics* gfx ) {
+void Level2::Load(Graphics* gfx, Writer* wrt) {
 	srand(time(NULL));
 	r = g = b = 0.0f;
 	inc = true;
@@ -26,6 +26,7 @@ char Level2::GetID()
 }
 
 void Level2::Unload() {
+	objects.clear();
 	delete doors;
 }
 
@@ -69,14 +70,14 @@ void Level2::AddObj(SHORT key ){
 		
 }
 
-void Level2::Render(Graphics* gfx)
+void Level2::Render(Graphics* gfx, Writer* wrt)
 {
 	gfx->ClearScreen(0.0f, 0.5f, 0.5f);
 	for (std::vector<Obj*>::iterator it = objects.begin(); it != objects.end(); ++it) {
 		if ((int)(GameController::time) % 2 == 0) {
 			r = sin((GameController::time *  std::numbers::pi) / 180);
 			g = cos((GameController::time * std::numbers::pi) / 180);
-			b = -tan((GameController::time * std::numbers::pi) / 180);
+			b = -atan((GameController::time * std::numbers::pi) / 180);
 		}
 		
 		(*it)->Render(gfx, r, g, b, 1);
@@ -93,15 +94,15 @@ void Level2::Update() {
 
 	this->AddObj(); 
 	for (std::vector<Obj*>::iterator it = objects.begin(); it != objects.end(); ++it) {
-		y = log2((double)(*it)->ttl + ySpeed*100.0);
-		x =  20.0*sin((double)(*it)->ttl * (90-(rand()%180) * std::numbers::pi)  / 180.0);
+		y = log2((double)(*it)->ttl + ySpeed*10.0);
+		x =   20.0 * sin((double)(*it)->ttl * (90 - (rand() % 180) * std::numbers::pi) / 180.0);
 		
 	
 	if (GetKeyState('A')) {
-		xSpeed += 0.1f;
+		xSpeed += 10.0f;
 	}
 	else if (GetKeyState('D')) {
-		xSpeed -= 0.1f;
+		xSpeed -= 10.0f;
 	}
 	float peek = (*it)->GetY();
 	if ((*it)->GetY() > 768.0) {

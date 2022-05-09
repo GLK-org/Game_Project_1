@@ -13,9 +13,9 @@ public:
 	Level6();
 	virtual ~Level6();
 	char GetID() override;
-	void Load(Graphics* gfx) override;
+	void Load(Graphics* gfx, Writer* wrt=nullptr) override;
 	void AddObj(SHORT key = 0) override;
 	void Unload() override;
-	void Render(Graphics* gfx = nullptr) override;
+	void Render(Graphics* gfx = nullptr, Writer* wrt = nullptr) override;
 	void Update() override;
 };

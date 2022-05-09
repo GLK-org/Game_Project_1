@@ -13,7 +13,7 @@ char Level5::GetID()
 	return id;
 }
 
-void Level5::Load(Graphics* gfx)
+void Level5::Load(Graphics* gfx, Writer* wrt)
 {
 	doors = new Doors(gfx, new Level4(), new Level6());
 	r = g = b = 0.6f;
@@ -27,7 +27,7 @@ void Level5::Unload()
 {
 }
 
-void Level5::Render(Graphics* gfx)
+void Level5::Render(Graphics* gfx, Writer* wrt)
 {
 	gfx->ClearScreen(r, g, b);
 	doors->Render(gfx, p, r, 0.1f + g, b, a);

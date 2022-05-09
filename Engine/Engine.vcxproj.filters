@@ -28,9 +28,6 @@
     <Filter Include="Pliki źródłowe\Engine_pch">
       <UniqueIdentifier>{f3ef8480-c2bb-4636-b864-df746958df93}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Pliki źródłowe\Core\Functions">
-      <UniqueIdentifier>{875dc02a-9615-464d-9ed7-06c319f6d021}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Pliki źródłowe\Event_system">
       <UniqueIdentifier>{256e3f3c-f7be-47fa-9118-eccd1ae8f50b}</UniqueIdentifier>
     </Filter>
@@ -62,6 +59,9 @@
     </ClCompile>
     <ClCompile Include="Event_system\Handler\Handler.cpp">
       <Filter>Pliki źródłowe\Event_system\Handler</Filter>
+    </ClCompile>
+    <ClCompile Include="Core.cpp">
+      <Filter>Pliki źródłowe\Core\Private</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -97,6 +97,9 @@
     </ClInclude>
     <ClInclude Include="Event_system\Sources\EVLevel1.h">
       <Filter>Pliki źródłowe\Event_system\Sources</Filter>
+    </ClInclude>
+    <ClInclude Include="Core.h">
+      <Filter>Pliki źródłowe\Core\Public</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
