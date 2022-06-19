@@ -132,7 +132,7 @@ int CALLBACK WinMain(HINSTANCE, HINSTANCE, LPSTR, INT) {
 		else {
 			
 
-			
+			/*
 			if (GetKeyState('2') & KEY_PRESSED) {
 				GameController::SwitchLevel(new Level2());
 			}
@@ -149,7 +149,7 @@ int CALLBACK WinMain(HINSTANCE, HINSTANCE, LPSTR, INT) {
 			else if (GetKeyState('5') & KEY_PRESSED) {
 				audioc->PlayAudio();
 
-			}
+			}*/
 			if (GameController::exit == true) {
 				break;
 			}
