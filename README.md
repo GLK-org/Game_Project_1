@@ -1,12 +1,5 @@
 # G_BudowanieWarstw
 
-Aktualnie opracowywane funkcje:
+Brakująca funkcja:
 
-- Struktura z warstwami interakcji
-    + rozpoczęta, potrzeba przemyślenia modelu przed implementacją
-
-- Rysowanie dowolnych prymitywów.
-    + pierwsza wersja wykonana dla elips, prostokątów 
-
-- Skalowanie
-    + do wykonania dostępnymi funkcjami D2D1 na macierzach
+- działający kontroler audio oferujący asynchroniczne i jednoczesne odtwarzanie kilku strumieni z pamięci (w trakcie)
