@@ -1,9 +1,6 @@
-# Game_Project_1
+# G_BudowanieWarstw
 
-Aktualny cel na master:
+Brakująca funkcja:
 
-Model budowania warstw,
+- działający kontroler audio oferujący asynchroniczne i jednoczesne odtwarzanie kilku strumieni z pamięci (w trakcie)
 
-Model podstawowych typów interakcji z obiektami klasy Object niezależny od logiki poziomu,
-
-Metody na zgrabniejsze umieszczanie obieków,

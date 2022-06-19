@@ -30,27 +30,27 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
     <CLRSupport>false</CLRSupport>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -80,6 +80,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)</OutDir>
+    <PublicIncludeDirectories>$(OutDir)\Audio;$(OutDir)\Artworks;$(PublicIncludeDirectories)</PublicIncludeDirectories>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -117,22 +119,19 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
- G_BudowanieWarstw
-      <AdditionalIncludeDirectories>$(LocalDebuggerWorkingDirectory)Game\Levels;$(LocalDebuggerWorkingDirectory)Game\Main;$(LocalDebuggerWorkingDirectory)Game\Structs;$(LocalDebuggerWorkingDirectory)Game\pch;$(LocalDebuggerWorkingDirectory)Engine;</AdditionalIncludeDirectories>
-=======
-      <AdditionalIncludeDirectories>$(LocalDebuggerWorkingDirectory)Engine;$(LocalDebuggerWorkingDirectory)Game\pch;$(LocalDebuggerWorkingDirectory)Game\Structs;$(LocalDebuggerWorkingDirectory)Game\Main;$(LocalDebuggerWorkingDirectory)Game\Levels;</AdditionalIncludeDirectories>
- master
+      <AdditionalIncludeDirectories>$(SolutionDir);$(LocalDebuggerWorkingDirectory)Engine\Others;$(LocalDebuggerWorkingDirectory)Game\Levels;$(LocalDebuggerWorkingDirectory)Game\Main;$(LocalDebuggerWorkingDirectory)Game\Cutscenes;$(LocalDebuggerWorkingDirectory)Game\Structs;$(LocalDebuggerWorkingDirectory)Game\pch;$(LocalDebuggerWorkingDirectory)Engine\Core;$(LocalDebuggerWorkingDirectory)Engine\Event_system;$(LocalDebuggerWorkingDirectory)Engine;$(LocalDebuggerWorkingDirectory)Engine\Level_controller;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ConformanceMode>false</ConformanceMode>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <Version>1,5</Version>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -147,7 +146,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
-      <AdditionalIncludeDirectories>$(LocalDebuggerWorkingDirectory)Game\Levels;$(LocalDebuggerWorkingDirectory)Game\Main;$(LocalDebuggerWorkingDirectory)Game\Structs;$(LocalDebuggerWorkingDirectory)Game\pch;$(LocalDebuggerWorkingDirectory)Engine;$(LocalDebuggerWorkingDirectory)Engine;$(LocalDebuggerWorkingDirectory)Game\pch;$(LocalDebuggerWorkingDirectory)Game\Structs;$(LocalDebuggerWorkingDirectory)Game\Main;$(LocalDebuggerWorkingDirectory)Game\Levels;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(LocalDebuggerWorkingDirectory)Engine\Level_controller;$(LocalDebuggerWorkingDirectory)Game\Levels;$(LocalDebuggerWorkingDirectory)Game\Main;$(LocalDebuggerWorkingDirectory)Game\Structs;$(LocalDebuggerWorkingDirectory)Game\pch;$(LocalDebuggerWorkingDirectory)Engine\Core;$(LocalDebuggerWorkingDirectory)Engine\Event_system;$(LocalDebuggerWorkingDirectory)Game\Item_system;$(LocalDebuggerWorkingDirectory)Engine</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -160,13 +159,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Game\Item_system\Item_system.cpp" />
     <ClCompile Include="Game\Levels\Level_1.cpp">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Game\Levels\Level_2.cpp">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Game\Levels\Level_3.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Game\Levels\Level_4.cpp" />
+    <ClCompile Include="Game\Levels\Menu.cpp" />
+    <ClCompile Include="Game\Levels\Pause.cpp" />
     <ClCompile Include="Game\Main\Window.cpp">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">../Game/pch/pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\Game\pch\pch.h</PrecompiledHeaderFile>
@@ -177,21 +185,86 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Game\Structs\Level_controls.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Game\Structs\Obj.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Game\Structs\Primitives.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Engine\Others\Converter.h" />
+    <ClInclude Include="Game\Cutscenes\Intro.h" />
+    <ClInclude Include="Game\Cutscenes\Outro.h" />
+    <ClInclude Include="Game\Item_system\Item_system.h" />
     <ClInclude Include="Game\Levels\Level_1.h" />
     <ClInclude Include="Game\Levels\Level_2.h" />
+    <ClInclude Include="Game\Levels\Level_3.h" />
+    <ClInclude Include="Game\Levels\Level_4.h" />
+    <ClInclude Include="Game\Levels\Level_includes.h" />
+    <ClInclude Include="Game\Levels\Menu.h" />
+    <ClInclude Include="Game\Levels\Pause.h" />
     <ClInclude Include="Game\pch\pch.h" />
+    <ClInclude Include="Game\Structs\Items.h" />
+    <ClInclude Include="Game\Structs\Level_controls.h" />
     <ClInclude Include="Game\Structs\Obj.h" />
-    <ClInclude Include="resource.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="Game_engine_1.rc" />
+    <ClInclude Include="Game\Structs\Phys_obj.h" />
+    <ClInclude Include="Game\Structs\Primitives.h" />
+    <ClInclude Include="resources\resource.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Engine\Engine.vcxproj">
       <Project>{9a45175a-b6af-4cd5-96f1-ae7a3d35d831}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="x64\Debug\Artworks\ActiveShield.png" />
+    <Image Include="x64\Debug\Artworks\Ball.png" />
+    <Image Include="x64\Debug\Artworks\Base.png" />
+    <Image Include="x64\Debug\Artworks\Basic_glass.png" />
+    <Image Include="x64\Debug\Artworks\Battery.png" />
+    <Image Include="x64\Debug\Artworks\Bg.png" />
+    <Image Include="x64\Debug\Artworks\Bg2.png" />
+    <Image Include="x64\Debug\Artworks\Bt.bmp" />
+    <Image Include="x64\Debug\Artworks\Bt.png" />
+    <Image Include="x64\Debug\Artworks\Button.png" />
+    <Image Include="x64\Debug\Artworks\Doors.png" />
+    <Image Include="x64\Debug\Artworks\Floor.png" />
+    <Image Include="x64\Debug\Artworks\Floory.png" />
+    <Image Include="x64\Debug\Artworks\Frame.png" />
+    <Image Include="x64\Debug\Artworks\Frame_1080.png" />
+    <Image Include="x64\Debug\Artworks\Generator.png" />
+    <Image Include="x64\Debug\Artworks\glass_overlay.png" />
+    <Image Include="x64\Debug\Artworks\Gravity.png" />
+    <Image Include="x64\Debug\Artworks\Gravity_gun.png" />
+    <Image Include="x64\Debug\Artworks\Gyro.png" />
+    <Image Include="x64\Debug\Artworks\Item_frame.png" />
+    <Image Include="x64\Debug\Artworks\Menu_bg.png" />
+    <Image Include="x64\Debug\Artworks\One_thingy.png" />
+    <Image Include="x64\Debug\Artworks\Operating.png" />
+    <Image Include="x64\Debug\Artworks\Outro_0.png" />
+    <Image Include="x64\Debug\Artworks\Outro_1.png" />
+    <Image Include="x64\Debug\Artworks\Outro_2.png" />
+    <Image Include="x64\Debug\Artworks\Panel_0.png" />
+    <Image Include="x64\Debug\Artworks\Panel_1.png" />
+    <Image Include="x64\Debug\Artworks\Panel_2.png" />
+    <Image Include="x64\Debug\Artworks\Panel_3.png" />
+    <Image Include="x64\Debug\Artworks\Pc.png" />
+    <Image Include="x64\Debug\Artworks\Shelf.png" />
+    <Image Include="x64\Debug\Artworks\Shield.png" />
+    <Image Include="x64\Debug\Artworks\Shield_effect.png" />
+    <Image Include="x64\Debug\Artworks\Title.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="x64\Debug\Audio\Click.wav" />
+    <Media Include="x64\Debug\Audio\Shield_effect.wav" />
+    <Media Include="x64\Debug\Audio\Song_Project.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="resource.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

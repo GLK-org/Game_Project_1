@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -29,27 +29,27 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
     <CLRSupport>false</CLRSupport>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -79,6 +79,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -89,6 +90,11 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>BUILD_DLL;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>Engine.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(LocalDebuggerWorkingDirectory)\pch;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -115,23 +121,18 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>BUILD_DLL;</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
+      <PreprocessorDefinitions>BUILD_DLL;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;</PreprocessorDefinitions>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>Create</PrecompiledHeader>
       <PrecompiledHeaderFile>Engine.h</PrecompiledHeaderFile>
- G_BudowanieWarstw
-      <AdditionalIncludeDirectories>$(LocalDebuggerWorkingDirectory)Core;$(LocalDebuggerWorkingDirectory)pch;$(LocalDebuggerWorkingDirectory)Level_control;$(SolutionDir)Game\Structs</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(LocalDebuggerWorkingDirectory)Others;$(LocalDebuggerWorkingDirectory)Core;$(LocalDebuggerWorkingDirectory)pch;$(LocalDebuggerWorkingDirectory)Event_system;$(LocalDebuggerWorkingDirectory)Level_controller;$(SolutionDir)Game\Structs;$(SolutionDir)Game\Cutscenes</AdditionalIncludeDirectories>
       <CompileAsManaged>false</CompileAsManaged>
-=======
-      
-master
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>d2d1.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Winmm.lib;Dwrite.lib;d2d1.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -146,7 +147,7 @@ master
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>Engine.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(LocalDebuggerWorkingDirectory)Core;$(LocalDebuggerWorkingDirectory)pch;$(LocalDebuggerWorkingDirectory)Level_control;$(LocalDebuggerWorkingDirectory)Core;$(LocalDebuggerWorkingDirectory)Level_control;$(LocalDebuggerWorkingDirectory)pch;$(LocalDebuggerWorkingDirectory)Level_control;$(LocalDebuggerWorkingDirectory)pch;$(LocalDebuggerWorkingDirectory)Core;%(AdditionalIncludeDirectories);$(LocalDebuggerWorkingDirectory)Core</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(LocalDebuggerWorkingDirectory)Core;$(LocalDebuggerWorkingDirectory)pch;$(LocalDebuggerWorkingDirectory)Event_system;$(LocalDebuggerWorkingDirectory)Level_control;$(LocalDebuggerWorkingDirectory)Core;$(LocalDebuggerWorkingDirectory)Level_control;$(LocalDebuggerWorkingDirectory)pch;$(LocalDebuggerWorkingDirectory)Level_control;$(LocalDebuggerWorkingDirectory)pch;$(LocalDebuggerWorkingDirectory)Core;%(AdditionalIncludeDirectories);$(LocalDebuggerWorkingDirectory)Core</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -157,26 +158,45 @@ master
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Core\Core.cpp" />
+    <ClCompile Include="Core\CoreAudio.cpp" />
     <ClCompile Include="Core\CoreMinimal.cpp">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Engine.h</PrecompiledHeaderFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Level_control\GameController.cpp" />
+    <ClCompile Include="Core\CoreTransforms.cpp" />
+    <ClCompile Include="Core\CoreWriter.cpp" />
+    <ClCompile Include="Core\CoreLogging.cpp" />
+    <ClCompile Include="Event_system\Handler\Cutscene_controller.cpp">
+      <ConformanceMode Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ConformanceMode>
+    </ClCompile>
+    <ClCompile Include="Event_system\Handler\Handler.cpp">
+      <ConformanceMode Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ConformanceMode>
+    </ClCompile>
+    <ClCompile Include="Level_controller\GameController.cpp" />
     <ClCompile Include="pch\Engine.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\resources\resource.h" />
+    <ClInclude Include="Core\Core.h" />
+    <ClInclude Include="Core\CoreAudio.h" />
+    <ClInclude Include="Core\CoreLogging.h" />
     <ClInclude Include="Core\CoreMinimal.h" />
-    <ClInclude Include="Level_control\GameController.h" />
-    <ClInclude Include="Level_control\GameLevel.h" />
+    <ClInclude Include="Core\CoreTransforms.h" />
+    <ClInclude Include="Core\CoreWriter.h" />
+    <ClCompile Include="Event_system\Sources\IEvSource.cpp">
+      <ConformanceMode Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ConformanceMode>
+    </ClCompile>
+    <ClInclude Include="Event_system\Sources\Cutscene_controller.h">
+      <ConformanceMode Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ConformanceMode>
+    </ClInclude>
+    <ClInclude Include="Event_system\Sources\Handler.h" />
+    <ClInclude Include="Event_system\Sources\IEvSource.h" />
+    <ClInclude Include="Level_controller\GameController.h" />
+    <ClInclude Include="Level_controller\GameLevel.h" />
     <ClInclude Include="pch\Engine.h" />
-    <ClInclude Include="resource.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="..\Game_engine_1\Content\Caffle.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

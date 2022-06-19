@@ -1,2 +1,4 @@
-//Ustawienia pe³ne
+#pragma once
 #include "Engine.h"
+#include "Core.h"
+

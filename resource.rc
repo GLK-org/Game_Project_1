@@ -1,0 +1,157 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resources/resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "winres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Polski (Polska) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_PLK)
+LANGUAGE LANG_POLISH, SUBLANG_DEFAULT
+#pragma code_page(1250)
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""winres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// PNG
+//
+
+IDB_PNG1                PNG                     "x64\\Debug\\Artworks\\ActiveShield.png"
+
+IDB_PNG2                PNG                     "x64\\Debug\\Artworks\\Ball.png"
+
+IDB_PNG3                PNG                     "x64\\Debug\\Artworks\\Base.png"
+
+IDB_PNG4                PNG                     "x64\\Debug\\Artworks\\Basic_glass.png"
+
+IDB_PNG5                PNG                     "x64\\Debug\\Artworks\\Battery.png"
+
+IDB_PNG6                PNG                     "x64\\Debug\\Artworks\\Bg.png"
+
+IDB_PNG7                PNG                     "x64\\Debug\\Artworks\\Bg2.png"
+
+IDB_PNG8                PNG                     "x64\\Debug\\Artworks\\Bt.png"
+
+IDB_PNG9                PNG                     "x64\\Debug\\Artworks\\Button.png"
+
+IDB_PNG10               PNG                     "x64\\Debug\\Artworks\\Doors.png"
+
+IDB_PNG11               PNG                     "x64\\Debug\\Artworks\\Floor.png"
+
+IDB_PNG12               PNG                     "x64\\Debug\\Artworks\\Floory.png"
+
+IDB_PNG13               PNG                     "x64\\Debug\\Artworks\\Frame.png"
+
+IDB_PNG14               PNG                     "x64\\Debug\\Artworks\\Frame_1080.png"
+
+IDB_PNG15               PNG                     "x64\\Debug\\Artworks\\Generator.png"
+
+IDB_PNG16               PNG                     "x64\\Debug\\Artworks\\glass_overlay.png"
+
+IDB_PNG17               PNG                     "x64\\Debug\\Artworks\\Gravity.png"
+
+IDB_PNG18               PNG                     "x64\\Debug\\Artworks\\Gravity_gun.png"
+
+IDB_PNG19               PNG                     "x64\\Debug\\Artworks\\Gyro.png"
+
+IDB_PNG20               PNG                     "x64\\Debug\\Artworks\\Item_frame.png"
+
+IDB_PNG21               PNG                     "x64\\Debug\\Artworks\\Menu_bg.png"
+
+IDB_PNG22               PNG                     "x64\\Debug\\Artworks\\One_thingy.png"
+
+IDB_PNG23               PNG                     "x64\\Debug\\Artworks\\Operating.png"
+
+IDB_PNG24               PNG                     "x64\\Debug\\Artworks\\Outro_0.png"
+
+IDB_PNG25               PNG                     "x64\\Debug\\Artworks\\Outro_1.png"
+
+IDB_PNG26               PNG                     "x64\\Debug\\Artworks\\Outro_2.png"
+
+IDB_PNG27               PNG                     "x64\\Debug\\Artworks\\Panel_0.png"
+
+IDB_PNG28               PNG                     "x64\\Debug\\Artworks\\Panel_1.png"
+
+IDB_PNG29               PNG                     "x64\\Debug\\Artworks\\Panel_2.png"
+
+IDB_PNG30               PNG                     "x64\\Debug\\Artworks\\Panel_3.png"
+
+IDB_PNG31               PNG                     "x64\\Debug\\Artworks\\Pc.png"
+
+IDB_PNG32               PNG                     "x64\\Debug\\Artworks\\Shelf.png"
+
+IDB_PNG33               PNG                     "x64\\Debug\\Artworks\\Shield.png"
+
+IDB_PNG34               PNG                     "x64\\Debug\\Artworks\\Shield_effect.png"
+
+IDB_PNG35               PNG                     "x64\\Debug\\Artworks\\Title.png"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_BITMAP1             BITMAP                  "x64\\Debug\\Artworks\\Bt.bmp"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// WAVE
+//
+
+IDR_WAVE1               WAVE                    "x64\\Debug\\Audio\\Click.wav"
+
+IDR_WAVE2               WAVE                    "x64\\Debug\\Audio\\Shield_effect.wav"
+
+IDR_WAVE3               WAVE                    "x64\\Debug\\Audio\\Song_Project.wav"
+
+#endif    // Polski (Polska) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
