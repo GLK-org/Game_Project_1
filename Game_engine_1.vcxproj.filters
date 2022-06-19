@@ -13,38 +13,56 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Pliki zasobów\Levels">
-      <UniqueIdentifier>{0dec2ac4-54c3-4c5f-9d6c-a3112c90c81b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Pliki zasobów\Structs">
-      <UniqueIdentifier>{46d8805a-5800-4bb4-a8ed-11edeb268642}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Pliki nagłówkowe\pch">
       <UniqueIdentifier>{464455d5-2b0e-4255-a04a-0bcb23aad56f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Pliki zasobów\Levels\1">
+    <Filter Include="Pliki źródłowe\Structs">
+      <UniqueIdentifier>{46d8805a-5800-4bb4-a8ed-11edeb268642}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki źródłowe\Structs\Level_controls">
+      <UniqueIdentifier>{545c1993-4230-40b5-9866-fa7032c057c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki źródłowe\Structs\Obj">
+      <UniqueIdentifier>{d7d0694d-283c-4eb3-bdbe-ab48d5391895}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki źródłowe\Structs\Primitives">
+      <UniqueIdentifier>{9a744662-78ae-4dbb-b4d6-3eeb3f40da76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki źródłowe\Structs\Others">
+      <UniqueIdentifier>{b72d12dc-de25-48b6-96bc-220272277e84}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki źródłowe\Item_controller">
+      <UniqueIdentifier>{4180d806-49f2-4dc3-b95a-35252222b111}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki źródłowe\Levels">
+      <UniqueIdentifier>{0dec2ac4-54c3-4c5f-9d6c-a3112c90c81b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki źródłowe\Levels\1">
       <UniqueIdentifier>{9ba5481f-83b3-45c9-9296-38ea481c2639}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Pliki zasobów\Levels\2">
+    <Filter Include="Pliki źródłowe\Levels\2">
       <UniqueIdentifier>{a423ed2d-b398-45b8-832c-8cc71ffefe4d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Pliki zasobów\Levels\3">
+    <Filter Include="Pliki źródłowe\Levels\3">
       <UniqueIdentifier>{8551a2a0-b72a-4d85-b2ab-0f0d71b91052}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Pliki zasobów\Levels\4">
+    <Filter Include="Pliki źródłowe\Levels\4">
       <UniqueIdentifier>{3d9e3339-1785-4545-951b-b1c54250e959}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Pliki zasobów\Levels\5">
-      <UniqueIdentifier>{7a3ce7f4-4d67-4485-b453-c1304735f8cf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Pliki zasobów\Levels\6">
-      <UniqueIdentifier>{e2d5806c-c0c9-40c2-ade8-a6f9efdcc5d5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Pliki zasobów\Levels\Menu">
+    <Filter Include="Pliki źródłowe\Levels\Menu">
       <UniqueIdentifier>{b45465f3-197f-4f99-9cd7-689603fc40aa}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Pliki zasobów\Levels\Pause">
+    <Filter Include="Pliki źródłowe\Levels\Pause">
       <UniqueIdentifier>{2ef77094-ec47-4222-9f9e-1e21a2095309}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki źródłowe\Levels\Cutscenes">
+      <UniqueIdentifier>{6064a694-7781-4534-96ba-f2e822017cfa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki zasobów\Images">
+      <UniqueIdentifier>{227cf3db-c64a-4ac1-bd86-fc0017d644b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki zasobów\Audio">
+      <UniqueIdentifier>{1ea0f018-3a70-49a1-b907-1dbe5816fdd7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -55,79 +73,215 @@
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
     <ClCompile Include="Game\Levels\Level_1.cpp">
-      <Filter>Pliki zasobów\Levels\1</Filter>
+      <Filter>Pliki źródłowe\Levels\1</Filter>
     </ClCompile>
     <ClCompile Include="Game\Levels\Level_2.cpp">
-      <Filter>Pliki zasobów\Levels\2</Filter>
+      <Filter>Pliki źródłowe\Levels\2</Filter>
     </ClCompile>
     <ClCompile Include="Game\Levels\Level_3.cpp">
-      <Filter>Pliki zasobów\Levels\3</Filter>
+      <Filter>Pliki źródłowe\Levels\3</Filter>
     </ClCompile>
     <ClCompile Include="Game\Levels\Level_4.cpp">
-      <Filter>Pliki zasobów\Levels\4</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Levels\Level_5.cpp">
-      <Filter>Pliki zasobów\Levels\5</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Levels\Level_6.cpp">
-      <Filter>Pliki zasobów\Levels\6</Filter>
+      <Filter>Pliki źródłowe\Levels\4</Filter>
     </ClCompile>
     <ClCompile Include="Game\Levels\Menu.cpp">
-      <Filter>Pliki zasobów\Levels\Menu</Filter>
+      <Filter>Pliki źródłowe\Levels\Menu</Filter>
     </ClCompile>
     <ClCompile Include="Game\Levels\Pause.cpp">
-      <Filter>Pliki zasobów\Levels\Pause</Filter>
+      <Filter>Pliki źródłowe\Levels\Pause</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Item_system\Item_system.cpp">
+      <Filter>Pliki źródłowe\Item_controller</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Structs\Level_controls.cpp">
+      <Filter>Pliki źródłowe\Structs\Level_controls</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Structs\Obj.cpp">
+      <Filter>Pliki źródłowe\Structs\Obj</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Structs\Primitives.cpp">
+      <Filter>Pliki źródłowe\Structs\Primitives</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="resource.h">
-      <Filter>Pliki zasobów</Filter>
-    </ClInclude>
     <ClInclude Include="Game\pch\pch.h">
       <Filter>Pliki nagłówkowe\pch</Filter>
     </ClInclude>
     <ClInclude Include="Game\Levels\Level_1.h">
-      <Filter>Pliki zasobów\Levels\1</Filter>
+      <Filter>Pliki źródłowe\Levels\1</Filter>
     </ClInclude>
     <ClInclude Include="Game\Levels\Level_2.h">
-      <Filter>Pliki zasobów\Levels\2</Filter>
+      <Filter>Pliki źródłowe\Levels\2</Filter>
     </ClInclude>
     <ClInclude Include="Game\Levels\Level_3.h">
-      <Filter>Pliki zasobów\Levels\3</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Structs\Obj.h">
-      <Filter>Pliki zasobów\Structs</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Structs\Level_controls.h">
-      <Filter>Pliki zasobów\Structs</Filter>
+      <Filter>Pliki źródłowe\Levels\3</Filter>
     </ClInclude>
     <ClInclude Include="Game\Levels\Level_4.h">
-      <Filter>Pliki zasobów\Levels\4</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Levels\Level_5.h">
-      <Filter>Pliki zasobów\Levels\5</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Levels\Level_6.h">
-      <Filter>Pliki zasobów\Levels\6</Filter>
+      <Filter>Pliki źródłowe\Levels\4</Filter>
     </ClInclude>
     <ClInclude Include="Game\Levels\Menu.h">
-      <Filter>Pliki zasobów\Levels\Menu</Filter>
+      <Filter>Pliki źródłowe\Levels\Menu</Filter>
     </ClInclude>
     <ClInclude Include="Game\Levels\Pause.h">
-      <Filter>Pliki zasobów\Levels\Pause</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Structs\Primitives.h">
-      <Filter>Pliki zasobów\Structs</Filter>
+      <Filter>Pliki źródłowe\Levels\Pause</Filter>
     </ClInclude>
     <ClInclude Include="Game\Structs\Phys_obj.h">
-      <Filter>Pliki zasobów\Structs</Filter>
+      <Filter>Pliki źródłowe\Structs</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Structs\Items.h">
+      <Filter>Pliki źródłowe\Structs</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Item_system\Item_system.h">
+      <Filter>Pliki źródłowe\Item_controller</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Cutscenes\Intro.h">
+      <Filter>Pliki źródłowe\Levels\Cutscenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Cutscenes\Outro.h">
+      <Filter>Pliki źródłowe\Levels\Cutscenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Structs\Level_controls.h">
+      <Filter>Pliki źródłowe\Structs\Level_controls</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Structs\Obj.h">
+      <Filter>Pliki źródłowe\Structs\Obj</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Structs\Primitives.h">
+      <Filter>Pliki źródłowe\Structs\Primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Others\Converter.h">
+      <Filter>Pliki źródłowe\Structs\Others</Filter>
     </ClInclude>
     <ClInclude Include="Game\Levels\Level_includes.h">
-      <Filter>Pliki nagłówkowe</Filter>
+      <Filter>Pliki źródłowe\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="resources\resource.h">
+      <Filter>Pliki nagłówkowe\pch</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="Game_engine_1.rc">
+    <Image Include="x64\Debug\Artworks\ActiveShield.png">
+      <Filter>Pliki zasobów\Images</Filter>
+    </Image>
+    <Image Include="x64\Debug\Artworks\Ball.png">
+      <Filter>Pliki zasobów\Images</Filter>
+    </Image>
+    <Image Include="x64\Debug\Artworks\Base.png">
+      <Filter>Pliki zasobów\Images</Filter>
+    </Image>
+    <Image Include="x64\Debug\Artworks\Basic_glass.png">
+      <Filter>Pliki zasobów\Images</Filter>
+    </Image>
+    <Image Include="x64\Debug\Artworks\Battery.png">
+      <Filter>Pliki zasobów\Images</Filter>
+    </Image>
+    <Image Include="x64\Debug\Artworks\Bg.png">
+      <Filter>Pliki zasobów\Images</Filter>
+    </Image>
+    <Image Include="x64\Debug\Artworks\Bg2.png">
+      <Filter>Pliki zasobów\Images</Filter>
+    </Image>
+    <Image Include="x64\Debug\Artworks\Bt.bmp">
+      <Filter>Pliki zasobów\Images</Filter>
+    </Image>
+    <Image Include="x64\Debug\Artworks\Bt.png">
+      <Filter>Pliki zasobów\Images</Filter>
+    </Image>
+    <Image Include="x64\Debug\Artworks\Button.png">
+      <Filter>Pliki zasobów\Images</Filter>
+    </Image>
+    <Image Include="x64\Debug\Artworks\Doors.png">
+      <Filter>Pliki zasobów\Images</Filter>
+    </Image>
+    <Image Include="x64\Debug\Artworks\Floor.png">
+      <Filter>Pliki zasobów\Images</Filter>
+    </Image>
+    <Image Include="x64\Debug\Artworks\Floory.png">
+      <Filter>Pliki zasobów\Images</Filter>
+    </Image>
+    <Image Include="x64\Debug\Artworks\Frame.png">
+      <Filter>Pliki zasobów\Images</Filter>
+    </Image>
+    <Image Include="x64\Debug\Artworks\Frame_1080.png">
+      <Filter>Pliki zasobów\Images</Filter>
+    </Image>
+    <Image Include="x64\Debug\Artworks\Generator.png">
+      <Filter>Pliki zasobów\Images</Filter>
+    </Image>
+    <Image Include="x64\Debug\Artworks\glass_overlay.png">
+      <Filter>Pliki zasobów\Images</Filter>
+    </Image>
+    <Image Include="x64\Debug\Artworks\Gravity.png">
+      <Filter>Pliki zasobów\Images</Filter>
+    </Image>
+    <Image Include="x64\Debug\Artworks\Gravity_gun.png">
+      <Filter>Pliki zasobów\Images</Filter>
+    </Image>
+    <Image Include="x64\Debug\Artworks\Gyro.png">
+      <Filter>Pliki zasobów\Images</Filter>
+    </Image>
+    <Image Include="x64\Debug\Artworks\Item_frame.png">
+      <Filter>Pliki zasobów\Images</Filter>
+    </Image>
+    <Image Include="x64\Debug\Artworks\Menu_bg.png">
+      <Filter>Pliki zasobów\Images</Filter>
+    </Image>
+    <Image Include="x64\Debug\Artworks\One_thingy.png">
+      <Filter>Pliki zasobów\Images</Filter>
+    </Image>
+    <Image Include="x64\Debug\Artworks\Operating.png">
+      <Filter>Pliki zasobów\Images</Filter>
+    </Image>
+    <Image Include="x64\Debug\Artworks\Outro_0.png">
+      <Filter>Pliki zasobów\Images</Filter>
+    </Image>
+    <Image Include="x64\Debug\Artworks\Outro_1.png">
+      <Filter>Pliki zasobów\Images</Filter>
+    </Image>
+    <Image Include="x64\Debug\Artworks\Outro_2.png">
+      <Filter>Pliki zasobów\Images</Filter>
+    </Image>
+    <Image Include="x64\Debug\Artworks\Panel_0.png">
+      <Filter>Pliki zasobów\Images</Filter>
+    </Image>
+    <Image Include="x64\Debug\Artworks\Panel_1.png">
+      <Filter>Pliki zasobów\Images</Filter>
+    </Image>
+    <Image Include="x64\Debug\Artworks\Panel_2.png">
+      <Filter>Pliki zasobów\Images</Filter>
+    </Image>
+    <Image Include="x64\Debug\Artworks\Panel_3.png">
+      <Filter>Pliki zasobów\Images</Filter>
+    </Image>
+    <Image Include="x64\Debug\Artworks\Pc.png">
+      <Filter>Pliki zasobów\Images</Filter>
+    </Image>
+    <Image Include="x64\Debug\Artworks\Shelf.png">
+      <Filter>Pliki zasobów\Images</Filter>
+    </Image>
+    <Image Include="x64\Debug\Artworks\Shield.png">
+      <Filter>Pliki zasobów\Images</Filter>
+    </Image>
+    <Image Include="x64\Debug\Artworks\Shield_effect.png">
+      <Filter>Pliki zasobów\Images</Filter>
+    </Image>
+    <Image Include="x64\Debug\Artworks\Title.png">
+      <Filter>Pliki zasobów\Images</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="x64\Debug\Audio\Click.wav">
+      <Filter>Pliki zasobów\Audio</Filter>
+    </Media>
+    <Media Include="x64\Debug\Audio\Shield_effect.wav">
+      <Filter>Pliki zasobów\Audio</Filter>
+    </Media>
+    <Media Include="x64\Debug\Audio\Song_Project.wav">
+      <Filter>Pliki zasobów\Audio</Filter>
+    </Media>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="resource.rc">
       <Filter>Pliki zasobów</Filter>
     </ResourceCompile>
   </ItemGroup>

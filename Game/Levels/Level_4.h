@@ -1,8 +1,6 @@
 #pragma once
-#include "Level_control\GameLevel.h"
-#include "Primitives.h"
+#include "GameController.h"
 #include "Level_controls.h"
-#include <vector>
 
 class Level4 : public GameLevel {
 	//Mysz do przeniesienia
@@ -13,6 +11,9 @@ class Level4 : public GameLevel {
 	Player* player;
 	Eli* eli;
 	double r, g, b, a;
+	Inanimate* bg;
+	Panel* panel;
+
 public:
 	Level4();
 	virtual ~Level4();

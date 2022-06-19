@@ -1,5 +1,5 @@
 #pragma once
-#include "Level_control\GameLevel.h"
+#include "Game_controller\GameLevel.h"
 #include "Level_controls.h"
 #include "Obj.h"
 
@@ -8,6 +8,7 @@ class Level6 : public GameLevel {
 
 	char id = '6';
 	Doors* doors;
+	Player* player;
 	double r, g, b, a;
 public:
 	Level6();

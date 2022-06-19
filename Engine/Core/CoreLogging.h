@@ -21,6 +21,5 @@ static void MakeMesBoxA(float args[], std:: string text="") {
 		//okno rodzica, tekst, tytu³, standard zachowania
 	
 	MessageBoxA(0,temp.c_str(),0,0);
-
 }
 

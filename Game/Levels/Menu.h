@@ -1,12 +1,10 @@
 #pragma once
-#include "Level_control\GameLevel.h"
-#include "..\Engine\Level_control\GameController.h"
-#include "Primitives.h"
+#include "GameController.h"
 #include "Level_controls.h"
 #include "Level_includes.h"
-#include <vector>
 #include <map>
-
+#include "Sources\IEvSource.h"
+#include "Converter.h"
 struct Buttons : public BaseButton {
 	int id;
 	Buttons(Obj* ob, float r, float g, float b, float a, int id = -1, std::string text = "0") : BaseButton(ob, r, g, b, a, text) { 
@@ -17,8 +15,9 @@ struct Buttons : public BaseButton {
 	void OnTrig() override {
 		if(id==0) {
 		
-			GameController::SwitchLevel(new Level1());
-			
+			//GameController::SwitchLevel(new Level1());
+			GameController::SwitchLevel(new Intro());
+			return;
 		}
 		else if(id==1) {
 
@@ -38,11 +37,21 @@ struct Buttons : public BaseButton {
 };
 
 
-class Menu :public GameLevel {
+class Menu : public GameLevel {
+	bool animch=false;
+	Inanimate* title;
+	Inanimate* bg;
 	std::vector<Buttons*> buttons;
 	std::map<std::string, D2D1_RECT_F> text_boxes;
-public:
+	VoiceCallback vc;
+	IXAudio2SourceVoice* snd;
+	XAUDIO2_BUFFER buff;
 
+	CSource src;
+	CReceiver rec;
+public:
+	Menu();
+	~Menu();
 	void Load(Graphics* gfx, Writer* wrt=nullptr) override;
 	char GetID() override;
 	void Unload()override;

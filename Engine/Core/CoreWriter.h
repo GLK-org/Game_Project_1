@@ -1,5 +1,4 @@
 #pragma once
-#include "../pch/Engine.h"
 #include "d2d1.h"
 #include <vector>
 #include <dwrite.h>
@@ -17,7 +16,7 @@ public:
 	 IDWriteTextFormat* m_pTextFormat;
 
 	 HRESULT Initialize(ID2D1Factory* factory, ID2D1RenderTarget & target);
-	 void Draw_Text(std::string text, D2D1_RECT_F rect );
-
+	 void Draw_Text(std::string text, D2D1_RECT_F rect, DWRITE_TEXT_ALIGNMENT align = DWRITE_TEXT_ALIGNMENT_CENTER, DWRITE_PARAGRAPH_ALIGNMENT par = DWRITE_PARAGRAPH_ALIGNMENT_CENTER);
+	 ~Writer();
 
 };

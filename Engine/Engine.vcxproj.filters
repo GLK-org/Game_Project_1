@@ -22,9 +22,6 @@
     <Filter Include="Pliki źródłowe\Core\Private">
       <UniqueIdentifier>{4d78d538-6c41-481a-bd2d-0fd7e6c355f3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Pliki źródłowe\Level_Control">
-      <UniqueIdentifier>{3bd693c1-72f0-4c96-9b6d-114767c69eb0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Pliki źródłowe\Engine_pch">
       <UniqueIdentifier>{f3ef8480-c2bb-4636-b864-df746958df93}</UniqueIdentifier>
     </Filter>
@@ -37,13 +34,13 @@
     <Filter Include="Pliki źródłowe\Event_system\Sources">
       <UniqueIdentifier>{f42e1f9f-31e4-40d3-8eba-465a7e0b41de}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Pliki źródłowe\Level_controller">
+      <UniqueIdentifier>{3bd693c1-72f0-4c96-9b6d-114767c69eb0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\CoreMinimal.cpp">
       <Filter>Pliki źródłowe\Core\Private</Filter>
-    </ClCompile>
-    <ClCompile Include="Level_control\GameController.cpp">
-      <Filter>Pliki źródłowe\Level_Control</Filter>
     </ClCompile>
     <ClCompile Include="pch\Engine.cpp">
       <Filter>Pliki źródłowe\Engine_pch</Filter>
@@ -60,25 +57,25 @@
     <ClCompile Include="Event_system\Handler\Handler.cpp">
       <Filter>Pliki źródłowe\Event_system\Handler</Filter>
     </ClCompile>
-    <ClCompile Include="Core.cpp">
+    <ClCompile Include="Level_controller\GameController.cpp">
+      <Filter>Pliki źródłowe\Level_controller</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Core.cpp">
       <Filter>Pliki źródłowe\Core\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\CoreAudio.cpp">
+      <Filter>Pliki źródłowe\Core\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Event_system\Sources\IEvSource.cpp">
+      <Filter>Pliki źródłowe\Event_system\Handler</Filter>
+    </ClCompile>
+    <ClCompile Include="Event_system\Handler\Cutscene_controller.cpp">
+      <Filter>Pliki źródłowe\Event_system\Handler</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="resource.h">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
     <ClInclude Include="Core\CoreMinimal.h">
       <Filter>Pliki źródłowe\Core\Public</Filter>
-    </ClInclude>
-    <ClInclude Include="Level_control\GameController.h">
-      <Filter>Pliki źródłowe\Level_Control</Filter>
-    </ClInclude>
-    <ClInclude Include="..\resources\resource.h">
-      <Filter>Pliki zasobów</Filter>
-    </ClInclude>
-    <ClInclude Include="Level_control\GameLevel.h">
-      <Filter>Pliki źródłowe\Level_Control</Filter>
     </ClInclude>
     <ClInclude Include="pch\Engine.h">
       <Filter>Pliki źródłowe\Engine_pch</Filter>
@@ -92,19 +89,26 @@
     <ClInclude Include="Core\CoreTransforms.h">
       <Filter>Pliki źródłowe\Core\Public</Filter>
     </ClInclude>
-    <ClInclude Include="Event_system\Handler\Handler.h">
-      <Filter>Pliki źródłowe\Event_system\Handler</Filter>
+    <ClInclude Include="Level_controller\GameController.h">
+      <Filter>Pliki źródłowe\Level_controller</Filter>
     </ClInclude>
-    <ClInclude Include="Event_system\Sources\EVLevel1.h">
-      <Filter>Pliki źródłowe\Event_system\Sources</Filter>
+    <ClInclude Include="Level_controller\GameLevel.h">
+      <Filter>Pliki źródłowe\Level_controller</Filter>
     </ClInclude>
-    <ClInclude Include="Core.h">
+    <ClInclude Include="Core\Core.h">
       <Filter>Pliki źródłowe\Core\Public</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="Content\Caffle.bmp">
-      <Filter>Pliki zasobów</Filter>
-    </Image>
+    <ClInclude Include="Core\CoreAudio.h">
+      <Filter>Pliki źródłowe\Core\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Event_system\Sources\Handler.h">
+      <Filter>Pliki źródłowe\Event_system\Sources</Filter>
+    </ClInclude>
+    <ClInclude Include="Event_system\Sources\IEvSource.h">
+      <Filter>Pliki źródłowe\Event_system\Sources</Filter>
+    </ClInclude>
+    <ClInclude Include="Event_system\Sources\Cutscene_controller.h">
+      <Filter>Pliki źródłowe\Event_system\Sources</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

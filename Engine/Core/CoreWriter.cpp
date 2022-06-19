@@ -1,9 +1,16 @@
+
 #include "Engine.h"
 #include "CoreWriter.h"
 
  WCHAR const Writer::msc_fontName[] = L"Verdana";
- FLOAT const Writer::msc_fontSize = 35;
+ FLOAT const Writer::msc_fontSize = (WNDWIDTH/19+WNDHEIGHT/9)/((WNDWIDTH+WNDHEIGHT)/400);
 
+
+ Writer::~Writer() {
+     m_pDWriteFactory->Release();
+     m_pTextFormat->Release();
+
+ }
 HRESULT Writer::Initialize(ID2D1Factory* factory, ID2D1RenderTarget& target) {
 
     m_pD2DFactory = factory;
@@ -47,8 +54,10 @@ HRESULT Writer::Initialize(ID2D1Factory* factory, ID2D1RenderTarget& target) {
      return hr;
  }
 
-void Writer::Draw_Text(std::string text, D2D1_RECT_F rect)
+void Writer::Draw_Text(std::string text, D2D1_RECT_F rect, DWRITE_TEXT_ALIGNMENT align, DWRITE_PARAGRAPH_ALIGNMENT par)
 {
+    m_pTextFormat->SetTextAlignment(align);
+    m_pTextFormat->SetParagraphAlignment(par);
     std::wstring wstext = std::wstring(text.begin(), text.end());
     const wchar_t* wtext = wstext.c_str();
     HRESULT hr;

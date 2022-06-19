@@ -1,10 +1,14 @@
 #pragma once
-#include "Level_control\GameLevel.h"
 #include "Level_controls.h"
-#include "Primitives.h"
-#include <vector>
+#include "GameController.h"
+#include "windowsx.h"
 #include <map>
-#include <string>
+
+
+
+#define Lvla 10.0f
+#define Lvlb (WNDHEIGHT - 0.9 * WNDHEIGHT)
+#define OFFSET 70.0f
 
 static int lvlgoal = 11;
 struct Doors1 : public Doors {
@@ -14,36 +18,46 @@ struct Doors1 : public Doors {
 	void Checkconl() {
 	}
 	void Checkconr(int points) {
-		if (points > lvlgoal) ropen=true;
+		if (points >= lvlgoal) ropen=true;
 
 
 	}
 };
 
+
 class Level1: public GameLevel {
+
 	//Mysz do przeniesienia
 	//EReciever reci;
 	//lvl1Ev ev;
 	
-	Player* player;
-	float floorx, floory, width, height;
+	
+	float floorx, floory;
 	char id = '1';
-    Eli* eli;
-	std::vector<Obj*> eli1;
-	std::vector<Obj*> goal;
-	Obj* buttons[2];
-	Doors1* doors;
-	float y;
-	float x;
-	float ySpeed;
-	float xSpeed;
+	float y, x;
+	float ySpeed, xSpeed;
 	int points;
-	bool mode;
-	double change;
-	bool asc;
-	double r, g, b, a;
+	bool asc, mode;
+	double r, g, b, a, change;
+
+
+	Player* player;
+    Ball* eli;
+	Inanimate* buttons[3];
+	Inanimate* controller;
+	Graphics* gfx;
+	Inanimate* bg;
+	Panel* panel;
+	Doors1* doors;
+	FloatingText* text;
+	std::vector<Obj*> goal;
+	std::vector<Inanimate*> list;
 	std::map<std::string, D2D1_RECT_F> text_boxes;
 	D2D1_POINT_2F postab[6];
+
+	
+	
+
 public:
 	 Level1();
 	 virtual ~Level1();

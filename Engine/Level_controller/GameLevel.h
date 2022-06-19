@@ -1,6 +1,9 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "CoreWriter.h"
+#include "CoreAudio.h"
+
+#define BASIC_SPEED WNDWIDTH/1000.0f
 class ENGINE_API GameLevel {
 	//Ka¿dy poziom niech ma zmienn¹ id do porównania poziomu
 	
@@ -14,6 +17,6 @@ public:
 	virtual void Update() = 0;
 	void MouseLocUpdate() {
 		GetCursorPos(&p);
-		ScreenToClient(FindWindowA("TutorialOneClass", "TutorialOneTitle"), &p);
+		ScreenToClient(FindWindowA("TutorialOneClass", "A day off the job"), &p);
 	};
 };

@@ -1,7 +1,15 @@
 #pragma once
-#include "CoreLogging.h"
 #include "CoreTransforms.h"
-#include "GameController.h"
+
+
+enum Types {
+	LINEAR,
+	QUADRATIC,
+
+
+
+};
+
 struct phsxObj {
 	VelocVect* vVect;
 	float mass;//??
@@ -19,54 +27,94 @@ struct phsxObj {
 		active = false;
 	}
 
-	phsxObj(D2D1_POINT_2F& e, float speed = SLOW, double m=0.0f) {
+	phsxObj(D2D1_POINT_2F& e, float speed = SLOW, float m=0.0f) {
 		collidex = collidey = false;
 		vVect = new VelocVect(e);
 		mass = m;
 		accellim = speed;
+		active = false;
 	}
-	void SetVLim(float lim) {
-		if (signbit(lim) == true) return;
-		accellim = lim;
+	virtual ~phsxObj() {
+		delete vVect;
 	}
-	void ClearSpeed() {
-		//vVect->v_0.x = vVect->v_0.y = 0.0f;
-		//vVect->angle.x = vVect->angle.y = 0.0f;
-		vVect->len = 0.0f;
-	}
-	void LinAccelerate(const D2D1_POINT_2F& center, double ax, double ay, bool active=false) {
-		//basic gravity, not a function but a parameter, to develop
+	phsxObj operator= (const phsxObj& ob) {
 
-		//OutputDebugStringA(MakeLPCSTR( { &(vVect->len) } ) );
-		//OutputDebugStringA(MakeLPCSTR({ &(vVect->v_0.x) }));
-		//OutputDebugStringA(MakeLPCSTR({ &(vVect->v_0.y) }));
-		this->active = active;
-		if (GameController::gravity)
-									{
-			D2D1_POINT_2F e = { ax,ay + GRAV };
-		vVect->UpdateLoc(e,center);
-			}
-		else {
-			D2D1_POINT_2F e = { ax,ay };
-			vVect->UpdateLoc(e,center);
+	}
+	D2D1_POINT_2F GetVelocVect() { return vVect->v_0; }
+	void SetVLim(float lim) {
+		if (signbit(lim) == true) {
+			accellim = lim;
+			return;
+
 		}
 
 	}
-	void LinAccelerate(const D2D1_POINT_2F& center, const D2D1_POINT_2F& p, bool active=false) {
+	D2D1_POINT_2F Get_inv_veloc() {
+		D2D1_POINT_2F e(vVect->len, vVect->angle.y);
+		return e;
+	}
+	void YAngleLock()
+	{
+		if (vVect->angle.y < 0){
+			vVect->angle.y = 0.0f;
+	 }
+	}
 
+		void UpdatePsxCtr(float x, float y) {
+		vVect->UpdatePsxCtr(x,y);
+	}
 
-		//OutputDebugStringA(MakeLPCSTR( { &(vVect->len) } ) );
-		//OutputDebugStringA(MakeLPCSTR({ &(vVect->v_0.x) }));
-		//OutputDebugStringA(MakeLPCSTR({ &(vVect->v_0.y) }));
-		this->active = active;
-		if (GameController::gravity)
+	void UpdatePsxCtr(const D2D1_POINT_2F& p) {
+		vVect->UpdatePsxCtr(p);
+	}
+
+	void ClearSpeed() {
+		vVect->len = 0.0f;
+		vVect->angle.x = 0.0f;
+		vVect->angle.y = 0.0f;
+	}
+
+	void ClearSpeed(const D2D1_POINT_2F p) {
+		vVect->len = 0.0f;
+		vVect->v_0.x = p.x;
+		vVect->v_0.y = p.y;
+		vVect->angle.x = 0.0f;
+		vVect->angle.y = 0.0f;
+	}
+	void LinAccelerate(const D2D1_POINT_2F& center, float x, float y, bool grav=true) {
+		if (x >= 1.0f || y >= 1.0f) {
+			this->active = true;
+		}
+		else {
+			this->active = false;
+		}
+		if (GameController::gravity==true && grav==true)
 		{
-		D2D1_POINT_2F e = { p.x,p.y+GRAV };
-		vVect->UpdateLoc(e, center);
+		D2D1_POINT_2F e = { x,y + (GRAV*mass) };
+		vVect->UpdateLoc(e,center,accellim);
+
+			}
+		else {
+			D2D1_POINT_2F e = { x,y };
+			vVect->UpdateLoc(e,center,accellim);
+		}
+
+	}
+	void LinAccelerate(const D2D1_POINT_2F& center, const D2D1_POINT_2F& p, bool grav = true) {
+		if (p.x >= 1.0f || p.y >= 1.0f) {
+			this->active = true;
+		}
+		else {
+			this->active = false;
+		}
+		if (GameController::gravity && grav==true)
+		{
+		D2D1_POINT_2F e = { p.x,p.y+(GRAV*mass) };
+		vVect->UpdateLoc(e, center, accellim);
 	}
 		else {
 		D2D1_POINT_2F e = { p.x,p.y };
-		vVect->UpdateLoc(e, center);
+		vVect->UpdateLoc(e, center, accellim);
 		}
 
 	}
@@ -74,45 +122,47 @@ struct phsxObj {
 
 	void SqrdAccelerate(double ax, double ay) {
 		POINT p(ax, ay);
-//		Sq(p, accellim);
 		vVect->v_0.x += ax;
 		vVect->v_0.y += ay;
 	}
 
-	void LinDeccelerate(const D2D1_POINT_2F& center, float ttl, float speed=1.1f) {
-		vVect->len = vVect->len/(ttl * speed);
+	void LinDeccelerate(const D2D1_POINT_2F& center, float ttl, float speed=2.0f) {
+		if (vVect->len < 1.0f) {
+			ClearSpeed(center);
+		}
+		else {
+			LinAccelerate(center,(vVect->len/speed) * (-(vVect->angle.x)), (vVect->len / speed) * (-(vVect->angle.y)));
+		}
+		
 	}
 
 	void SqrdDeccelerate(double ax, double ay) {
 		POINT p(ax, ay);
-//		Sq(p, accellim);
 		vVect->v_0.x -= ax;
 		vVect->v_0.y -= ay;
 	}
 
-	void PhsxUpdate(D2D1_POINT_2F& center,float ttl,bool decel=false, float speed =SLOW) {
+	void PhsxUpdate(D2D1_POINT_2F& center,float ttl,float x, float y, Types mode=LINEAR, bool grav=true) {
 		//prymitywne collidery ale ¿eby coœ by³o
 		//k¹t modyfikuje tu przyspieszenie, ogólnie nie ogranicza siê tylko do wskazywania kierunku
 		//w którym pchaæ ma length
-		if (signbit(accellim) == false) {
-			accellim = speed;
-		}
-		if (active) {
-			LinDeccelerate(center, ttl);
+		if (mode == LINEAR) {
+				
+		//	if (active==false) {
+			//	LinDeccelerate(center,ttl);
+			//}
+			//IT ALREADY MARKS THE CENTER IN A NEW PLACE
+		//	else {
+				LinAccelerate(center, x, y, grav);
+		//	}
+				center.x += vVect->len * (vVect->angle.x);
+				center.y += vVect->len * (vVect->angle.y);
+			
 		}
 		
-		if (!collidex) {
-			center.x += vVect->len * (vVect->angle.x);
-		}
-
-		if (!collidey) {
-			center.y += vVect->len * (vVect->angle.y);
-		}
 		
 	}
 
 	
-	~phsxObj() {
-		delete vVect;
-	}
+
 };

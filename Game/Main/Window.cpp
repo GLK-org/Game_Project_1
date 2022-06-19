@@ -1,15 +1,18 @@
 #include "..\Game\pch\pch.h"
-#include "Level_control\GameController.h"
+#include "GameController.h"
+#include "Converter.h"
 WCHAR		WindowClass[MAX_NAME_STRING];
 WCHAR		WindowTitle[MAX_NAME_STRING];
 
 INT			WindowHeight;
 INT			WindowWidth;
-
+DOUBLE			Pcooldown = 0;
+BOOL IsWindowMode = TRUE;
 Graphics* graphics;
 Writer * writer;
+AudioController* audioc;
 LRESULT CALLBACK WindowProcess(HWND hWnd, UINT message, WPARAM wparam, LPARAM lparam) {
-
+	
 	switch (message) {
 	case WM_DESTROY: {
 		PostQuitMessage(0);
@@ -39,7 +42,7 @@ int CALLBACK WinMain(HINSTANCE, HINSTANCE, LPSTR, INT) {
 	//Inicjalizacja parametrów startowych
 
 	wcscpy_s(WindowClass, TEXT("TutorialOneClass"));
-	wcscpy_s(WindowTitle, TEXT("TutorialOneTitle"));
+	wcscpy_s(WindowTitle, TEXT("A day off the job"));
 
 	WindowWidth = WNDWIDTH;
 	WindowHeight = WNDHEIGHT;
@@ -74,7 +77,7 @@ int CALLBACK WinMain(HINSTANCE, HINSTANCE, LPSTR, INT) {
 	RECT rect = {0,0, WindowWidth, WindowHeight};
 	AdjustWindowRectEx(&rect, WS_OVERLAPPEDWINDOW,false,WS_EX_OVERLAPPEDWINDOW);
 
-	HWND hWnd = CreateWindowEx(WS_EX_OVERLAPPEDWINDOW, WindowClass, WindowTitle, WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, 0, rect.right-rect.left, rect.bottom-rect.top, nullptr, nullptr, HInstance(), nullptr);
+	HWND hWnd = CreateWindowEx(WS_EX_OVERLAPPEDWINDOW, WindowClass, WindowTitle, WS_MAXIMIZE, CW_USEDEFAULT, 0, rect.right-rect.left, rect.bottom-rect.top, nullptr, nullptr, HInstance(), nullptr);
 
 	if (!hWnd) {
 		MessageBox(0, L"Failed to Create Window", 0, 0);
@@ -93,8 +96,23 @@ int CALLBACK WinMain(HINSTANCE, HINSTANCE, LPSTR, INT) {
 		delete writer;
 		return -1;
 	}
+	audioc = new AudioController();
 
-	GameController::Init(graphics,writer);
+	if (audioc->Initialize() != S_OK) {
+		delete audioc;
+		return -1;
+	}
+
+
+
+	/*if (audioc->LoadFromFile(GetLPSTR_Path(L"Song_Project.wav").c_str()) != S_OK) {
+		delete audioc;
+		return -1;
+	}*/
+	
+	
+	
+	GameController::Init(graphics,writer,audioc);
 	//Wyœwietlanie okna i ³adowanie wstêpnego poziomu
 	
 	ShowWindow(hWnd, SW_SHOW);
@@ -113,6 +131,7 @@ int CALLBACK WinMain(HINSTANCE, HINSTANCE, LPSTR, INT) {
 		}
 		else {
 			
+
 			
 			if (GetKeyState('2') & KEY_PRESSED) {
 				GameController::SwitchLevel(new Level2());
@@ -123,15 +142,29 @@ int CALLBACK WinMain(HINSTANCE, HINSTANCE, LPSTR, INT) {
 			else if (GetKeyState('3') & KEY_PRESSED) {
 				GameController::SwitchLevel(new Level3());
 			}
-			else if (GetKeyState(VK_ESCAPE) & KEY_PRESSED) {
-				GameController::SwitchLevel(new Menu());
+			else if (GetKeyState('4') & KEY_PRESSED) {
+				audioc->StopAudio();
+				
 			}
-			else if (GameController::exit == true) {
+			else if (GetKeyState('5') & KEY_PRESSED) {
+				audioc->PlayAudio();
+
+			}
+			if (GameController::exit == true) {
 				break;
 			}
 			//Render:
 			graphics->BeginDraw();
-			GameController::Play(graphics);
+			if (GetKeyState(VK_ESCAPE) & KEY_PRESSED && Pcooldown>1) {
+				Pcooldown = 0;
+				GameController::paused = !GameController::paused;
+				GameController::Play(graphics, writer, new PauseCl());
+			}
+			else {
+				Pcooldown += GameController::increment;
+				GameController::Play(graphics);
+			}
+			
 			graphics->EndDraw();
 			
 		}
@@ -139,5 +172,6 @@ int CALLBACK WinMain(HINSTANCE, HINSTANCE, LPSTR, INT) {
 
 	delete graphics;
 	delete writer;
+	audioc->Release();
 	return 0;
 }
