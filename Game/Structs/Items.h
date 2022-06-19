@@ -16,7 +16,7 @@ public:
 		States state = not_earned
 	) : Item(gfx, spawnx, spawny, width, height, 1, interactable, combinable, consumable, state) {
 		name = "Temp";
-		LoadBmp(gfx, drawtarget, L"Bt.bmp");
+		LoadBmpRes(gfx);
 		taggable = true;
 	};
 	Temp(const Item* act
@@ -53,7 +53,7 @@ public:
 		States state = not_earned
 		) : Item(gfx,spawnx,spawny,width,height,1,interactable,combinable,consumable,state) {
 		name = "Battery";
-		LoadBmp(gfx, drawtarget, L"Battery.png");
+		LoadBmpRes(gfx);
 		taggable = true;
 	};
 	Battery(const Item* act
@@ -90,7 +90,7 @@ public:
 		States state = not_earned
 		) : Item(gfx, spawnx, spawny, width, height, 2, interactable, combinable, consumable, state) {
 		name = "Gyro";
-		LoadBmp(gfx, drawtarget, L"Gyro.png");
+		LoadBmpRes(gfx);
 		taggable = true;
 	}
 	Gyro(const Item* act
@@ -126,7 +126,7 @@ public:
 		States state = not_earned
 		) : Item(gfx, spawnx, spawny, width, height, 3, interactable, combinable, consumable, state) {
 		name = "Launcher";
-		LoadBmp(gfx, drawtarget, L"Gravity_gun.png");
+		LoadBmpRes(gfx);
 		taggable = true;
 	}
 	Launcher(const Item* act
@@ -161,7 +161,7 @@ public:
 		States state = not_earned
 		) : Item(gfx, spawnx, spawny, width, height, 4, interactable, combinable, consumable, state) {
 		name = "Shield";
-		LoadBmp(gfx, drawtarget, L"Shield.png");
+		LoadBmpRes(gfx);
 		taggable = true;
 	}
 	Shield(const Item* act
